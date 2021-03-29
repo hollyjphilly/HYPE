@@ -10,17 +10,25 @@ const EventSchema = new Schema({
       type: String,
       required: true
     },
-    user: {
+    sport: {
+      type: String,
+      required: true
+    },
+    host: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    text: {
-        type: String,
+    maxCapacity: {
+      type: Number,
+      required: true
+    },
+    usersAttending: {
+        type: Array,
         required: true
     },
-    date: {
+    dateTime: {
         type:  Date,
-        default: Date.now
+        required: true
     }
 })
 
