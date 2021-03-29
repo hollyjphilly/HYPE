@@ -45,7 +45,6 @@ export const register = user => dispatch => (
             (err) => console.log(err)
             // (err) => dispatch(receiveErrors(err.response.data)
         )
-    )
 );
 
 export const login = user => dispatch => (
