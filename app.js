@@ -5,7 +5,7 @@ const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
 const bodyParser = require("body-parser");
-// const passport = require("passport");
+const passport = require("passport");
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -20,7 +20,8 @@ app.use(
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => res.send("Hello Hype"));
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/events", events);
