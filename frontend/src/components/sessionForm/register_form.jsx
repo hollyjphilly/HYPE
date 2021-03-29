@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class SignupForm extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,7 @@ class SignupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.signup(this.state); 
+    this.props.register(this.state); 
   }
 
   renderErrors() {
@@ -52,9 +52,9 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
+      <div className="register-form-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
+          <div className="register-form">
             <br/>
             <input type="text"
                 value={this.state.firstName}
@@ -101,4 +101,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default withRouter(SignupForm);
+export default withRouter(RegisterForm);
