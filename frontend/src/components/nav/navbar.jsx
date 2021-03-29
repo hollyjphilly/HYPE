@@ -35,7 +35,7 @@ class NavBar extends React.Component {
             <div className="navbar-container">
               <img src="" alt="" className="hype-logo"/>
                 <div className="session-links">
-                  <Link to={'/signup'}>Register</Link>
+                  <Link to={'/register'}>Register</Link>
                   <Link to={'/login'}>Login</Link>
                 </div>
             </div>
