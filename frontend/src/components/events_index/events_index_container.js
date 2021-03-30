@@ -4,7 +4,6 @@ import EventsIndex from './events_index'
 
 
 const mapStateToProps = state => {
-  debugger
   return {
     events: Object.values(state.entities.events.all)
   }

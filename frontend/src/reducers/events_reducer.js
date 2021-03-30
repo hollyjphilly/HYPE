@@ -12,7 +12,6 @@ import {
     switch(action.type) {
 
       case RECEIVE_ALL_EVENTS:
-        debugger
         newState.all = action.events.data;
         return newState;
 

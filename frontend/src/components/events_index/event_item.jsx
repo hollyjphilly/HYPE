@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const EventItem = ({event}) => {
-  debugger
+
   return (
     <div className="event-single-container">
       <img src="" alt="" className="event-thumbnail"/>
