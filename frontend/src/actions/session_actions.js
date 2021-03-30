@@ -42,8 +42,7 @@ export const register = user => dispatch => (
     APIUtil.register(user)
         .then(
             (user) => dispatch(receiveCurrentUser(user)),
-            (err) => console.log(err)
-            // (err) => dispatch(receiveErrors(err.response.data)
+            (err) => dispatch(receiveErrors(err.response.data))
         )
 );
 
