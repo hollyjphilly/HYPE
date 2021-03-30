@@ -3,6 +3,7 @@ import { register } from '../../actions/session_actions';
 import RegisterForm from './register_form';
 
 const mapStateToProps = (state) => {
+  debugger
   return {
     signedIn: state.session.isSignedIn,
     errors: state.errors.session
