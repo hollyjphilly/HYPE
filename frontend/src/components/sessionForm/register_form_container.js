@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { register } from '../../actions/session_actions';
+import { register, clearErrors } from '../../actions/session_actions';
 import RegisterForm from './register_form';
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    register: user => dispatch(register(user))
+    register: user => dispatch(register(user)),
+    clearErrors: () => dispatch(clearErrors())
   }
 }
 

@@ -22,11 +22,16 @@ class LoginForm extends React.Component {
   //   }
   // }
 
+
   // Handle field updates (called in the render method)
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   // Handle form submission
