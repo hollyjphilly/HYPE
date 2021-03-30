@@ -36,7 +36,7 @@ module.exports = function validateeventInput(data) {
   }
 
   if (Validator.isEmpty(data.usersAttending)) {
-    errors.usersAttending = "Number of users attending is required";
+    errors.usersAttending = "Users attending is required";
   }
 
   if (Validator.isEmpty(data.location)) {
