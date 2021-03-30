@@ -1,5 +1,5 @@
 import React from 'react';
-
+import EventItem from './event_item'
 
 class EventsIndex extends React.Component {
   constructor(props) {
