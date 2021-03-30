@@ -1,8 +1,8 @@
 import * as EventAPIUtil from '../util/event_api_util'
 
-export const RECEIVE_ONE_EVENT = "RECEIVE_EVENT";
+export const RECEIVE_ONE_EVENT = "RECEIVE_ONE_EVENT";
 export const RECEIVE_ALL_EVENTS = "RECEIVE_ALL_EVENTS";
-export const REMOVE_EVENT = "REMOVE_EVENT";
+// export const REMOVE_EVENT = "REMOVE_EVENT";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
 export const CLEAR_EVENT_ERRORS = "CLEAR_EVENT_ERRORS";
 
@@ -35,7 +35,7 @@ export const clearErrors = () => {
 
 export const fetchOneEvent = (eventId) => (dispatch) => {
     return (
-        EventAPIUtil.fetchOneEvent(eventId)
+        EventAPIUtil.getOneEvent(eventId)
             .then(
                 (event) => dispatch(receiveOneEvent(event)),
                 (errors) => {console.log(errors.responseText)}
@@ -45,7 +45,7 @@ export const fetchOneEvent = (eventId) => (dispatch) => {
 
 export const fetchAllEvents = () => (dispatch) => {
     return (
-        EventAPIUtil.fetchAllEvents()
+        EventAPIUtil.getAllEvents()
             .then(
                 (events) => dispatch(receiveAllEvents(events)),
                 (errors) => {console.log(errors.responseText)}
@@ -55,7 +55,7 @@ export const fetchAllEvents = () => (dispatch) => {
 
 export const createEvent = (formData) => (dispatch) => {
     return (
-        EventAPIUtil.createEvent(formData)
+        EventAPIUtil.postEvent(formData)
             .then(
                 (event) => dispatch(receiveOneEvent(event)),
                 (errors) => dispatch(receiveErrors(errors.responseJSON))
