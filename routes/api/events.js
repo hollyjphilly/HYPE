@@ -55,4 +55,13 @@ router.post(
   }
 );
 
+router.delete("/:id", (req, res) => {
+  Event.findOneAndRemove({ _id: req.params.id }, (err) => {
+    if (err) {
+      return res.status(400).json({ error: "Event not found" });
+    }
+    return res.status(200).json({ msg: "Event has been deleted" });
+  });
+});
+
 module.exports = router;

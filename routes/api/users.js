@@ -101,4 +101,18 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.get(
+  "/logout",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      username: req.user.username,
+      email: req.user.email,
+    });
+  }
+);
+
 module.exports = router;
