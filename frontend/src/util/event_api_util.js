@@ -12,6 +12,6 @@ export const getUserEvents = userId => {
   return axios.get(`/api/events/user/${userId}`)
 };
 
-export const createEvents = data => {
+export const postEvent = data => {
   return axios.post('/api/events/', data)
 }
