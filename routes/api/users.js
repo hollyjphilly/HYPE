@@ -30,33 +30,50 @@ router.post("/register", (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-
+  let noErrors = true;
+  // console.log(noErrors);
+  // debugger;
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
+      // console.log(noErrors);
+      noErrors = false;
+      // debugger;
       return res
         .status(400)
         .json({ email: "An account is already registered with this email" });
-    } else {
-      const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-      });
-
-      bcrypt.genSalt(12, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
-        });
-      });
     }
   });
+  // debugger;
+  User.findOne({ username: req.body.username }).then((user) => {
+    if (user) {
+      noErrors = false;
+      // debugger;
+      return res.status(400).json({ username: "Username is taken" });
+    }
+  });
+
+  // debugger;
+  if (noErrors) {
+    // debugger;
+    const newUser = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    bcrypt.genSalt(12, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser
+          .save()
+          .then((user) => res.json(user))
+          .catch((err) => console.log(err));
+      });
+    });
+  }
 });
 
 router.post("/login", (req, res) => {
