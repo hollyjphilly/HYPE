@@ -24,7 +24,6 @@ class RegisterForm extends React.Component {
   // }
 
   update(field) {
-    debugger
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -36,7 +35,6 @@ class RegisterForm extends React.Component {
   }
 
   renderErrors() {
-    debugger
     return(
       <ul>
         {Object.keys(this.props.errors).map((error, i) => (
@@ -49,7 +47,6 @@ class RegisterForm extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <div className="register-form-container">
 
