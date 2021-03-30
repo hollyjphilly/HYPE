@@ -8,7 +8,7 @@ import Main from './main';
 import LoginFormContainer from './sessionForm/login_form_container';
 import RegisterFormContainer from './sessionForm/register_form_container';
 
-import EventsIndexContainer from './events/events_index_container';
+import EventsIndexContainer from './events_index/events_index_container';
 // import ProfileContainer from './users/profile_container';
 
 

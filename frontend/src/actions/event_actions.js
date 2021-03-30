@@ -1,8 +1,8 @@
 import * as EventAPIUtil from '../util/event_api_util'
 
-export const RECEIVE_ONE_EVENT = "RECEIVE_EVENT";
+export const RECEIVE_ONE_EVENT = "RECEIVE_ONE_EVENT";
 export const RECEIVE_ALL_EVENTS = "RECEIVE_ALL_EVENTS";
-export const REMOVE_EVENT = "REMOVE_EVENT";
+// export const REMOVE_EVENT = "REMOVE_EVENT";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
 export const CLEAR_EVENT_ERRORS = "CLEAR_EVENT_ERRORS";
 
