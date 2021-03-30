@@ -16,13 +16,19 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-// Build users/events instead
-// router.get("/user/:user_id", (req, res) => {
-//   Event.find({ host: req.params.user_id })
-//     .sort({ date: -1 })
-//     .then((events) => res.json(events))
-//     .catch((err) => res.status(400).json(err));
-// });
+router.get("/hosted/:user_id", (req, res) => {
+  Event.find({ host: req.params.user_id })
+    .sort({ date: -1 })
+    .then((events) => res.json(events))
+    .catch((err) => res.status(400).json(err));
+});
+
+router.get("/attending/:user_id", (req, res) => {
+  Event.find({ usersAttending: { $in: [req.params.user_id] } })
+    .sort({ date: -1 })
+    .then((events) => res.json(events))
+    .catch((err) => res.status(400).json(err));
+});
 
 router.get("/:id", (req, res) => {
   Event.findById(req.params.id)
@@ -51,17 +57,33 @@ router.post(
       dateTime: req.body.dateTime,
     });
 
-    newEvent.save().then((event) => res.json(newEvent));
+    newEvent.save().then((newEvent) => res.json(newEvent));
   }
 );
 
 router.delete("/:id", (req, res) => {
+  console.log(req);
   Event.findOneAndRemove({ _id: req.params.id }, (err) => {
     if (err) {
       return res.status(400).json({ error: "Event not found" });
     }
     return res.status(200).json({ msg: "Event has been deleted" });
   });
+});
+
+router.put("/:id", (req, res) => {
+  Event.updateOne(
+    { _id: req.params.id },
+    { $addToSet: { usersAttending: [req.body.usersAttending] } },
+    (err) => {
+      if (err) {
+        return res
+          .status(400)
+          .json({ error: "Event not updaded/event not found" });
+      }
+      return res.status(200).json({ msg: "Event has been updated" });
+    }
+  );
 });
 
 module.exports = router;
