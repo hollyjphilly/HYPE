@@ -1,9 +1,46 @@
 .navbar-container {
+    position: relative;
+    z-index: 2;
+    
+    height: fit-content;
+
+    padding: 15px;
 
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-
+    
     background-color: $background-blue;
-    // color: white;
+    background-image: url("https://i.ibb.co/bB8HB4R/vippng-1.png");
+    background-repeat: no-repeat;
+    background-size: 30%;
+
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+
+    .left-side-nav {
+
+        svg:hover {
+            cursor: pointer;
+        }
+    }
+
+    .right-side-nav {
+        display: flex;
+        width: 20%;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        margin: 0 15px;
+        font-size: 18px;
+        letter-spacing: 1px;
+        transition: all .2s ease-in-out;
+    }
+
+    a:hover {
+        text-shadow: 0px 2px 2px #0F5DCE;
+        transform: scale(1.25);
+    }
 }
