@@ -11,7 +11,7 @@ class EventShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchOneEvent(eventId);
+    this.props.fetchOneEvent(this.props.eventId);
   }
 
   handleEventJoin() {
