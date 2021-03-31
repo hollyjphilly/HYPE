@@ -57,7 +57,10 @@ router.post(
       dateTime: req.body.dateTime,
     });
 
-    newEvent.save().then((newEvent) => res.json(newEvent));
+    newEvent
+      .save()
+      .then((newEvent) => res.json(newEvent))
+      .catch((err) => console.log(err));
   }
 );
 

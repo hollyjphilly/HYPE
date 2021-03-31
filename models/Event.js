@@ -24,7 +24,7 @@ const EventSchema = new Schema({
   },
   usersAttending: {
     type: Array,
-    required: true,
+    // required: true,
     default: [],
   },
   location: {
