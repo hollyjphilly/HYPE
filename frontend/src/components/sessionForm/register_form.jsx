@@ -33,7 +33,6 @@ class RegisterForm extends React.Component {
   }
 
   renderErrors() {
-    debugger
     return(
       <ul>
         {Object.values(this.props.errors).map((error) => (
