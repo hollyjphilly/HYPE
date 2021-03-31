@@ -35,10 +35,10 @@ class LoginForm extends React.Component {
   renderErrors() {
     return(
       <ul>
-        {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.props.errors[error]}
-          </li>
+        {Object.values(this.props.errors).map((error) => (
+          <li className="errors" key={error.id}><svg className="errors-icon" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+          </path></svg>{error}</li>
         ))}
       </ul>
     );
@@ -52,25 +52,42 @@ class LoginForm extends React.Component {
         <div className="content-padding">
 
           <form onSubmit={this.handleSubmit}>
-            <div className="login-session-container">
-                <input type="text"
-                  value={this.state.email}
-                  onChange={this.update('email')}
-                  placeholder="Email"
-                />
+            <div className="session-container">
+
+              <h1>Log in</h1>
+              <h2>to join or host a game </h2>
               <br/>
-                <input type="password"
-                  value={this.state.password}
-                  onChange={this.update('password')}
-                  placeholder="Password"
-                />
               <br/>
-              <input type="submit" value="Log In" />
+
+                <div className="session-input">
+                  <input
+                      autoFocus
+                      id="session-text"
+                      type="text"
+                      value={this.state.email}
+                      placeholder=" "
+                      onChange={this.update('email')}/>
+                  <label
+                      id="session-label">Email</label>
+                </div>
+
+                <div className="session-input">
+                  <input
+                      id="session-text"
+                      type="password"
+                      value={this.state.password}
+                      placeholder=" "
+                      onChange={this.update('password')}/>
+                  <label
+                      id="session-label">Password</label>
+                </div>
+
+              <br/>
+              <div className="errors-container">{this.renderErrors()}</div>
+              <br/>
+
+              <button className="session-button" >Log In</button>
               
-              <div 
-              className="error-box">
-              {this.renderErrors()}
-              </div>
 
             </div>
           </form>
