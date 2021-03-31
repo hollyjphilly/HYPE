@@ -5,10 +5,7 @@ class EventsIndex extends React.Component {
   constructor(props) {
     super(props);
 
-    this.events = props.events
-
     this.renderEvents = this.renderEvents.bind(this)
-    this.noEvents = this.noEvents.bind(this)
   }
 
   componentDidMount() {
@@ -17,7 +14,7 @@ class EventsIndex extends React.Component {
   
   renderEvents() {
     
-    return this.events.map((event, index) => (
+    return this.props.events.map((event, index) => (
       <div className="event-index-container">
         <EventItem event={event} key={index} />
       </div>
@@ -26,15 +23,17 @@ class EventsIndex extends React.Component {
   
 
   noEvents() {
+
     return <div className="no-events">
-      There are no events currently available
+      Where did I put those damn events!?
     </div>
   }
   
 
   render() {
-    let eventList = (this.events.length > 0) ? (this.renderEvents()) : (this.noEvents())
-    
+
+    let eventList = (this.props.events.length) ? (this.renderEvents()) : (this.noEvents())
+
     return (
       <>
       <h2>Events</h2>

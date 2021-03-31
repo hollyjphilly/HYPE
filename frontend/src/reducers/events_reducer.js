@@ -10,7 +10,7 @@ import {
     let newState = Object.assign({}, state);
 
     switch(action.type) {
-
+    
       case RECEIVE_ALL_EVENTS:
         newState.all = action.events.data;
         return newState;
