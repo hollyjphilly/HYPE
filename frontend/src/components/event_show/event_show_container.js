@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import EventShow from './event_show'
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
   return {
     // ARE WE GETTING IT FROM THE NEW SLICE OF STATE OR ???
     eventId: ownProps.match.params.event_id,

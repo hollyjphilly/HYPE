@@ -8,11 +8,9 @@ class EventShow extends React.Component {
       joinButton: "Join Now"
     }
     this.handleEventJoin = this.handleEventJoin.bind(this);
-    debugger
   }
 
   componentDidMount() {
-    debugger
     this.props.fetchOneEvent(this.props.eventId);
   }
 
