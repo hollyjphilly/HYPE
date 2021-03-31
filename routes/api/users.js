@@ -97,6 +97,7 @@ router.post("/login", (req, res) => {
             lastName: user.lastName,
             username: user.username,
             email: user.email,
+            date: user.date,
           };
           jwt.sign(
             payload,
