@@ -17,12 +17,6 @@ class RegisterForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.signedIn === true) {
-  //     this.props.history.push('/login');
-  //   }
-  // }
-
   componentWillUnmount() {
     this.props.clearErrors();
   }
@@ -41,10 +35,10 @@ class RegisterForm extends React.Component {
   renderErrors() {
     return(
       <ul>
-        {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.props.errors[error]}
-          </li>
+        {Object.values(this.props.errors).map((error) => (
+          <li className="errors" key={error.id}><svg className="errors-icon" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+          </path></svg>{error}</li>
         ))}
       </ul>
     );
@@ -57,55 +51,88 @@ class RegisterForm extends React.Component {
       <div className="content-padding">
 
         <form onSubmit={this.handleSubmit}>
+          <div className="session-container">
 
-          <div className="register-form">
+            <h1>Create an account</h1>
+            <br/>
+
+            <div id="name">
+              <div className="session-input">
+                <input
+                    autoFocus
+                    id="session-text"
+                    type="text"
+                    value={this.state.firstName}
+                    placeholder=" "
+                    onChange={this.update('firstName')}/>
+                <label
+                    id="session-label">First name</label>
+              </div>
+
+              <div className="session-input">
+                <input
+                    autoFocus
+                    id="session-text"
+                    type="text"
+                    value={this.state.lastName}
+                    placeholder=" "
+                    onChange={this.update('lastName')}/>
+                <label
+                    id="session-label">Last name</label>
+              </div>
+            </div>
+
+            <div className="session-input">
+                <input
+                    id="session-text"
+                    type="text"
+                    value={this.state.email}
+                    placeholder=" "
+                    onChange={this.update('email')} />
+                <label
+                    id="session-label">Your email address</label>
+            </div>
+
+            <div className="session-input">
+                <input
+                    id="session-text"
+                    type="text"
+                    value={this.state.username}
+                    placeholder=" "
+                    onChange={this.update('username')} />
+                <label
+                    id="session-label">Username</label>
+            </div>
+
+            <div className="session-input">
+                <input
+                    id="session-text"
+                    type="password"
+                    value={this.state.password}
+                    placeholder=" "
+                    onChange={this.update('password')} />
+                <label
+                    id="session-label">Password</label>
+            </div>
+
+            <div className="session-input">
+                <input
+                    id="session-text"
+                    type="password"
+                    value={this.state.password2}
+                    placeholder=" "
+                    onChange={this.update('password2')} />
+                <label
+                    id="session-label">Confirm Password</label>
+            </div>
 
             <br/>
-            <input type="text"
-                value={this.state.firstName}
-                onChange={this.update('firstName')}
-                placeholder="FirstName"
-              />
-
+            <div className="errors-container">{this.renderErrors()}</div>
             <br/>
-            <input type="text"
-                value={this.state.lastName}
-                onChange={this.update('lastName')}
-                placeholder="LastName"
-              />
 
-            <br/>
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                placeholder="Username"
-              />
+            <button className="session-button" >Register</button>
 
-            <br/>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                placeholder="Email"
-              />
-
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-
-            <br/>
-              <input type="password"
-                value={this.state.password2}
-                onChange={this.update('password2')}
-                placeholder="Confirm Password"
-              />
-
-            <br/>
-            <input type="submit" value="Submit" />
-
-            {this.renderErrors()}
+            
 
           </div>
         </form>
