@@ -44,7 +44,7 @@ export const fetchOneEvent = (eventId) => (dispatch) => {
 }
 
 export const fetchAllEvents = () => (dispatch) => {
-    debugger
+    
     return (
         EventAPIUtil.getAllEvents()
             .then(

@@ -13,7 +13,7 @@ class EventsIndex extends React.Component {
   }
   
   renderEvents() {
-    debugger
+    
     return this.props.events.map((event, index) => (
       <div className="event-index-container">
         <EventItem event={event} key={index} />
@@ -34,7 +34,6 @@ class EventsIndex extends React.Component {
 
     let eventList = (this.props.events.length) ? (this.renderEvents()) : (this.noEvents())
 
-    debugger
     return (
       <>
       <h2>Events</h2>
