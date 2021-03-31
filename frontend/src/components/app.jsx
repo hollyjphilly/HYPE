@@ -8,6 +8,7 @@ import Main from './main';
 import LoginFormContainer from './sessionForm/login_form_container';
 import RegisterFormContainer from './sessionForm/register_form_container';
 
+
 // import EventsContainer from './events/events_container';
 // import ProfileContainer from './users/profile_container';
 
@@ -15,6 +16,7 @@ import RegisterFormContainer from './sessionForm/register_form_container';
 const App = () => (
   <div>
     <NavBarContainer />
+    
     <Switch>
       <AuthRoute exact path="/" component={Main} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
