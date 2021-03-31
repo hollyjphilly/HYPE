@@ -20,6 +20,7 @@ router.get(
       lastName: req.user.lastName,
       username: req.user.username,
       email: req.user.email,
+      date: req.user.date,
     });
   }
 );
@@ -96,6 +97,7 @@ router.post("/login", (req, res) => {
             lastName: user.lastName,
             username: user.username,
             email: user.email,
+            date: user.date,
           };
           jwt.sign(
             payload,
