@@ -6,5 +6,3 @@ export default combineReducers({
     // users: usersReducer,
     events: eventsReducer,
 })
-
-export default entitiesReducer;

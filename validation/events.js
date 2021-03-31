@@ -9,9 +9,9 @@ module.exports = function validateeventInput(data) {
   data.sport = validText(data.sport) ? data.sport : "";
   data.host = validText(data.host) ? data.host : "";
   data.maxCapacity = validText(data.maxCapacity) ? data.maxCapacity : "";
-  data.usersAttending = validText(data.usersAttending)
-    ? data.usersAttending
-    : "";
+  // data.usersAttending = validText(data.usersAttending)
+  //   ? data.usersAttending
+  //   : "";
   data.location = validText(data.location) ? data.location : "";
   data.dateTime = validText(data.dateTime) ? data.dateTime : "";
 
@@ -35,9 +35,9 @@ module.exports = function validateeventInput(data) {
     errors.maxCapacity = "Max Capacity is required";
   }
 
-  if (Validator.isEmpty(data.usersAttending)) {
-    errors.usersAttending = "Number of users attending is required";
-  }
+  // if (Validator.isEmpty(data.usersAttending)) {
+  //   errors.usersAttending = "Users attending is required";
+  // }
 
   if (Validator.isEmpty(data.location)) {
     errors.location = "Location is required";

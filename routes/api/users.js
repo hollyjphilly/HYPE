@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
+const Event = require("../../models/Event");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
@@ -24,6 +25,12 @@ router.get(
   }
 );
 
+router.get("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json(err));
+});
+
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -31,30 +38,22 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
   let noErrors = true;
-  // console.log(noErrors);
-  // debugger;
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      // console.log(noErrors);
       noErrors = false;
-      // debugger;
       return res
         .status(400)
         .json({ email: "An account is already registered with this email" });
     }
   });
-  // debugger;
   User.findOne({ username: req.body.username }).then((user) => {
     if (user) {
       noErrors = false;
-      // debugger;
       return res.status(400).json({ username: "Username is taken" });
     }
   });
 
-  // debugger;
   if (noErrors) {
-    // debugger;
     const newUser = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
