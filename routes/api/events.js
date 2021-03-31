@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
+const User = require("../../models/User");
 
 router.get("/test", (req, res) =>
   res.json({ msg: "This is the events route" })
@@ -32,6 +33,9 @@ router.get("/attending/:user_id", (req, res) => {
 
 router.get("/:id", (req, res) => {
   Event.findById(req.params.id)
+    // .select({ _id: req.params.id })
+    .populate("host", "username")
+    // .exec()
     .then((event) => res.json(event))
     .catch((err) => res.status(400).json(err));
 });
