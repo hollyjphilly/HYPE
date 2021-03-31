@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       display: false,
-      joinButton: "Join Now"
-    }
+      joinButton: "Join Now",
+    };
     this.handleEventJoin = this.handleEventJoin.bind(this);
   }
 
@@ -15,45 +15,46 @@ class EventShow extends React.Component {
   }
 
   handleEventJoin() {
-    const {event, currentUser} = this.props;
+    const { event, currentUser } = this.props;
     let spotTaken = event.maxCapacity - event.usersAttending.length;
-    
-    if(currentUser._id === event.host) {
+
+    if (currentUser._id === event.host) {
       this.setState({
-        display: true, 
-        joinButton: "You are the Host"
-      })
-    }else if (spotTaken < event.maxCapacity) {
-      if(!event.usersAttending.includes(currentUser._id)) {
+        display: true,
+        joinButton: "You are the Host",
+      });
+    } else if (spotTaken < event.maxCapacity) {
+      if (!event.usersAttending.includes(currentUser._id)) {
         // NEED TO CREATE A SAVEEVENT ACTION
         // this.props.saveEvent();
         // this.setState({joinButton: "JOINED"})
       }
     } else {
       this.setState({
-        display: true, 
-        joinButton: "Event at max capacity"
+        display: true,
+        joinButton: "Event at max capacity",
       });
     }
   }
 
   renderEvent() {
-    const {event} = this.props;
+    const { event } = this.props;
     let spotTaken = event.maxCapacity - event.usersAttending.length;
-    
+    const dateObj = new Date(event.dateTime);
+    const date = dateObj.toDateString();
+    const time = dateObj.toLocaleTimeString("en-Us");
+
     return (
       <div className="single-event-container">
-        <div className="event-images">
-          IMAGES GO HERE
-        </div>
+        <div className="event-images">IMAGES GO HERE</div>
         <div className="event-info-container">
           <div className="event-header">
             <h2>{event.title}</h2>
-            <button 
-              onClick={this.handleEventJoin} 
+            <button
+              onClick={this.handleEventJoin}
               disabled={this.state.display}
-              >
-                {this.state.joinButton}
+            >
+              {this.state.joinButton}
             </button>
           </div>
           <h3>Hosted by {event.host.name}</h3>
@@ -61,24 +62,21 @@ class EventShow extends React.Component {
           <h3>Description:</h3>
           <p>{event.description}</p>
           <p>Max: {event.maxCapacity}</p>
+          <p>{`${date} ${time}`}</p>
           <p>Attending: {spotTaken}</p>
         </div>
-        <div className="event-map">
-          MAP GOES HERE
-        </div>
+        <div className="event-map">MAP GOES HERE</div>
       </div>
-    )
+    );
   }
 
   renderLoading() {
-    return (
-      <h3>LOADING FIGURE</h3>
-    )
+    return <h3>LOADING FIGURE</h3>;
   }
 
   render() {
-    return (this.props.event) ? this.renderEvent() : this.renderLoading();
+    return this.props.event ? this.renderEvent() : this.renderLoading();
   }
 }
 
-export default EventShow
+export default EventShow;

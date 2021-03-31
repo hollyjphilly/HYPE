@@ -14,7 +14,8 @@ class CreateEvent extends React.Component {
       // lat lng
       location: "",
       // calender and clock inputs / may require parsing
-      dateTime: "2020-03-30T10:00:00.000+00:00",
+      // dateTime: "2020-03-30T10:00:00.000+00:00",
+      dateTime: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +23,7 @@ class CreateEvent extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger;
     e.preventDefault();
     this.props.createEvent(this.state);
   }
@@ -60,6 +62,14 @@ class CreateEvent extends React.Component {
           />
 
           <br />
+          <input
+            type="text"
+            value={this.state.sport}
+            onChange={this.update("sport")}
+            placeholder="Sport"
+          />
+
+          <br />
           <textarea
             type="text"
             value={this.state.description}
@@ -69,10 +79,9 @@ class CreateEvent extends React.Component {
 
           <br />
           <input
-            type="text"
-            value={this.state.sport}
-            onChange={this.update("sport")}
-            placeholder="Sport"
+            type="datetime-local"
+            value={this.state.dateTime}
+            onChange={this.update("dateTime")}
           />
 
           <br />
