@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import MakeMap from '../../util/map'
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -12,19 +13,28 @@ class EventShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchOneEvent(this.props.eventId);
+
+    ///MAPS HAPPENING
+    const mapOptions = {
+      center: { lat: 40.673842, lng: -73.970083 }, 
+      zoom: 12,
+    }
+
+    // this.map = new google.maps.Map(document.getElementById('the-map'), mapOptions);
+    ///MAPS ABOVE
   }
 
   handleEventJoin() {
-    const { event, currentUser } = this.props;
-    let spotTaken = event.maxCapacity - event.usersAttending.length;
-
-    if (currentUser._id === event.host) {
+    const {event, currentUser} = this.props;
+    
+    if(currentUser._id === event.host) {
       this.setState({
-        display: true,
-        joinButton: "You are the Host",
-      });
-    } else if (spotTaken < event.maxCapacity) {
-      if (!event.usersAttending.includes(currentUser._id)) {
+        display: true, 
+        joinButton: "You are the Host"
+      })
+    }else if (event.usersAttending.length < event.maxCapacity) {
+      if(!event.usersAttending.includes(currentUser._id)) {
+
         // NEED TO CREATE A SAVEEVENT ACTION
         // this.props.saveEvent();
         // this.setState({joinButton: "JOINED"})
@@ -65,7 +75,9 @@ class EventShow extends React.Component {
           <p>{`${date} ${time}`}</p>
           <p>Attending: {spotTaken}</p>
         </div>
-        <div className="event-map">MAP GOES HERE</div>
+        <div className="event-map">
+          LOADING MAP PLEASE WAIT YOU BEAUTIFUL PERSON
+        </div>
       </div>
     );
   }
@@ -75,7 +87,12 @@ class EventShow extends React.Component {
   }
 
   render() {
-    return this.props.event ? this.renderEvent() : this.renderLoading();
+    // return (this.props.event) ? this.renderEvent() : this.renderLoading();
+
+    return(
+      // <div>NOTHING</div>
+      <MakeMap />
+    )
   }
 }
 

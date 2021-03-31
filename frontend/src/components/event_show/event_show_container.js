@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     // ARE WE GETTING IT FROM THE NEW SLICE OF STATE OR ???
     eventId: ownProps.match.params.event_id,
-    event: state.entities.events.new,
+    event: state.entities.events,
     currentUser: state.session.user
   }
 }
