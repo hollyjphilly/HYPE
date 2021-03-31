@@ -5,7 +5,7 @@ import {
   withGoogleMap
 } from "react-google-maps";
 
-const googleAPI = require('../config2/keys2').googleMapsApi;
+const googleAPI = require('../config/keys2').googleMapsApi;
 
 class MakeMap extends React.Component {
   Map() {

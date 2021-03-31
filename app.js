@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
-const googleMap = require("./config/keys").googleMapsApi;
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
 const bodyParser = require("body-parser");
