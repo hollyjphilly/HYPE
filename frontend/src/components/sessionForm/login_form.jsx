@@ -14,15 +14,6 @@ class LoginForm extends React.Component {
 
   }
 
-
-  // Once the user has been authenticated, redirect to the Tweets page
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.currentUser === true) {
-  //     this.props.history.push('/');
-  //   }
-  // }
-
-
   // Handle field updates (called in the render method)
   update(field) {
     return e => this.setState({
@@ -56,29 +47,35 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="login-session-container">
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                placeholder="Email"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
-            <input type="submit" value="Log In" />
-            
-            <div 
-            className="error-box">
-            {this.renderErrors()}
-            </div>
+        <div className="content-outer">
+        <div className="content-inner">
+        <div className="content-padding">
 
-          </div>
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <div className="login-session-container">
+                <input type="text"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  placeholder="Email"
+                />
+              <br/>
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  placeholder="Password"
+                />
+              <br/>
+              <input type="submit" value="Log In" />
+              
+              <div 
+              className="error-box">
+              {this.renderErrors()}
+              </div>
+
+            </div>
+          </form>
+          
+        </div></div></div>
       </div>
     );
   }
