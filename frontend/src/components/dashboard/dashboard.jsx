@@ -1,4 +1,5 @@
 import React from 'react';
+import DashboardItem from './dashboard_item';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -73,6 +74,7 @@ class Dashboard extends React.Component {
     const {all, hosted, loading} = this.state;
     const {currentUser} = this.props;
     const renderEvents = loading ? this.renderloading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
+    const dateObj = new Date(currentUser.date);
     return(
       <div className="dashboard-container">
         <div className="dashboard-event-buttons">
@@ -93,7 +95,7 @@ class Dashboard extends React.Component {
           <img src="" alt=""/>
           <p>{currentUser.firstName}</p>
           <p>{currentUser.lastName}</p>
-          <p>Member since [insert time]</p>
+          <p>{`Member since ${dateObj.getFullYear()}`}</p>
           <p></p>
         </div>
 
