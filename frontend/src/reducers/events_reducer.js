@@ -15,7 +15,7 @@ const EventsReducer = (
     case RECEIVE_ALL_EVENTS:
       newState.all = action.events.data;
       return newState;
-
+      
     // case RECEIVE_USER_EVENTS:
     //   newState.user = action.events.data;
     //   return newState;

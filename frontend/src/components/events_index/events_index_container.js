@@ -5,7 +5,7 @@ import EventsIndex from './events_index'
 
 const mapStateToProps = state => {
   return {
-    events: Object.values(state.entities.events.all)
+    events: state.entities.events.all
   }
 }
 
