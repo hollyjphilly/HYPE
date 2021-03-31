@@ -37,6 +37,7 @@ class Dashboard extends React.Component {
 
   render() {
     const {all, hosted, loading} = this.state;
+    const {currentUser} = this.props;
     const renderEvents = loading ? this.renderloading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
     return(
       <div className="dashboard-container">
@@ -54,7 +55,8 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className="dashboard-profile">
-
+          <img src="" alt=""/>
+          <h3>{currentUser.username}</h3>
         </div>
 
       </div>
