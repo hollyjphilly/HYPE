@@ -2,9 +2,11 @@ import {fetchOneEvent} from "../../actions/event_actions";
 import {connect} from "react-redux";
 import EventShow from './event_show'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  debugger
   return {
     // ARE WE GETTING IT FROM THE NEW SLICE OF STATE OR ???
+    eventId: ownProps.match.params.event_id,
     event: state.entities.events.new,
     currentUser: state.session.user
   }

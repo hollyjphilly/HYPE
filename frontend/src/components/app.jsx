@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import NavBarContainer from "./nav/navbar_container";
 
@@ -21,7 +21,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/register" component={RegisterFormContainer} />
       <ProtectedRoute exact path="/events" component={EventsIndexContainer} />
-      <Route exact path="/event/:event_id" component={EventShowContainer} />
+      <Route exact path="/events/:event_id" component={EventShowContainer} />
       <ProtectedRoute exact path="/newevent" component={CreateEvent} />
       {/* <ProtectedRoute exact path="/profile" component={ProfileContainer} /> */}
     </Switch>
