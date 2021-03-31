@@ -15,7 +15,11 @@ class Dashboard extends React.Component {
   }
 
   renderLoading() {
-
+    return (
+      <div className="dashboard-loading">
+        Loading/click on a button
+      </div>
+    )
   }
 
   renderAll() {
@@ -48,10 +52,11 @@ class Dashboard extends React.Component {
         </div>
         <div className="dashboard-events-container">
           <div className="dashboard-upcoming-container">
+            <h2>Upcoming Events</h2>
             {renderEvents}
           </div>
           <div className="dashboard-past-container">
-            past events
+            <h2>Past Events</h2>
           </div>
         </div>
         <div className="dashboard-profile">
