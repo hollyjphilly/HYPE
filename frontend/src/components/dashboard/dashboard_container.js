@@ -7,8 +7,8 @@ import {
 
 const mapStateToProps = state => {
   return {
-    hostedEvents: state.entities.userEvents.hostedEvents,
-    attendingEvents: state.entities.userEvents.attendingEvents,
+    hostedEvents: Object.values(state.entities.userEvents.hostedEvents),
+    attendingEvents: Object.values(state.entities.userEvents.attendingEvents),
     currentUser: state.session.user
   }
 }

@@ -23,15 +23,45 @@ class Dashboard extends React.Component {
   }
 
   renderAll() {
-
+    const {hostedEvents, attendingEvents} = this.props;
+    let allEvents = hostedEvents.concat(attendingEvents);
+    this.setState({all: true,
+      hosted: false,
+      attending: false,
+      loading: false
+    });
+    return allEvents.map((event, idx) =>{
+      return(
+        <DashboardItem event={event} key={`all-${idx}`}/>
+      )
+    })
   }
 
   renderHosted() {
-
+    this.setState({all: false,
+      hosted: true,
+      attending: false,
+      loading: false
+    });
+    return this.props.hostedEvents.map((event, idx) =>{
+      return(
+        <DashboardItem event={event} key={`hosted-${idx}`}/>
+      )
+    })
   }
+  
 
   renderAttending() {
-
+    this.setState({all: false,
+      hosted: false,
+      attending: true,
+      loading: false
+    });
+    return this.props.attendingEvents.map((event, idx) =>{
+      return(
+        <DashboardItem event={event} key={`attending-${idx}`}/>
+      )
+    })
   }
 
   componentDidMount() {
@@ -61,7 +91,10 @@ class Dashboard extends React.Component {
         </div>
         <div className="dashboard-profile">
           <img src="" alt=""/>
-          <h3>{currentUser.username}</h3>
+          <p>{currentUser.firstName}</p>
+          <p>{currentUser.lastName}</p>
+          <p>Member since [insert time]</p>
+          <p></p>
         </div>
 
       </div>
