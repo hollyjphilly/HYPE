@@ -52,7 +52,9 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-      <div className="register-form-container">
+      <div className="content-outer">
+      <div className="content-inner">
+      <div className="content-padding">
 
         <form onSubmit={this.handleSubmit}>
 
@@ -107,7 +109,7 @@ class RegisterForm extends React.Component {
 
           </div>
         </form>
-      </div>
+      </div></div></div>
     );
   }
 }
