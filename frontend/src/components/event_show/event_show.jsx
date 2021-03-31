@@ -1,4 +1,5 @@
 import React from 'react';
+import MakeMap from '../../util/map'
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -13,12 +14,14 @@ class EventShow extends React.Component {
   componentDidMount() {
     this.props.fetchOneEvent(this.props.eventId);
 
+    ///MAPS HAPPENING
     const mapOptions = {
-      center: { lat: 40.673842, lng: -73.970083}, 
+      center: { lat: 40.673842, lng: -73.970083 }, 
       zoom: 12,
-    };
+    }
 
-    this.map = new google.maps.Map(document.getElementByClass("event-map"), mapOptions);
+    // this.map = new google.maps.Map(document.getElementById('the-map'), mapOptions);
+    ///MAPS ABOVE
   }
 
   handleEventJoin() {
@@ -46,7 +49,8 @@ class EventShow extends React.Component {
   renderEvent() {
     const {event} = this.props;
     let spotTaken = event.usersAttending.length;
-    
+
+    debugger
     return (
       <div className="single-event-container">
         <div className="event-images">
@@ -83,7 +87,12 @@ class EventShow extends React.Component {
   }
 
   render() {
-    return (this.props.event) ? this.renderEvent() : this.renderLoading();
+    // return (this.props.event) ? this.renderEvent() : this.renderLoading();
+
+    return(
+      // <div>NOTHING</div>
+      <MakeMap />
+    )
   }
 }
 

@@ -7,6 +7,7 @@ import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 import axios from 'axios';
 import './assets/stylesheets/index.scss';
+// import googleMapsApi from "../../config/keys";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -32,3 +33,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.axios = axios;
+// window.googleAPIKey = googleMapsApi
