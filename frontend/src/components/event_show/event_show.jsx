@@ -12,18 +12,24 @@ class EventShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchOneEvent(this.props.eventId);
+
+    const mapOptions = {
+      center: { lat: 40.673842, lng: -73.970083}, 
+      zoom: 12,
+    };
+
+    this.map = new google.maps.Map(document.getElementByClass("event-map"), mapOptions);
   }
 
   handleEventJoin() {
     const {event, currentUser} = this.props;
-    let spotTaken = event.maxCapacity - event.usersAttending.length;
     
     if(currentUser._id === event.host) {
       this.setState({
         display: true, 
         joinButton: "You are the Host"
       })
-    }else if (spotTaken < event.maxCapacity) {
+    }else if (event.usersAttending.length < event.maxCapacity) {
       if(!event.usersAttending.includes(currentUser._id)) {
         // NEED TO CREATE A SAVEEVENT ACTION
         // this.props.saveEvent();
@@ -39,7 +45,7 @@ class EventShow extends React.Component {
 
   renderEvent() {
     const {event} = this.props;
-    let spotTaken = event.maxCapacity - event.usersAttending.length;
+    let spotTaken = event.usersAttending.length;
     
     return (
       <div className="single-event-container">
@@ -64,7 +70,7 @@ class EventShow extends React.Component {
           <p>Attending: {spotTaken}</p>
         </div>
         <div className="event-map">
-          MAP GOES HERE
+          LOADING MAP PLEASE WAIT YOU BEAUTIFUL PERSON
         </div>
       </div>
     )
