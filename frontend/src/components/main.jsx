@@ -51,7 +51,7 @@ class Main extends React.Component {
           <div className="section" id="three">
             
               <h1>Or try something new! </h1>
-              <a href="/#/events" className="splash-button">find a game to get hyped about</a> 
+              <a href="/#/events" className="splash-button">Find a game to get hyped about.</a> 
             
           </div>
 
