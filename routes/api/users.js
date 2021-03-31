@@ -20,6 +20,7 @@ router.get(
       lastName: req.user.lastName,
       username: req.user.username,
       email: req.user.email,
+      date: req.user.date,
     });
   }
 );
