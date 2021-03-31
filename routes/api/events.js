@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
-const User = require("../../models/User");
+const moment = require("moment-timezone");
 
 router.get("/test", (req, res) =>
   res.json({ msg: "This is the events route" })
@@ -11,7 +11,7 @@ router.get("/test", (req, res) =>
 
 router.get("/", (req, res) => {
   Event.find()
-    .sort({ dateTime: -1 }) // find all events and send them back in
+    .sort({ dateTime: 1 }) // find all events and send them back in
     // with newest events first
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
@@ -50,6 +50,8 @@ router.post(
       return res.status(400).json(errors);
     }
 
+    const formattedDate = moment.utc(req.body.dateTime).local().format();
+
     const newEvent = new Event({
       title: req.body.title,
       description: req.body.description,
@@ -58,7 +60,7 @@ router.post(
       maxCapacity: req.body.maxCapacity,
       usersAttending: req.body.usersAttending,
       location: req.body.location,
-      dateTime: req.body.dateTime,
+      dateTime: formattedDate,
     });
 
     newEvent
