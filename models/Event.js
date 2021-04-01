@@ -31,9 +31,9 @@ const EventSchema = new Schema({
     default: [],
   },
   location: {
-    type: String,
+    type: Object,
     required: true,
-    default: "0, 0",
+    default: { lat: "40.673842", lng: "-73.970083" },
   },
   dateTime: {
     type: Date,

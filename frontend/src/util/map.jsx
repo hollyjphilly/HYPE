@@ -4,16 +4,11 @@ import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
 const googleAPI = require("../config/keys2").googleMapsApi;
 
 class MakeMap extends React.Component {
-  Map() {
-    return (
-      <GoogleMap
-        defaultCenter={{ lat: 40.673842, lng: -73.970083 }}
-        defaultZoom={12}
-      />
-    );
-  }
+
 
   render() {
+    //take location info from event, place pin, center map on pin
+
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
@@ -24,10 +19,8 @@ class MakeMap extends React.Component {
         );
       })
     );
-    // debugger
-    console.log(process.env.REACT_APP_GOOGLE_KEY);
+    
     return (
-      // <div style={{width: '500px', height: '500px'}}>
 
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
@@ -37,7 +30,6 @@ class MakeMap extends React.Component {
         mapElement={<div style={{ height: "100%" }} />}
       />
 
-      // </div>
     );
   }
 }

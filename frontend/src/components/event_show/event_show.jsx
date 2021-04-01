@@ -1,30 +1,34 @@
 import React from 'react';
-import MakeMap from '../../util/map'
+import { 
+  GoogleMap,
+  withScriptjs,
+  withGoogleMap,
+  Marker 
+} from "react-google-maps";
+const googleAPI = require("../../config/keys2").googleMapsApi;
 
 class EventShow extends React.Component {
+
   constructor(props) {
     super(props);
+
     this.state = {
       display: false,
       joinButton: "Join Now",
+      
     };
+
+    //
+
     this.handleEventJoin = this.handleEventJoin.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchOneEvent(this.props.eventId);
-
-    ///MAPS HAPPENING
-    const mapOptions = {
-      center: { lat: 40.673842, lng: -73.970083 }, 
-      zoom: 12,
-    }
-
-    // this.map = new google.maps.Map(document.getElementById('the-map'), mapOptions);
-    ///MAPS ABOVE
   }
 
   handleEventJoin() {
+
     const {event, currentUser} = this.props;
     
     if(currentUser._id === event.host) {
@@ -47,52 +51,87 @@ class EventShow extends React.Component {
     }
   }
 
-  renderEvent() {
-    const { event } = this.props;
-    let spotTaken = event.maxCapacity - event.usersAttending.length;
-    const dateObj = new Date(event.dateTime);
+
+
+
+  render() {
+
+    //Checking for an event, Loading...
+    const showEvent = this.props.event;
+    if (!Object.values(showEvent).length) {return <div>LOADING...</div>}
+
+    //Date and time parse
+    const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
     const time = dateObj.toLocaleTimeString("en-Us");
 
-    return (
-      <div className="single-event-container">
-        <div className="event-images">IMAGES GO HERE</div>
-        <div className="event-info-container">
-          <div className="event-header">
-            <h2>{event.title}</h2>
-            <button
-              onClick={this.handleEventJoin}
-              disabled={this.state.display}
-            >
-              {this.state.joinButton}
-            </button>
-          </div>
-          <h3>Hosted by {event.host.name}</h3>
-          <h3>Sport: {event.sport}</h3>
-          <h3>Description:</h3>
-          <p>{event.description}</p>
-          <p>Max: {event.maxCapacity}</p>
-          <p>{`${date} ${time}`}</p>
-          <p>Attending: {spotTaken}</p>
-        </div>
-        <div className="event-map">
-          LOADING MAP PLEASE WAIT YOU BEAUTIFUL PERSON
-        </div>
-      </div>
+    //map logic
+    const showLat = parseFloat(showEvent.location.lat)
+    const showLng = parseFloat(showEvent.location.lng)
+    const WrappedMap = withScriptjs(
+      withGoogleMap(() => {
+        return (
+          <GoogleMap
+            defaultCenter={{ lat: showLat, lng: showLng }}
+            defaultZoom={12}
+          >
+
+            <Marker 
+              key={showEvent._id}
+              position={{ lat: showLat, lng: showLng }}
+            />
+
+          </GoogleMap>
+        );
+      })
     );
-  }
 
-  renderLoading() {
-    return <h3>LOADING FIGURE</h3>;
-  }
-
-  render() {
-    // return (this.props.event) ? this.renderEvent() : this.renderLoading();
+    // debugger
 
     return(
-      // <div>NOTHING</div>
-      <MakeMap />
+
+      <div className="event-show-main-div">
+
+        <div className="single-event-container">
+
+          <div className="event-images">IMAGES GO HERE</div>
+          <div className="event-info-container">
+            <div className="event-header">
+              <h2>{showEvent.title}</h2>
+              <button
+                onClick={this.handleEventJoin}
+                disabled={this.state.display}
+              >
+                {this.state.joinButton}
+              </button>
+            </div>
+            <h3>Hosted by {showEvent.host.username}</h3>
+            <h3>Sport: {showEvent.sport}</h3>
+            <h3>Description:</h3>
+            <p>{showEvent.description}</p>
+            <p>Max: {showEvent.maxCapacity}</p>
+            <p>{`${date} ${time}`}</p>
+            <p>Max Capacity: {showEvent.maxCapacity}</p>
+            <p>Attending: {showEvent.usersAttending.length}</p>
+          </div>
+
+        </div>
+
+
+
+        <div className="event-map">
+          <WrappedMap
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
+            ${googleAPI}`}
+            loadingElement={<div style={{ height: "100%" }} />}
+            containerElement={<div style={{ height: "100%" }} />}
+            mapElement={<div style={{ height: "100%" }} />}
+            />
+        </div>
+
+      </div>
     )
+  
   }
 }
 

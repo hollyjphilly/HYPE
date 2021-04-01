@@ -17,13 +17,13 @@ const App = () => (
     <NavBarContainer />
 
     <Switch>
-      <Route exact path="/" component={Main} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/register" component={RegisterFormContainer} />
-      <ProtectedRoute exact path="/events" component={EventsIndexContainer} />
+      <Route exact path="/events" component={EventsIndexContainer} />
       <Route exact path="/events/:event_id" component={EventShowContainer} />
       <ProtectedRoute exact path="/newevent" component={CreateEvent} />
       <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
+      <Route path="/" component={Main} />
     </Switch>
 
     
