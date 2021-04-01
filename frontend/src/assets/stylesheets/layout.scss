@@ -2,6 +2,15 @@ body {
     font-family: $ssp;
 }
 
+.splash-footer {
+    background-color: $background-blue;
+    display: flex;
+    width: 100%;
+    min-height: 100px;
+    margin-top: 100px;
+    justify-content: center;
+}
+
 .footer {
     background-color: $background-blue;
     display: flex;
@@ -9,6 +18,8 @@ body {
     min-height: 100px;
     margin-top: 100px;
     justify-content: center;
+    position: relative;
+    bottom: 0;
 }
 
 .footer-content {

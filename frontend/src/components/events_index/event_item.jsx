@@ -6,15 +6,15 @@ const EventItem = ({ event }) => {
   const date = dateObj.toDateString();
   const time = dateObj.toLocaleTimeString("en-Us");
   return (
-    <NavLink to={`/events/${event._id}`}><div className="event-item">
+    <div className="event-item">
       <img src="" alt="" className="event-thumbnail" />
       <div className="event-info">
-        <h1>{event.title}</h1>
+        <NavLink to={`/events/${event._id}`}><h1>{event.title}</h1></NavLink>
         <h2>{`${date} ${time}`}</h2>
         <div className="event-description">{event.description}</div>
         <div className="event-attendees"><p>{event.usersAttending.length} attendees</p></div>
       </div>
-    </div></NavLink>
+    </div>
   );
 };
 

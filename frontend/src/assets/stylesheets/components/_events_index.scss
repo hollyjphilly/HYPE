@@ -2,15 +2,37 @@
     display: flex;
     justify-content: center;
     margin-top: 35px;
+    width: 100%;
 
 }
 
 .event-index-content {
-    width: 70%;
+    width: 80%;
     display: grid;
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: repeat(4, 25%);
     grid-gap: 25px;
+    margin-right: 25px;
+    flex-wrap: wrap;
     
+}
+
+@media (max-width: 1300px) {
+  .event-index-content {
+    grid-template-columns: repeat(3, 33%);
+  }
+}
+
+@media (max-width: 1000px) {
+  .event-index-content {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media (max-width: 600px) {
+  .event-index-content {
+    display: flex;
+    margin-right: 0;
+  }
 }
 
 .events-green-bar {
