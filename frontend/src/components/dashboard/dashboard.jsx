@@ -4,17 +4,23 @@ import DashboardItem from './dashboard_item';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      all: false,
-      hosted: false,
-      attending: false,
-      loading: true
-    };
-    this.renderAll = this.renderAll.bind(this);
-    this.renderHosting = this.renderHosting.bind(this);
-    this.renderAttending = this.renderAttending.bind(this);
+    // this.state = {
+    //   all: false,
+    //   hosted: false,
+    //   attending: false,
+    //   loading: true
+    // };
+    // this.renderAll = this.renderAll.bind(this);
+    // this.renderHosted = this.renderHosted.bind(this);
+    // this.renderAttending = this.renderAttending.bind(this);
   }
 
+  componentDidMount() {
+    // debugger
+    this.props.fetchAttendingEvents(this.props.currentUser.id);
+    this.props.fetchHostedEvents(this.props.currentUser.id);
+  }
+  
   renderLoading() {
     return (
       <div className="dashboard-loading">
@@ -26,11 +32,13 @@ class Dashboard extends React.Component {
   renderAll() {
     const {hostedEvents, attendingEvents} = this.props;
     let allEvents = hostedEvents.concat(attendingEvents);
-    this.setState({all: true,
-      hosted: false,
-      attending: false,
-      loading: false
-    });
+    // debugger
+    // this.setState({all: true,
+    //   hosted: false,
+    //   attending: false,
+    //   loading: false
+    // });
+    // debugger
     return allEvents.map((event, idx) =>{
       return(
         <DashboardItem event={event} key={`all-${idx}`}/>
@@ -39,11 +47,12 @@ class Dashboard extends React.Component {
   }
 
   renderHosted() {
-    this.setState({all: false,
-      hosted: true,
-      attending: false,
-      loading: false
-    });
+    // debugger
+    // this.setState({all: false,
+    //   hosted: true,
+    //   attending: false,
+    //   loading: false
+    // });
     return this.props.hostedEvents.map((event, idx) =>{
       return(
         <DashboardItem event={event} key={`hosted-${idx}`}/>
@@ -53,11 +62,11 @@ class Dashboard extends React.Component {
   
 
   renderAttending() {
-    this.setState({all: false,
-      hosted: false,
-      attending: true,
-      loading: false
-    });
+    // this.setState({all: false,
+    //   hosted: false,
+    //   attending: true,
+    //   loading: false
+    // });
     return this.props.attendingEvents.map((event, idx) =>{
       return(
         <DashboardItem event={event} key={`attending-${idx}`}/>
@@ -65,22 +74,32 @@ class Dashboard extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.props.fetchAttendingEvents(this.props.currentUser._id);
-    this.props.fetchHostEvents(this.props.currentUser._id);
+  renderEvents(type) {
+    return e => {
+      if (type === "renderAll") {
+        return this.renderAll();
+      } else if (type === "renderHosted") {
+        return this.renderHosted();
+      } else if (type === "renderAttending") {
+        return this.renderAttending();
+      }
+    }
   }
 
   render() {
-    const {all, hosted, loading} = this.state;
+
+    // const {all, hosted, loading} = this.state;
+    // debugger
+    // const renderEvents = loading ? this.renderLoading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
     const {currentUser} = this.props;
-    const renderEvents = loading ? this.renderloading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
+    const renderEvents = this.renderEvents();
     const dateObj = new Date(currentUser.date);
     return(
       <div className="dashboard-container">
         <div className="dashboard-event-buttons">
-          <button onClick={this.renderAll}>All</button>
-          <button onClick={this.renderHosting}>Hosting</button>
-          <button onClick={this.renderAttending}>Attending</button>
+          <button onClick={this.renderEvents("renderAll")}>All</button>
+          <button onClick={this.renderEvents("renderHosted")}>Hosting</button>
+          <button onClick={this.renderEvents("renderAttending")}>Attending</button>
         </div>
         <div className="dashboard-events-container">
           <div className="dashboard-upcoming-container">
