@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import Dashboard from './dashboard'
 import {
   fetchHostedEvents,
@@ -21,4 +22,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard))

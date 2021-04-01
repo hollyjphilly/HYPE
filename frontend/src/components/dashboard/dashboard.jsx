@@ -85,6 +85,7 @@ class Dashboard extends React.Component {
     //   loading: false
     // });
     const {attendingEvents} = this.props;
+    debugger
     if (attendingEvents.length) {
       return(
         <div className="no-events">
@@ -113,38 +114,50 @@ class Dashboard extends React.Component {
   }
 
   render() {
-
+    debugger
     // const {all, hosted, loading} = this.state;
-    // debugger
+    
     // const renderEvents = loading ? this.renderLoading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
-    const {currentUser} = this.props;
+    const {currentUser, hostedEvents, attendingEvents} = this.props;
     const renderEvents = this.renderEvents();
     const dateObj = new Date(currentUser.date);
-    return(
-      <div className="dashboard-container">
-        <div className="dashboard-event-buttons">
-          <button onClick={this.renderEvents("renderAll")}>All</button>
-          <button onClick={this.renderEvents("renderHosted")}>Hosting</button>
-          <button onClick={this.renderEvents("renderAttending")}>Attending</button>
-        </div>
-        <div className="dashboard-events-container">
-          <div className="dashboard-upcoming-container">
-            <h2>Upcoming Events</h2>
-            {renderEvents}
-          </div>
-          <div className="dashboard-past-container">
-            <h2>Past Events</h2>
-          </div>
-        </div>
-        <div className="dashboard-profile">
-          <img src="" alt=""/>
-          <p>{currentUser.firstName}</p>
-          <p>{currentUser.lastName}</p>
-          <p>{`Member since ${dateObj.getFullYear()}`}</p>
-          <p></p>
-        </div>
 
+    if (!hostedEvents || !attendingEvents) {
+      return null
+    }
+
+    return(
+      
+      <div>
+        {hostedEvents.map((event) => (
+            <div>{event.title}</div>
+          ))}
       </div>
+
+      // <div className="dashboard-container">
+      //   <div className="dashboard-event-buttons">
+      //     <button onClick={this.renderEvents("renderAll")}>All</button>
+      //     <button onClick={this.renderEvents("renderHosted")}>Hosting</button>
+      //     <button onClick={this.renderEvents("renderAttending")}>Attending</button>
+      //   </div>
+      //   <div className="dashboard-events-container">
+      //     <div className="dashboard-upcoming-container">
+      //       <h2>Upcoming Events</h2>
+      //       {renderEvents}
+      //     </div>
+      //     <div className="dashboard-past-container">
+      //       <h2>Past Events</h2>
+      //     </div>
+      //   </div>
+      //   <div className="dashboard-profile">
+      //     <img src="" alt=""/>
+      //     <p>{currentUser.firstName}</p>
+      //     <p>{currentUser.lastName}</p>
+      //     <p>{`Member since ${dateObj.getFullYear()}`}</p>
+      //     <p></p>
+      //   </div>
+
+      // </div>
     )
   }
 }
