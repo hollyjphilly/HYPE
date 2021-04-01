@@ -9,10 +9,14 @@ class CreateEvent extends React.Component {
 
   render() {
     return (
-      <div className="create-event-form-map-container">
-        <CreateEventForm />
-        <div className="create-event-map-container">
-          <MakeMap />
+      <div className="event-form-main-div">
+        <div className="create-event-form-map-container">
+          <CreateEventForm />
+          <div className="create-event-map-container">
+            <div className="another-div">
+              <MakeMap />
+            </div>
+          </div>
         </div>
       </div>
     );
