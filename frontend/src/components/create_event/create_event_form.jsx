@@ -142,7 +142,9 @@ class CreateEventForm extends React.Component {
                 </span>
               </div>
               <div className="create-event-location-map-div">
-                {/* <MakeMap /> */}
+                {/*  */}
+                {/* <Search /> */}
+                {/*  */}
               </div>
             </div>
           </div>
