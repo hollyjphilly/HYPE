@@ -1,14 +1,18 @@
 import React from 'react';
-import SplashVideo from './splash'
 
 class Main extends React.Component {
 
   render() {
     return (
       <div>
-        <SplashVideo />
-
-        
+        <div className="splash-vid-container">
+          <video
+            autoPlay
+            loop={true}
+            src="https://drive.google.com/uc?export=download&id=1yTv0ET1Gd5ljA31T95CD895lc9mzz4ld"
+            muted={true}
+            id="myVideo"></video>
+        </div>
 
           <div className="purple-bar"></div>
 
@@ -77,7 +81,6 @@ class Main extends React.Component {
           </div>
           </div>
 
-          {/* <div className="background-blue"></div> */}
       </div>
     );
   }

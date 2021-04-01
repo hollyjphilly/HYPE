@@ -23,7 +23,7 @@ const App = () => (
       <ProtectedRoute exact path="/events" component={EventsIndexContainer} />
       <Route exact path="/events/:event_id" component={EventShowContainer} />
       <ProtectedRoute exact path="/newevent" component={CreateEvent} />
-      <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
+      <ProtectedRoute path="/dashboard" component={DashboardContainer} />
     </Switch>
   </div>
 );
