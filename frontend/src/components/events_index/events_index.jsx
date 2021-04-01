@@ -13,31 +13,29 @@ class EventsIndex extends React.Component {
   }
   
   renderEvents() {
-    
-    return this.props.events.map((event, index) => (
-      <div className="event-index-container">
-        <EventItem event={event} key={index} />
-      </div>
+    return this.props.events.map((event) => (
+        <EventItem event={event} key={event._id} />
     ))
   } 
-  
-
-  noEvents() {
-
-    return <div className="no-events">
-      Where did I put those damn events!?
-    </div>
-  }
-  
 
   render() {
-
-    let eventList = (this.props.events.length) ? (this.renderEvents()) : (this.noEvents())
-
     return (
-      <>
-      <h2>Events</h2>
-        {eventList}
+      <><div className="events-green-bar"></div>
+          <div className="events-wrapper">
+            <div className="events-green-bar-text slide">
+              <h1>Events</h1>
+            </div>
+          </div>
+          
+      <div className="event-index-container">
+        <div className="event-index-content">
+
+          {this.props.events.length ? 
+            this.renderEvents() : 
+            <h2>Where did I put those damn events!?</h2>
+          }
+        </div>
+      </div>
       </>
     )
   }
