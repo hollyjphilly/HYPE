@@ -13,7 +13,7 @@ import CreateEvent from "./create_event/create_event_container";
 import DashboardContainer from './dashboard/dashboard_container';
 
 const App = () => (
-  <div>
+  <div className="app">
     <NavBarContainer />
     
     <Switch>
@@ -25,6 +25,8 @@ const App = () => (
       <ProtectedRoute exact path="/newevent" component={CreateEvent} />
       <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
     </Switch>
+
+    
   </div>
 );
 

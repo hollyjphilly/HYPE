@@ -14,18 +14,19 @@ class EventsIndex extends React.Component {
   
   renderEvents() {
     return this.props.events.map((event) => (
-        <EventItem event={event} key={event.id} />
+        <EventItem event={event} key={event._id} />
     ))
   } 
 
   render() {
     return (
-      <><div className="events-purple-bar"></div>
+      <><div className="events-green-bar"></div>
           <div className="events-wrapper">
-            <div className="events-purple-bar-text slide">
+            <div className="events-green-bar-text slide">
               <h1>Events</h1>
             </div>
           </div>
+          
       <div className="event-index-container">
         <div className="event-index-content">
 
