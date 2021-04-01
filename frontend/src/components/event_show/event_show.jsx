@@ -55,18 +55,20 @@ class EventShow extends React.Component {
 
 
   render() {
-
+    
     //Checking for an event, Loading...
-    const showEvent = this.props.event;
-    if (!Object.values(showEvent).length) {return <div>LOADING...</div>}
+    const {eventId, events} = this.props;
+    const showEvent = events.find(event => event._id === eventId);
+    if (!events.length) {return <div>LOADING...</div>}
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
     const time = dateObj.toLocaleTimeString("en-Us");
-
+    
     //map logic
     const showLat = parseFloat(showEvent.location.lat)
+    
     const showLng = parseFloat(showEvent.location.lng)
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
@@ -86,7 +88,7 @@ class EventShow extends React.Component {
       })
     );
 
-    // debugger
+    
 
     return(
 

@@ -61,7 +61,7 @@ class Main extends React.Component {
 
         </div>
         </div>
-          <div className="footer">
+          <div className="splash-footer">
           <div className="footer-content">
             <div className="footer-column">
               <svg id="footer-logo" xmlns="http://www.w3.org/2000/svg" version="1.0"  viewBox="0 0 361.000000 114.000000" preserveAspectRatio="xMidYMid meet">

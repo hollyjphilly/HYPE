@@ -2,11 +2,10 @@
     display: flex;
     justify-content: center;
     margin-top: 35px;
-
 }
 
 .dashboard-content {
-    width: 70%;
+    width: 80%;
     display: inline-flex;
     flex-wrap: wrap-reverse;
     gap: 25px;
@@ -16,11 +15,75 @@
     border: 3px solid $light-purple;
     border-radius: 5px;
     padding: 20px;
+    padding-top: 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    svg {
+        width: 100px;
+        max-width: 100px;
+        margin: 25px;
+    }
+
 }
 
 .dashboard-events-container {
-    width: 500px;
     border: 3px solid $green;
-    border-radius: 5px;
+    background-color: $lightest-green;
     padding: 20px;
+    flex-grow: 3;
+    flex-basis: 0
 }
+
+.user-details {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+
+}
+
+
+    .dashboard-events {
+        display: flex;
+        flex-direction: column;
+        .dash-event-item {margin-bottom: 15px;}
+    }
+@media (max-width: 900px) {
+    .dashboard-profile { 
+        flex-direction: row;
+        padding-top: 20px;
+
+        .user-details {
+            margin-left: 20px;
+            align-items: flex-start;
+        }
+    }
+}
+
+.dash-event-item {
+    // margin: 15px;
+    flex-grow: 1;
+}
+
+.dashboard-buttons {
+    margin: 15px;
+}
+
+.dash-btn {
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 24px;
+    font-weight: 600;
+    color: $green;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.dash-btn.active {
+    color: $dark-green;
+    text-decoration: underline;
+}
+

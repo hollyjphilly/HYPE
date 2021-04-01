@@ -7,7 +7,6 @@ import {
 } from '../../actions/user_events_actions';
 
 const mapStateToProps = state => {
-  debugger
   return {
     hostedEvents: state.entities.userEvents.hostedEvents.data,
     attendingEvents: state.entities.userEvents.attendingEvents.data,

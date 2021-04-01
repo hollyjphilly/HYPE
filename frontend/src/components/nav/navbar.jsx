@@ -18,7 +18,7 @@ class NavBar extends React.Component {
         return (
           <div className="right-side-nav">
             <Link to='/events'>Events</Link>
-            <Link to='/dashboard'>Dashboard</Link>
+            <Link to='/dashboard/all'>Dashboard</Link>
             <a href="/" onClick={this.logoutUser}>Logout</a>
           </div>
         );

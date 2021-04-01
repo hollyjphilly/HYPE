@@ -4,25 +4,15 @@ import {
   RECEIVE_ONE_EVENT,
 } from "../actions/event_actions";
 
-const EventsReducer = (
-  state = {},
-  action
-) => {
+const EventsReducer = ( state = [], action) => {
   Object.freeze(state);
-  let newState = Object.assign({}, state);
 
   switch (action.type) {
     case RECEIVE_ALL_EVENTS:
-      newState = action.events.data;
-      return newState;
-      
-    // case RECEIVE_USER_EVENTS:
-    //   newState.user = action.events.data;
-    //   return newState;
+      return action.events.data;
 
     case RECEIVE_ONE_EVENT:
-      newState = action.event.data;
-      return newState;
+      return [action.event.data];
 
     default:
       return state;
