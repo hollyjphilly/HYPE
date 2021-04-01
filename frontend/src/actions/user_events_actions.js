@@ -17,8 +17,8 @@ const receiveAttendingEvents = (attendingEvents) => {
   };
 };
 
-export const fetchHostedEvents = (eventId) => (dispatch) => {
-  return EventAPIUtil.getHostEvents(eventId).then(
+export const fetchHostedEvents = (userId) => (dispatch) => {
+  return EventAPIUtil.getHostEvents(userId).then(
     (event) => dispatch(receiveHostedEvents(event)),
     (errors) => {
       console.log(errors.responseText);
@@ -26,8 +26,8 @@ export const fetchHostedEvents = (eventId) => (dispatch) => {
   );
 };
 
-export const fetchAttendingEvents = (eventId) => (dispatch) => {
-  return EventAPIUtil.getAttendingEvents(eventId).then(
+export const fetchAttendingEvents = (userId) => (dispatch) => {
+  return EventAPIUtil.getAttendingEvents(userId).then(
     (event) => dispatch(receiveAttendingEvents(event)),
     (errors) => {
       console.log(errors.responseText);
