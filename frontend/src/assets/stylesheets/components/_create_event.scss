@@ -1,19 +1,155 @@
+.create-event-form-map-container {
+  height: 900px;
+}
 .create-event-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.create-event-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 500px;
+.create-event-map-container {
+  height: 400px;
+  width: 500px;
+  position: relative;
+  bottom: 523px;
+  left: 456px;
 }
 
-.create-event-form-inputs-div {
+.create-event-form {
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-evenly;
+  // align-items: center;
+  // height: 1300px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  width: 600px;
+  margin: 20px;
+  border-radius: 8px;
+  border: 3px solid $border-gray;
+  background-color: $hover-gray;
+
+  .create-event-input-div {
+    margin-bottom: 5px;
+
+    .create-event-input-text {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.create-event-form-header {
+  margin-top: 25px;
+}
+
+.create-event-form-inputs-container {
+  font-size: 18px;
+}
+
+.create-event-location-map-div {
+  height: 400px;
+  width: 500px;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+}
+
+.create-event-two-input-div {
+  display: flex;
+  margin-bottom: 5px;
+
+  .create-event-sport-div {
+    margin-left: 20px;
+  }
+}
+
+.create-event-capacity-text {
+  margin-bottom: 10px;
+}
+
+.create-event-sport-text {
+  margin-bottom: 10px;
+}
+
+.create-event-button:focus {
+  outline: none !important;
+}
+
+.create-event-title-input {
+  padding: 5px;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+  // background-color: $lightest-green;
+}
+
+.create-event-title-input:focus {
+  background-color: $lightest-green;
+}
+
+.create-event-date-input {
+  padding: 5px;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+}
+
+.create-event-date-input:focus {
+  background-color: $lightest-green;
+}
+
+.create-event-sport-dropdown {
+  padding: 5px;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+}
+
+.create-event-sport-dropdown:focus {
+  background-color: $lightest-green;
+}
+
+.create-event-description-textarea {
+  resize: none;
+  width: -webkit-fill-available;
+  height: 60px;
+  padding: 8px;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+}
+
+.create-event-description-textarea:focus {
+  background-color: $lightest-green;
+}
+
+.create-event-capacity-input {
+  padding: 5px;
+  width: 45px;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+}
+
+.create-event-capacity-input:focus {
+  background-color: $lightest-green;
+}
+
+.create-event-button {
+  margin: 25px 0px;
+  padding: 10px 31px;
+  border-radius: 25px;
+  border: 2px solid $light-green;
+  background-color: $light-green;
+  color: white;
+  font-size: 18px;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.create-event-button:hover {
+  background-color: $light-green;
+  border-color: $light-green;
+  transform: scale(1.15);
 }

@@ -7,15 +7,15 @@ import NavBarContainer from "./nav/navbar_container";
 import Main from "./main";
 import LoginFormContainer from "./sessionForm/login_form_container";
 import RegisterFormContainer from "./sessionForm/register_form_container";
-import EventsIndexContainer from './events_index/events_index_container';
-import EventShowContainer from './event_show/event_show_container'
-import CreateEvent from "./create_event/create_event_container";
-import DashboardContainer from './dashboard/dashboard_container';
+import EventsIndexContainer from "./events_index/events_index_container";
+import EventShowContainer from "./event_show/event_show_container";
+import CreateEvent from "./create_event/create_event";
+import DashboardContainer from "./dashboard/dashboard_container";
 
 const App = () => (
   <div>
     <NavBarContainer />
-    
+
     <Switch>
       <Route exact path="/" component={Main} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
