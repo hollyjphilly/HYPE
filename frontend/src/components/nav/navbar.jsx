@@ -17,7 +17,8 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
         return (
           <div className="right-side-nav">
-            <Link to='/events'>Events</Link>
+            {this.props.location.pathname != "/" ? <button className="host-button">Host a Game</button> : ""}
+            <Link to='/events'>Browse Games</Link>
             <Link to='/dashboard/all'>Dashboard</Link>
             <a href="/" onClick={this.logoutUser}>Logout</a>
           </div>
@@ -25,6 +26,7 @@ class NavBar extends React.Component {
       } else {
         return (
           <div className="right-side-nav">
+            {this.props.location.pathname != "/" ? <button className="host-button">Host a Game</button> : ""}
             <Link to={'/events'}>Events</Link>
             <Link to={'/login'}>Login</Link>
             <Link to={'/register'}>Register</Link>

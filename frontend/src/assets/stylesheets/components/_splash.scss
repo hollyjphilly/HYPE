@@ -110,6 +110,7 @@
 
   font-size: 18px;
   color: $sub-text;
+  line-height: 24px;
 }
 
 .section:nth-child(3) {
@@ -203,3 +204,8 @@
   position: relative;
 }
 
+#browse {
+  color: $green;
+  transform: skew(-5deg);
+  cursor: pointer;
+}
