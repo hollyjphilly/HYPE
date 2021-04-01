@@ -11,10 +11,16 @@ class Dashboard extends React.Component {
       loading: true
     };
     this.renderAll = this.renderAll.bind(this);
-    this.renderHosting = this.renderHosting.bind(this);
+    this.renderHosted = this.renderHosted.bind(this);
     this.renderAttending = this.renderAttending.bind(this);
   }
 
+  componentDidMount() {
+    debugger
+    this.props.fetchAttendingEvents(this.props.currentUser.id);
+    this.props.fetchHostedEvents(this.props.currentUser.id);
+  }
+  
   renderLoading() {
     return (
       <div className="dashboard-loading">
@@ -26,11 +32,13 @@ class Dashboard extends React.Component {
   renderAll() {
     const {hostedEvents, attendingEvents} = this.props;
     let allEvents = hostedEvents.concat(attendingEvents);
+    debugger
     this.setState({all: true,
       hosted: false,
       attending: false,
       loading: false
     });
+    debugger
     return allEvents.map((event, idx) =>{
       return(
         <DashboardItem event={event} key={`all-${idx}`}/>
@@ -39,6 +47,7 @@ class Dashboard extends React.Component {
   }
 
   renderHosted() {
+    debugger
     this.setState({all: false,
       hosted: true,
       attending: false,
@@ -65,27 +74,24 @@ class Dashboard extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.props.fetchAttendingEvents(this.props.currentUser._id);
-    this.props.fetchHostEvents(this.props.currentUser._id);
-  }
-
   render() {
+
     const {all, hosted, loading} = this.state;
     const {currentUser} = this.props;
-    const renderEvents = loading ? this.renderloading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
+    debugger
+    // const renderEvents = loading ? this.renderLoading() : all ? this.renderAll() : hosted ? this.renderHosted() : this.renderAttending();
     const dateObj = new Date(currentUser.date);
     return(
       <div className="dashboard-container">
         <div className="dashboard-event-buttons">
           <button onClick={this.renderAll}>All</button>
-          <button onClick={this.renderHosting}>Hosting</button>
+          <button onClick={this.renderHosted}>Hosting</button>
           <button onClick={this.renderAttending}>Attending</button>
         </div>
         <div className="dashboard-events-container">
           <div className="dashboard-upcoming-container">
             <h2>Upcoming Events</h2>
-            {renderEvents}
+            {/* {renderEvents} */}
           </div>
           <div className="dashboard-past-container">
             <h2>Past Events</h2>

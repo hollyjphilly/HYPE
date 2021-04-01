@@ -1,21 +1,22 @@
 import {connect} from 'react-redux';
 import Dashboard from './dashboard'
 import {
-  fetchHostEvents,
+  fetchHostedEvents,
   fetchAttendingEvents
-} from '../../util/user_events';
+} from '../../actions/user_events_actions';
 
 const mapStateToProps = state => {
+  debugger
   return {
-    hostedEvents: Object.values(state.entities.userEvents.hostedEvents),
-    attendingEvents: Object.values(state.entities.userEvents.attendingEvents),
+    hostedEvents: state.entities.userEvents.hostedEvents.data,
+    attendingEvents: state.entities.userEvents.attendingEvents.data,
     currentUser: state.session.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchHostEvents: userId => dispatch(fetchHostEvents(userId)),
+    fetchHostedEvents: userId => dispatch(fetchHostedEvents(userId)),
     fetchAttendingEvents: userId => dispatch(fetchAttendingEvents(userId))
   }
 }
