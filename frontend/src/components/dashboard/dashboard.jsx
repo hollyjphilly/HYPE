@@ -21,13 +21,13 @@ class Dashboard extends React.Component {
     this.props.fetchHostedEvents(this.props.currentUser.id);
   }
   
-  renderLoading() {
-    return (
-      <div className="dashboard-loading">
-        Loading/click on a button
-      </div>
-    )
-  }
+  // renderLoading() {
+  //   return (
+  //     <div className="dashboard-loading">
+  //       Loading/click on a button
+  //     </div>
+  //   )
+  // }
 
   renderAll() {
     const {hostedEvents, attendingEvents} = this.props;
@@ -39,11 +39,19 @@ class Dashboard extends React.Component {
     //   loading: false
     // });
     // debugger
-    return allEvents.map((event, idx) =>{
+    if(allEvents.length) {
       return(
-        <DashboardItem event={event} key={`all-${idx}`}/>
+        <div className="no-events">
+          <h3>You have no events :(</h3>
+        </div>
       )
-    })
+    } else {
+      return allEvents.map((event, idx) =>{
+        return(
+          <DashboardItem event={event} key={`all-${idx}`}/>
+          )
+        })
+      }
   }
 
   renderHosted() {
@@ -53,11 +61,20 @@ class Dashboard extends React.Component {
     //   attending: false,
     //   loading: false
     // });
-    return this.props.hostedEvents.map((event, idx) =>{
+    const {hostedEvents} = this.props;
+    if (hostedEvents.length) {
       return(
-        <DashboardItem event={event} key={`hosted-${idx}`}/>
+        <div className="no-events">
+          <h3>You are not hosting any events :(</h3>
+        </div>
       )
-    })
+    } else {
+      return hostedEvents.map((event, idx) =>{
+        return(
+          <DashboardItem event={event} key={`hosted-${idx}`}/>
+        )
+      })
+    }
   }
   
 
@@ -67,11 +84,20 @@ class Dashboard extends React.Component {
     //   attending: true,
     //   loading: false
     // });
-    return this.props.attendingEvents.map((event, idx) =>{
+    const {attendingEvents} = this.props;
+    if (attendingEvents.length) {
       return(
-        <DashboardItem event={event} key={`attending-${idx}`}/>
+        <div className="no-events">
+          <h3>You have not joined any events :(</h3>
+        </div>
       )
-    })
+    } else {
+      return this.props.attendingEvents.map((event, idx) =>{
+        return(
+          <DashboardItem event={event} key={`attending-${idx}`}/>
+        )
+      })
+    }
   }
 
   renderEvents(type) {
