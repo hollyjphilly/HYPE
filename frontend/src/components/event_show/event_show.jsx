@@ -44,8 +44,6 @@ class EventShow extends React.Component {
     const currentUser  = this.props.currentUser;
     const events = this.props.events[0];
 
-    debugger
-
     if (currentUser._id === events.host._id) {
       this.setState({
         display: true,
