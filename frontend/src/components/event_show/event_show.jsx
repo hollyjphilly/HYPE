@@ -116,7 +116,7 @@ class EventShow extends React.Component {
               googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
               ${googleAPI}`}
               loadingElement={<div style={{ height: "100%" }} />}
-              containerElement={<div style={{ height: "100%" }} />}
+              containerElement={<div style={{ height: "100%"}} />}
               mapElement={<div style={{ height: "100%" }} />}
               />
           </div>
