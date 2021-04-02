@@ -1,4 +1,4 @@
-<p align="center"><img src="https://i.ibb.co/2sJSr3J/Screen-Shot-2021-04-02-at-12-44-25-PM.png" alt="Hype Logo" border="0"></p>
+<img src="https://i.ibb.co/2sJSr3J/Screen-Shot-2021-04-02-at-12-44-25-PM.png" alt="Hype Logo" border="0">
 
 <br/>
 <h1>Meet the Team</h1>
