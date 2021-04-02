@@ -2,9 +2,9 @@ import * as EventAPIUtil from "../util/event_api_util";
 
 export const RECEIVE_ONE_EVENT = "RECEIVE_ONE_EVENT";
 export const RECEIVE_ALL_EVENTS = "RECEIVE_ALL_EVENTS";
-// export const REMOVE_EVENT = "REMOVE_EVENT";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
 export const CLEAR_EVENT_ERRORS = "CLEAR_EVENT_ERRORS";
+// export const REMOVE_EVENT = "REMOVE_EVENT";
 
 const receiveOneEvent = (event) => {
   return {
@@ -61,6 +61,13 @@ export const createEvent = (formData) => (dispatch) => {
 
 export const addUserToEvent = (eventId, data) => (dispatch) => {
   return EventAPIUtil.addUserToEvent(eventId, data).then(
+    (event) => dispatch(receiveOneEvent(event)),
+    (errors) => dispatch(receiveErrors(errors.responseJSON))
+  );
+};
+
+export const removeUserFromEvent = (eventId, data) => (dispatch) => {
+  return EventAPIUtil.removeUserFromEvent(eventId, data).then(
     (event) => dispatch(receiveOneEvent(event)),
     (errors) => dispatch(receiveErrors(errors.responseJSON))
   );

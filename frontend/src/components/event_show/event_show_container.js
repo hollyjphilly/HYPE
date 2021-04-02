@@ -1,6 +1,7 @@
 import {
   fetchOneEvent,
   addUserToEvent,
+  removeUserFromEvent,
 } from "../../actions/event_actions";
 import {connect} from "react-redux";
 import EventShow from './event_show'
@@ -18,7 +19,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchOneEvent: (id) => dispatch(fetchOneEvent(id)),
     addUserToEvent: (eventId, data) => dispatch(addUserToEvent(eventId, data)),
-    // remove user from event
+    removeUserFromEvent: (eventId, data) => dispatch(removeUserFromEvent(eventId, data)),
   }
 }
 
