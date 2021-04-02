@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: white;
+  padding: 20px;
 }
 
 .create-event-form-map-container {
@@ -11,40 +12,41 @@
   background-color: white;
   width: 600px;
 }
-.create-event-form-container {
-  display: flex;
-  justify-content: center;
-  // align-items: center;
-  background-color: white;
-}
+// .create-event-form-container {
+//   display: flex;
+//   justify-content: center;
+//   // align-items: center;
+//   background-color: white;
+// }
 
 .create-event-map-container {
   height: 400px;
   width: 500px;
-  margin-top: -523px;
+  margin-top: -495px;
+  margin-left: 3px;
 }
 
 .event-map {
   height: 400px;
 }
 
-.create-event-form {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  border-radius: 8px;
+// .create-event-form {
+//   display: flex;
+//   flex-direction: column;
+//   width: 600px;
+//   border-radius: 8px;
 
-  .create-event-input-div {
-    margin-bottom: 5px;
+//   .create-event-input-div {
+//     margin-bottom: 5px;
 
-    .create-event-input-text {
-      margin-bottom: 10px;
-    }
-  }
-}
+//     .create-event-input-text {
+//       margin-bottom: 10px;
+//     }
+//   }
+// }
 
-.create-event-form-header {
-  margin-top: 25px;
+.create-event-form-header-h1 {
+  margin:0;
 }
 
 .create-event-form-inputs-container {
@@ -54,8 +56,8 @@
 .create-event-location-map-div {
   height: 400px;
   width: 500px;
-  box-shadow: inset 0 0 0 0.5pt $green;
-  border: 3px solid $green;
+  box-shadow: inset 0 0 0 0.5pt $border-gray;
+  border: 3px solid $border-gray;
 }
 
 .create-event-two-input-div {
@@ -90,7 +92,7 @@
   background-color: $lightest-green;
 }
 
-.create-event-date-input {
+.create-event-input {
   padding: 5px;
   outline: none;
   box-shadow: inset 0 0 0 0.5pt $green;
@@ -110,6 +112,10 @@
 
 .create-event-sport-dropdown:focus {
   background-color: $lightest-green;
+}
+
+textarea {
+  font-family: $ssp;
 }
 
 .create-event-description-textarea {
@@ -155,4 +161,62 @@
   background-color: $light-green;
   border-color: $light-green;
   transform: scale(1.15);
+}
+
+.create-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    width: 100%;
+    z-index: 5;
+    
+}
+
+#create-text {
+    padding: 7px;
+    padding-left: 10px;
+    background-color: $hover-gray;
+    border: 2px solid transparent;
+    outline: none;
+    box-shadow: none;
+    color: #000;
+    outline: none;
+    font-size: 18px;
+    font-family: $ssp;
+    width: 100%;
+}
+
+
+#create-text:focus {
+    background-color: $lightest-green;
+    border: 2px solid $green;
+}
+
+#create-text:hover {
+    background-color: $lightest-green;
+}
+
+#create-label {white-space: nowrap;
+  margin-right: 10px;
+  font-size: 24px;
+  font-family: $ssp;
+  color: $green;
+  font-weight: 600;
+}
+
+.textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 200px;
+
+  label {
+    margin-bottom: 10px;
+  }
+
+}
+
+textarea#create-text {
+  height: 100%;
 }
