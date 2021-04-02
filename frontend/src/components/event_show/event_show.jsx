@@ -93,44 +93,44 @@ class EventShow extends React.Component {
     return(
 
       <div className="event-show-main-div">
+        <div className="event-container">
 
-        <div className="single-event-container">
-
-          <div className="event-images">IMAGES GO HERE</div>
-          <div className="event-info-container">
-            <div className="event-header">
-              <h2>{showEvent.title}</h2>
-              <button
-                onClick={this.handleEventJoin}
-                disabled={this.state.display}
-              >
-                {this.state.joinButton}
-              </button>
+          <div className="single-event-container">
+            <div className="event-images">IMAGES GO HERE</div>
+            <div className="event-info-container">
+              <div className="event-header">
+                <h2>{showEvent.title}</h2>
+                <button
+                  onClick={this.handleEventJoin}
+                  disabled={this.state.display}
+                >
+                  {this.state.joinButton}
+                </button>
+              </div>
+              <h3>Hosted by {showEvent.host.username}</h3>
+              <h3>Sport: {showEvent.sport}</h3>
+              <h3>Description:</h3>
+              <p>{showEvent.description}</p>
+              <p>Max: {showEvent.maxCapacity}</p>
+              <p>{`${date} ${time}`}</p>
+              <p>Max Capacity: {showEvent.maxCapacity}</p>
+              <p>Attending: {showEvent.usersAttending.length}</p>
             </div>
-            <h3>Hosted by {showEvent.host.username}</h3>
-            <h3>Sport: {showEvent.sport}</h3>
-            <h3>Description:</h3>
-            <p>{showEvent.description}</p>
-            <p>Max: {showEvent.maxCapacity}</p>
-            <p>{`${date} ${time}`}</p>
-            <p>Max Capacity: {showEvent.maxCapacity}</p>
-            <p>Attending: {showEvent.usersAttending.length}</p>
           </div>
 
+
+
+          <div className="event-map">
+            <WrappedMap
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
+              ${googleAPI}`}
+              loadingElement={<div style={{ height: "100%" }} />}
+              containerElement={<div style={{ height: "100%" }} />}
+              mapElement={<div style={{ height: "100%" }} />}
+              />
+          </div>
+          
         </div>
-
-
-
-        <div className="event-map">
-          <WrappedMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
-            ${googleAPI}`}
-            loadingElement={<div style={{ height: "100%" }} />}
-            containerElement={<div style={{ height: "100%" }} />}
-            mapElement={<div style={{ height: "100%" }} />}
-            />
-        </div>
-
       </div>
     )
   
