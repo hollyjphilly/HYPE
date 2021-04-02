@@ -59,9 +59,9 @@ export const createEvent = (formData) => (dispatch) => {
   );
 };
 
-export const addUserToEvent = (userId) => (dispatch) => {
-  return EventAPIUtil.addUserToEvent(userId).then(
+export const addUserToEvent = (eventId, data) => (dispatch) => {
+  return EventAPIUtil.addUserToEvent(eventId, data).then(
     (event) => dispatch(receiveOneEvent(event)),
-    (errors) => dispatch(receiveErrors(errors.responseJSON))
+    (errors) => {debugger}
   );
 };
