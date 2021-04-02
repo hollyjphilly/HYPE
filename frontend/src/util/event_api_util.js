@@ -15,3 +15,7 @@ export const getAllEvents = () => {
 export const postEvent = (data) => {
   return axios.post("/api/events/", data);
 };
+
+export const addUserToEvent = (userId) => {
+  return axios.put(`/api/events/${userId}`);
+};
