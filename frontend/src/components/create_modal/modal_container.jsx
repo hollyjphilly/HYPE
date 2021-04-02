@@ -1,6 +1,7 @@
 import { createEvent } from "../../actions/event_actions";
 import { connect } from "react-redux";
 import CreateEventModal from "./modal";
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEventModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateEventModal));
