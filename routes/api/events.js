@@ -90,7 +90,7 @@ router.put("/:id", (req, res) => {
       }
     }
   );
-  const game = Event.findById(req.params.id);
+  const game = Event.findById(req.params.id).populate("host", "username");
   game.then((gme) => res.json(gme)).catch((err) => console.log(err));
 });
 
