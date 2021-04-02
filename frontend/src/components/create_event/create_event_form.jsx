@@ -45,7 +45,6 @@ class CreateEventForm extends React.Component {
       <div className="create-event-form-container">
         <form className="create-event-form" onSubmit={this.handleSubmit}>
           <header className="create-event-form-header">
-            <h1 className="create-event-form-header-h1">Create an Event</h1>
           </header>
           <div className="create-event-form-inputs-container">
             <div className="create-event-input-div">

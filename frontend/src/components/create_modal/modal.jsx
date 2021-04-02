@@ -32,6 +32,7 @@ class Modal extends React.Component {
                 <div className="modal-content">
                     <div className="title-row">
                         <span className="x-close" onClick={this.toggle} >&times;</span>
+                        <h1 className="create-event-form-header-h1">Create an Event</h1>
                     </div>
                     <div className="modal-body">
                         <CreateEventContainer />
