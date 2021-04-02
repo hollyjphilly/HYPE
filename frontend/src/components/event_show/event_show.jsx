@@ -42,7 +42,7 @@ class EventShow extends React.Component {
   handleEventJoin() {
     
     const currentUser  = this.props.currentUser;
-    debugger
+    
     this.props.addUserToEvent(this.props.eventId, 
       {usersAttending: currentUser.id});
   }
@@ -54,11 +54,11 @@ class EventShow extends React.Component {
       return <div>LOADING...</div>;
     }
     const showEvent = events.find((event) => event._id === eventId);
-    debugger
+    
     const cantJoin = (showEvent.usersAttending.includes(currentUser.id) ||
       showEvent.host._id === currentUser.id || 
       showEvent.usersAttending.length >= showEvent.maxCapacity)
-    debugger
+    
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
