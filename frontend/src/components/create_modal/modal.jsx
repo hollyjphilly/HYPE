@@ -1,17 +1,11 @@
 import React from 'react';
+import CreateEventContainer from '../create_event/create_event';
 
 class Modal extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             hidden: true,
-            title: "",
-            description: "",
-            sport: "",
-            host: this.props.user.id,
-            maxCapacity: 4,
-            location: "444.44, 444.444",
-            dateTime: "",
         };
         this.toggle = this.toggle.bind(this);
         this.display = this.display.bind(this);
@@ -40,8 +34,7 @@ class Modal extends React.Component {
                         <span className="x-close" onClick={this.toggle} >&times;</span>
                     </div>
                     <div className="modal-body">
-                        <h2>I am a modal.</h2>
-                        <h2>Here me roar.</h2>
+                        <CreateEventContainer />
                     </div>
                 </div>
             </div>

@@ -26,6 +26,9 @@ const UserSchema = new Schema({
     type: Date,
     default: () => Date.now() - 4 * 60 * 60 * 1000,
   },
+  avatar: {
+    type: Map,
+  }
 });
 
 const User = mongoose.model("User", UserSchema);
