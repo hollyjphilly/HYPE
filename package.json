@@ -6,6 +6,7 @@
   "dependencies": {
     "@reach/combobox": "^0.14.0",
     "@react-google-maps/api": "^2.1.1",
+    "avataaars": "^1.2.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.0",
@@ -16,7 +17,7 @@
     "mongoose": "^5.12.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "react-google-maps": "^9.4.5",
+    "react-google-maps": "^7.3.0",
     "use-places-autocomplete": "^1.9.1",
     "validator": "^13.5.2"
   },
