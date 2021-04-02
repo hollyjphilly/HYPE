@@ -12,10 +12,10 @@ class EventShow extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      display: false,
-      joinButton: "Join Now",
-    };
+    // this.state = {
+    //   display: false,
+    //   joinButton: "Join Now",
+    // };
 
     // this.display = false;
     // this.joinButton = "Join Now";
@@ -42,46 +42,23 @@ class EventShow extends React.Component {
   handleEventJoin() {
     
     const currentUser  = this.props.currentUser;
-    const events = this.props.events[0];
-
-    if (currentUser._id === events.host._id) {
-      this.setState({
-        display: true,
-        joinButton: "You are the Host",
-      });
-      
-      // this.display = true;
-      // this.joinButton = "You are the Host";
-      
-    } else if (events.usersAttending.length < events.maxCapacity) {
-      if (!events.usersAttending.includes(currentUser._id)) {
-        this.props.addUserToEvent(this.props.eventId, 
-          {usersAttending: currentUser._id});
-        this.setState({joinButton: "JOINED"})
-
-        // this.props.addUserToEvent(currentUser._id);
-        // this.setState({joinButton: "JOINED"})
-      }
-    } else {
-      this.setState({
-        display: true,
-        joinButton: "Event at max capacity",
-      });
-
-      // this.display = true;
-      // this.joinButton = "Event at max capacity";
-
-    }
+    debugger
+    this.props.addUserToEvent(this.props.eventId, 
+      {usersAttending: currentUser.id});
   }
 
   render() {
     //Checking for an event, Loading...
-    const { eventId, events } = this.props;
+    const { eventId, events, currentUser } = this.props;
     if (!events.length) {
       return <div>LOADING...</div>;
     }
     const showEvent = events.find((event) => event._id === eventId);
-
+    debugger
+    const cantJoin = (showEvent.usersAttending.includes(currentUser.id) ||
+      showEvent.host._id === currentUser.id || 
+      showEvent.usersAttending.length >= showEvent.maxCapacity)
+    debugger
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
@@ -121,12 +98,9 @@ class EventShow extends React.Component {
             <div className="event-info-container">
               <div className="event-header">
                 <h2>{showEvent.title}</h2>
-                <button
+                { !cantJoin ? <button
                   onClick={this.handleEventJoin}
-                  disabled={this.state.display}
-                >
-                  {this.state.joinButton}
-                </button>
+                > MAKE JOIN </button>: ""}
               </div>
               <div className="single-event-description">
                 <h3>Hosted by: {showEvent.host.username}</h3>

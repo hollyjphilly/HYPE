@@ -1,4 +1,5 @@
 import React from "react";
+import showMapStyles from '../map_styles'
 import CreateEventForm from "./create_event_form_container";
 import {
   GoogleMap,
@@ -30,12 +31,18 @@ class CreateEvent extends React.Component {
   render() {
     const showLat = this.state.lat || 40.673842;
     const showLng = this.state.lng || -73.970083;
+    const options = {
+      styles: showMapStyles,
+      disableDefaultUI: true,
+      zoomControl: true,
+    }
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
           <GoogleMap
             defaultCenter={{ lat: showLat, lng: showLng }}
             defaultZoom={12}
+            options={options}
             onClick={(e) => this.handleClick(e)}
           >
             {this.state.markerShown && (
