@@ -85,7 +85,7 @@ class EventShow extends React.Component {
         <div className="event-container">
 
           <div className="single-event-container">
-            <div className="event-images">IMAGES GO HERE</div>
+            {/* <div className="event-images">IMAGES GO HERE</div> */}
             <div className="event-info-container">
               <div className="event-header">
                 <h2>{showEvent.title}</h2>
@@ -96,14 +96,16 @@ class EventShow extends React.Component {
                   {this.state.joinButton}
                 </button>
               </div>
-              <h3>Hosted by {showEvent.host.username}</h3>
-              <h3>Sport: {showEvent.sport}</h3>
-              <h3>Description:</h3>
-              <p>{showEvent.description}</p>
-              <p>Max: {showEvent.maxCapacity}</p>
-              <p>{`${date} ${time}`}</p>
-              <p>Max Capacity: {showEvent.maxCapacity}</p>
-              <p>Attending: {showEvent.usersAttending.length}</p>
+              <div className="single-event-description">
+                <h3>Hosted by: {showEvent.host.username}</h3>
+                <h3>Sport: {showEvent.sport}</h3>
+                <h3>Description:</h3>
+                <p>{showEvent.description}</p>
+                <p>Max: {showEvent.maxCapacity}</p>
+                <p>{`${date} ${time}`}</p>
+                <p>Max Capacity: {showEvent.maxCapacity}</p>
+                <p>Attending: {showEvent.usersAttending.length}</p>
+              </div>
             </div>
           </div>
 

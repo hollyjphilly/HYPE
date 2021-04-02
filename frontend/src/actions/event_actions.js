@@ -58,3 +58,10 @@ export const createEvent = (formData) => (dispatch) => {
     (errors) => dispatch(receiveErrors(errors.responseJSON))
   );
 };
+
+export const addUserToEvent = (userId) => (dispatch) => {
+  return EventAPIUtil.addUserToEvent(userId).then(
+    (event) => dispatch(receiveOneEvent(event)),
+    (errors) => dispatch(receiveErrors(errors.responseJSON))
+  );
+};
