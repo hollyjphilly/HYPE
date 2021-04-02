@@ -9,8 +9,7 @@ class CreateEventForm extends React.Component {
       sport: "",
       host: this.props.user.id,
       maxCapacity: 4,
-      // lat lng
-      location: "444.44, 444.444",
+      location: [this.props.lat, this.props.lng],
       dateTime: "",
     };
 
@@ -20,6 +19,7 @@ class CreateEventForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.state.location = [this.props.lat, this.props.lng];
     this.props.createEvent(this.state);
   }
 
@@ -58,7 +58,6 @@ class CreateEventForm extends React.Component {
                   type="text"
                   value={this.state.title}
                   onChange={this.update("title")}
-                  // placeholder="Title"
                 />
               </div>
             </div>
@@ -131,7 +130,6 @@ class CreateEventForm extends React.Component {
                   type="text"
                   value={this.state.description}
                   onChange={this.update("description")}
-                  // placeholder="Description"
                 />
               </div>
             </div>
@@ -141,11 +139,7 @@ class CreateEventForm extends React.Component {
                   Please choose a location
                 </span>
               </div>
-              <div className="create-event-location-map-div">
-                {/*  */}
-                {/* <Search /> */}
-                {/*  */}
-              </div>
+              <div className="create-event-location-map-div"></div>
             </div>
           </div>
           <div className="create-event-form-button-container">

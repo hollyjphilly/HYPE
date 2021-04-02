@@ -1,21 +1,19 @@
-import React from 'react';
-import { 
+import React from "react";
+import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
-  Marker 
+  Marker,
 } from "react-google-maps";
 const googleAPI = require("../../config/keys2").googleMapsApi;
 
 class EventShow extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       display: false,
       joinButton: "Join Now",
-      
     };
 
     //
@@ -28,17 +26,15 @@ class EventShow extends React.Component {
   }
 
   handleEventJoin() {
+    const { event, currentUser } = this.props;
 
-    const {event, currentUser} = this.props;
-    
-    if(currentUser._id === event.host) {
+    if (currentUser._id === event.host) {
       this.setState({
-        display: true, 
-        joinButton: "You are the Host"
-      })
-    }else if (event.usersAttending.length < event.maxCapacity) {
-      if(!event.usersAttending.includes(currentUser._id)) {
-
+        display: true,
+        joinButton: "You are the Host",
+      });
+    } else if (event.usersAttending.length < event.maxCapacity) {
+      if (!event.usersAttending.includes(currentUser._id)) {
         // NEED TO CREATE A SAVEEVENT ACTION
         // this.props.saveEvent();
         // this.setState({joinButton: "JOINED"})
@@ -51,25 +47,23 @@ class EventShow extends React.Component {
     }
   }
 
-
-
-
   render() {
-    
     //Checking for an event, Loading...
-    const {eventId, events} = this.props;
-    const showEvent = events.find(event => event._id === eventId);
-    if (!events.length) {return <div>LOADING...</div>}
+    const { eventId, events } = this.props;
+    const showEvent = events.find((event) => event._id === eventId);
+    if (!events.length) {
+      return <div>LOADING...</div>;
+    }
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
     const time = dateObj.toLocaleTimeString("en-Us");
-    
+
     //map logic
-    const showLat = parseFloat(showEvent.location.lat)
-    
-    const showLng = parseFloat(showEvent.location.lng)
+    const showLat = showEvent.location[0];
+
+    const showLng = showEvent.location[1];
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
@@ -77,25 +71,18 @@ class EventShow extends React.Component {
             defaultCenter={{ lat: showLat, lng: showLng }}
             defaultZoom={12}
           >
-
-            <Marker 
+            <Marker
               key={showEvent._id}
               position={{ lat: showLat, lng: showLng }}
             />
-
           </GoogleMap>
         );
       })
     );
 
-    
-
-    return(
-
+    return (
       <div className="event-show-main-div">
-
         <div className="single-event-container">
-
           <div className="event-images">IMAGES GO HERE</div>
           <div className="event-info-container">
             <div className="event-header">
@@ -116,10 +103,7 @@ class EventShow extends React.Component {
             <p>Max Capacity: {showEvent.maxCapacity}</p>
             <p>Attending: {showEvent.usersAttending.length}</p>
           </div>
-
         </div>
-
-
 
         <div className="event-map">
           <WrappedMap
@@ -128,12 +112,10 @@ class EventShow extends React.Component {
             loadingElement={<div style={{ height: "100%" }} />}
             containerElement={<div style={{ height: "100%" }} />}
             mapElement={<div style={{ height: "100%" }} />}
-            />
+          />
         </div>
-
       </div>
-    )
-  
+    );
   }
 }
 

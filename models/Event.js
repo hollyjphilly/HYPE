@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const moment = require("moment-timezone");
-
-// const dateNYST = moment.tz(Date.now(), "America/Phoenix");
 const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
@@ -27,13 +24,11 @@ const EventSchema = new Schema({
   },
   usersAttending: {
     type: Array,
-    // required: true,
     default: [],
   },
   location: {
-    type: Object,
+    type: Array,
     required: true,
-    default: { lat: "40.673842", lng: "-73.970083" },
   },
   dateTime: {
     type: Date,

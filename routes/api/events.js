@@ -33,9 +33,7 @@ router.get("/attending/:user_id", (req, res) => {
 
 router.get("/:id", (req, res) => {
   Event.findById(req.params.id)
-    // .select({ _id: req.params.id })
     .populate("host", "username")
-    // .exec()
     .then((event) => res.json(event))
     .catch((err) => res.status(400).json(err));
 });
@@ -51,7 +49,7 @@ router.post(
     }
 
     const formattedDate = moment.utc(req.body.dateTime).local().format();
-
+    console.log(req.body);
     const newEvent = new Event({
       title: req.body.title,
       description: req.body.description,
@@ -62,7 +60,7 @@ router.post(
       location: req.body.location,
       dateTime: formattedDate,
     });
-
+    console.log(newEvent);
     newEvent
       .save()
       .then((newEvent) => res.json(newEvent))
