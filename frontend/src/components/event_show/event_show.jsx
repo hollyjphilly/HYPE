@@ -11,37 +11,26 @@ class EventShow extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   display: false,
-    //   joinButton: "Join Now",
-    // };
-
-    // this.display = false;
-    // this.joinButton = "Join Now";
-
     this.handleEventJoin = this.handleEventJoin.bind(this);
+    this.handleEventUnjoin = this.handleEventUnjoin.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchOneEvent(this.props.eventId);
-    // setTimeout(() => {
-    //   const { events, currentUser } = this.props;
-    //   if (currentUser._id === events.host) {
-    //     this.joinButton = "You are the Host"
-    //   };
-    //   if (events.usersAttending.length >= events.maxCapacity) {
-    //     this.joinButton = "Event at max capacity"
-    //   };
-    //   if (events.usersAttending.includes(currentUser._id)) {
-    //     this.joinButton = "JOINED"
-    //   };
-    // }, 0)
   }
 
   handleEventJoin() {
     const currentUser = this.props.currentUser;
 
     this.props.addUserToEvent(this.props.eventId, {
+      usersAttending: currentUser.id,
+    });
+  }
+
+  handleEventUnjoin() {
+    const currentUser = this.props.currentUser;
+
+    this.props.removeUserFromEvent(this.props.eventId, {
       usersAttending: currentUser.id,
     });
   }
@@ -58,6 +47,8 @@ class EventShow extends React.Component {
       showEvent.usersAttending.includes(currentUser.id) ||
       showEvent.host._id === currentUser.id ||
       showEvent.usersAttending.length >= showEvent.maxCapacity;
+    
+    const canLeave = showEvent.usersAttending.includes(currentUser.id)
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
@@ -99,9 +90,10 @@ class EventShow extends React.Component {
                 <h2>{showEvent.title}</h2>
                 {!cantJoin ? (
                   <button onClick={this.handleEventJoin}> MAKE JOIN </button>
-                ) : (
-                  ""
-                )}
+                ) : ( "" )}
+                {canLeave ? (
+                  <button onClick={this.handleEventUnjoin}> UNJOIN </button>
+                ) : ( "" )}
               </div>
               <div className="single-event-description">
                 <h3>Hosted by: {showEvent.host.username}</h3>
