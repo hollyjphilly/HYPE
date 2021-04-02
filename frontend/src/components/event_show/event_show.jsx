@@ -1,4 +1,5 @@
 import React from "react";
+import showMapStyles from '../map_styles'
 import {
   GoogleMap,
   withScriptjs,
@@ -16,27 +17,49 @@ class EventShow extends React.Component {
       joinButton: "Join Now",
     };
 
-    //
+    // this.display = false;
+    // this.joinButton = "Join Now";
 
     this.handleEventJoin = this.handleEventJoin.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchOneEvent(this.props.eventId);
+    // setTimeout(() => {
+    //   const { events, currentUser } = this.props;
+    //   if (currentUser._id === events.host) {
+    //     this.joinButton = "You are the Host"
+    //   };
+    //   if (events.usersAttending.length >= events.maxCapacity) {
+    //     this.joinButton = "Event at max capacity"
+    //   };
+    //   if (events.usersAttending.includes(currentUser._id)) {
+    //     this.joinButton = "JOINED"
+    //   };
+    // }, 0)
   }
 
   handleEventJoin() {
-    const { event, currentUser } = this.props;
+    
+    const currentUser  = this.props.currentUser;
+    const events = this.props.events[0];
 
-    if (currentUser._id === event.host) {
+    if (currentUser._id === events.host._id) {
       this.setState({
         display: true,
         joinButton: "You are the Host",
       });
-    } else if (event.usersAttending.length < event.maxCapacity) {
-      if (!event.usersAttending.includes(currentUser._id)) {
-        // NEED TO CREATE A SAVEEVENT ACTION
-        // this.props.saveEvent();
+      
+      // this.display = true;
+      // this.joinButton = "You are the Host";
+      
+    } else if (events.usersAttending.length < events.maxCapacity) {
+      if (!events.usersAttending.includes(currentUser._id)) {
+        this.props.addUserToEvent(this.props.eventId, 
+          {usersAttending: currentUser._id});
+        this.setState({joinButton: "JOINED"})
+
+        // this.props.addUserToEvent(currentUser._id);
         // this.setState({joinButton: "JOINED"})
       }
     } else {
@@ -44,16 +67,20 @@ class EventShow extends React.Component {
         display: true,
         joinButton: "Event at max capacity",
       });
+
+      // this.display = true;
+      // this.joinButton = "Event at max capacity";
+
     }
   }
 
   render() {
     //Checking for an event, Loading...
     const { eventId, events } = this.props;
-    const showEvent = events.find((event) => event._id === eventId);
     if (!events.length) {
       return <div>LOADING...</div>;
     }
+    const showEvent = events.find((event) => event._id === eventId);
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
@@ -62,14 +89,19 @@ class EventShow extends React.Component {
 
     //map logic
     const showLat = showEvent.location[0];
-
     const showLng = showEvent.location[1];
+    const options = {
+      styles: showMapStyles,
+      disableDefaultUI: true,
+      zoomControl: true,
+    }
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
           <GoogleMap
             defaultCenter={{ lat: showLat, lng: showLng }}
             defaultZoom={12}
+            options={options}
           >
             <Marker
               key={showEvent._id}

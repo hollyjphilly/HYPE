@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchOneEvent: (id) => dispatch(fetchOneEvent(id)),
-    addUserToEvent: (id) => dispatch(addUserToEvent(id)),
+    addUserToEvent: (eventId, data) => dispatch(addUserToEvent(eventId, data)),
     // remove user from event
   }
 }
