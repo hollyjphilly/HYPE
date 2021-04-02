@@ -44,59 +44,40 @@ class CreateEventForm extends React.Component {
     return (
       <div className="create-event-form-container">
         <form className="create-event-form" onSubmit={this.handleSubmit}>
-          <header className="create-event-form-header">
-          </header>
-          <div className="create-event-form-inputs-container">
-            <div className="create-event-input-div">
-              <div className="create-event-input-text">
-                <span className="create-event-input-span">Title</span>
-              </div>
-              <div className="create-event-title-input-div">
-                <input
-                  className="create-event-title-input"
-                  type="text"
-                  value={this.state.title}
-                  onChange={this.update("title")}
-                />
-              </div>
-            </div>
-            <div className="create-event-input-div">
-              <div className="create-event-input-text">
-                <span className="create-event-input-span">
-                  Please select a date and time
-                </span>
-              </div>
-              <div className="create-event-date-input-div">
-                <input
-                  className="create-event-date-input"
-                  type="datetime-local"
-                  value={this.state.dateTime}
-                  onChange={this.update("dateTime")}
-                />
-              </div>
-            </div>
-            <div className="create-event-two-input-div">
-              <div className="create-event-capacity-div">
-                <div className="create-event-capacity-text">
-                  <span className="create-event-input-span">
-                    Attendees (min. 4 max. 100)
-                  </span>
-                </div>
-                <div className="create-event-capacity-input-div">
-                  <input
-                    className="create-event-capacity-input"
-                    type="number"
-                    min="4"
-                    max="100"
-                    onChange={this.update("maxCapacity")}
-                  />
-                </div>
-              </div>
-              <div className="create-event-sport-div">
-                <div className="create-event-sport-text">
-                  <span className="create-event-input-span">Sport</span>
-                </div>
-                <div className="create-event-sport-input-div">
+
+          <div className="create-input">
+            <label id="create-label">Title</label>
+            <input
+              autoFocus
+              id="create-text"
+              type="text"
+              value={this.state.title}
+              placeholder="What are you playing?"
+              onChange={this.update('title')}/>
+          </div>
+
+          <div className="create-input">
+            <label id="create-label">Date</label>
+            <input
+              id="create-text"
+              type="datetime-local"
+              value={this.state.dateTime}
+              onChange={this.update("dateTime")}
+              />
+          </div>
+
+          <div className="create-input">
+            <label id="create-label">Maximum Number of Players</label>
+            <input
+              id="create-text"
+              type="number"
+              min="4"
+              max="100"
+              placeHolder="Enter a number between 4 and 100"
+              onChange={this.update("maxCapacity")}
+            />
+          </div>
+                  {/* <span className="create-event-input-span">Sport</span>
                   <select
                     className="create-event-sport-dropdown"
                     value={this.state.sport}
@@ -113,36 +94,23 @@ class CreateEventForm extends React.Component {
                     </option>
                     <option value="hidenseek">Hide-n-Seek</option>
                     <option value="freezetag">Freeze Tag</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="create-event-input-div">
-              <div className="create-event-input-text">
-                <span className="create-event-input-span">
-                  Describe your event
-                </span>
-              </div>
-              <div className="create-event-description-textarea-div">
-                <textarea
-                  className="create-event-description-textarea"
-                  type="text"
-                  value={this.state.description}
-                  onChange={this.update("description")}
-                />
-              </div>
-            </div>
-            <div className="create-event-input-div">
-              <div className="create-event-input-text">
-                <span className="create-event-input-span">
-                  Please choose a location
-                </span>
-              </div>
-              <div className="create-event-location-map-div"></div>
-            </div>
+                  </select> */}
+
+          <div className="create-input textarea">
+            <label id="create-label">Description</label>
+            <textarea
+              className="create-event-description-textarea"
+              id="create-text"
+              type="text"
+              value={this.state.description}
+              onChange={this.update("description")}
+            />
           </div>
+              
+          <div className="create-event-location-map-div"></div>
+
           <div className="create-event-form-button-container">
-            <button className="create-event-button">Create Event</button>
+            <button className="create-event-button" onClick={this.handleSubmit}>Create Event</button>
           </div>
 
           {this.renderErrors()}
