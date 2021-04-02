@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-
+    this.demo = this.demo.bind(this);
   }
 
   // Handle field updates (called in the render method)
@@ -29,6 +29,10 @@ class LoginForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.login(this.state); 
+  }
+
+  demo() {
+    this.props.login({email: "demo@hype.com", password: "password"});
   }
 
   // Render the session errors if there are any
@@ -87,10 +91,12 @@ class LoginForm extends React.Component {
               <br/>
 
               <button className="session-button" >Log In</button>
-              
 
             </div>
           </form>
+          <div className="demo-container">
+            <button className="demo-button" onClick={this.demo}>Demo</button>
+          </div>
           
         </div></div></div>
       </div>
