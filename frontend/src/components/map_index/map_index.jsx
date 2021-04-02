@@ -7,7 +7,7 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
-const googleAPI = require("../../config/keys2").googleMapsApi;
+const googleMapsApi = require("../../config/keys2").googleMapsApi;
 
 class MapIndex extends React.Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class MapIndex extends React.Component {
         <div className="map-index">
           <WrappedMap
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
-                  ${googleAPI}`}
+                  ${googleMapsApi}`}
             loadingElement={<div style={{ height: "100%" }} />}
             containerElement={<div style={{ height: "100%" }} />}
             mapElement={<div style={{ height: "100%" }} />}

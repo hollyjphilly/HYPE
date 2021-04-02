@@ -1,12 +1,12 @@
 import React from "react";
-import showMapStyles from '../map_styles'
+import showMapStyles from "../map_styles";
 import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
   Marker,
 } from "react-google-maps";
-const googleAPI = require("../../config/keys2").googleMapsApi;
+const googleMapsApi = require("../../config/keys2").googleMapsApi;
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -40,11 +40,11 @@ class EventShow extends React.Component {
   }
 
   handleEventJoin() {
-    
-    const currentUser  = this.props.currentUser;
-    
-    this.props.addUserToEvent(this.props.eventId, 
-      {usersAttending: currentUser.id});
+    const currentUser = this.props.currentUser;
+
+    this.props.addUserToEvent(this.props.eventId, {
+      usersAttending: currentUser.id,
+    });
   }
 
   render() {
@@ -54,11 +54,12 @@ class EventShow extends React.Component {
       return <div>LOADING...</div>;
     }
     const showEvent = events.find((event) => event._id === eventId);
-    
-    const cantJoin = (showEvent.usersAttending.includes(currentUser.id) ||
-      showEvent.host._id === currentUser.id || 
-      showEvent.usersAttending.length >= showEvent.maxCapacity)
-    
+
+    const cantJoin =
+      showEvent.usersAttending.includes(currentUser.id) ||
+      showEvent.host._id === currentUser.id ||
+      showEvent.usersAttending.length >= showEvent.maxCapacity;
+
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
@@ -71,7 +72,7 @@ class EventShow extends React.Component {
       styles: showMapStyles,
       disableDefaultUI: true,
       zoomControl: true,
-    }
+    };
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
@@ -92,15 +93,16 @@ class EventShow extends React.Component {
     return (
       <div className="event-show-main-div">
         <div className="event-container">
-
           <div className="single-event-container">
             {/* <div className="event-images">IMAGES GO HERE</div> */}
             <div className="event-info-container">
               <div className="event-header">
                 <h2>{showEvent.title}</h2>
-                { !cantJoin ? <button
-                  onClick={this.handleEventJoin}
-                > MAKE JOIN </button>: ""}
+                {!cantJoin ? (
+                  <button onClick={this.handleEventJoin}> MAKE JOIN </button>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="single-event-description">
                 <h3>Hosted by: {showEvent.host.username}</h3>
@@ -115,18 +117,15 @@ class EventShow extends React.Component {
             </div>
           </div>
 
-
-
           <div className="event-map">
             <WrappedMap
               googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
-              ${googleAPI}`}
+              ${googleMapsApi}`}
               loadingElement={<div style={{ height: "100%" }} />}
-              containerElement={<div style={{ height: "100%"}} />}
+              containerElement={<div style={{ height: "100%" }} />}
               mapElement={<div style={{ height: "100%" }} />}
-              />
+            />
           </div>
-          
         </div>
       </div>
     );
