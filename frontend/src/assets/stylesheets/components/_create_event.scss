@@ -1,20 +1,3 @@
-.host-button {
-  margin: 0;
-  margin-right: 25px;
-  background-color: white;
-  color: $background-blue;
-  border: none;
-  
-}
-
-.host-button:hover {
-  color: white;
-  background: linear-gradient(-45deg, $blue, $blue, $purple, $blue, $blue, $green, $blue, $blue);
-  background-size: 500% 500%;
-  animation: gradient 5s ease infinite;
-  transform: none;
-}
-
 .event-form-main-div {
   display: flex;
   flex-direction: column;
