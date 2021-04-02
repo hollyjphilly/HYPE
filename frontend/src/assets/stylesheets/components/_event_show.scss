@@ -3,3 +3,61 @@
   width: 500px;
 }
 
+.event-show-main-div {
+  width: 80%;
+  justify-content: space-between;
+  margin: 2% auto;
+}
+
+.event-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.event-header > h2 {
+  font-size: 150%;
+  font-weight: 700;
+  color: $text;
+}
+
+.single-event-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-event-description > h3 {
+  margin: 10px 0px;
+  color: $text;
+  font-size: large;
+}
+
+.single-event-description > p {
+  margin: 10px 0px;
+  color: $text;
+  font-size: large;
+}
+
+.single-event-container {
+  width: 460px;
+}
+
+@media (max-width: 1000px) {
+  .event-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1600px) {
+  .event-map {
+    height: 900px;
+    width: 800px;
+  }
+}
