@@ -88,9 +88,10 @@ router.put("/:id", (req, res) => {
           .status(400)
           .json({ error: "Event not updaded/event not found" });
       }
-      return res.status(200).json({ msg: "Event has been updated" });
     }
   );
+  const game = Event.findById(req.params.id);
+  game.then((gme) => res.json(gme)).catch((err) => console.log(err));
 });
 
 module.exports = router;
