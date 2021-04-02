@@ -1,5 +1,5 @@
 import React from "react";
-import showMapStyles from '../map_styles'
+import showMapStyles from "../map_styles";
 import CreateEventForm from "./create_event_form_container";
 import {
   GoogleMap,
@@ -7,7 +7,7 @@ import {
   withGoogleMap,
   Marker,
 } from "react-google-maps";
-const googleAPI = require("../../config/keys2").googleMapsApi;
+const googleMapsApi = require("../../config/keys2").googleMapsApi;
 
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class CreateEvent extends React.Component {
       styles: showMapStyles,
       disableDefaultUI: true,
       zoomControl: true,
-    }
+    };
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
@@ -61,7 +61,7 @@ class CreateEvent extends React.Component {
               <div className="event-map">
                 <WrappedMap
                   googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
-                  ${googleAPI}`}
+                  ${googleMapsApi}`}
                   loadingElement={<div style={{ height: "100%" }} />}
                   containerElement={<div style={{ height: "100%" }} />}
                   mapElement={<div style={{ height: "100%" }} />}

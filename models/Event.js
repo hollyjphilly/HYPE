@@ -37,7 +37,7 @@ const EventSchema = new Schema({
   date: {
     type: Date,
     default: () => Date.now() - 4 * 60 * 60 * 1000,
-  },
+  }
 });
 
 const Event = mongoose.model("Event", EventSchema);

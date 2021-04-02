@@ -28,7 +28,7 @@ class NavBar extends React.Component {
         return (
           <div className="right-side-nav">
             {this.props.location.pathname !== "/" ? <Modal /> : ""}
-            <Link to={'/events'}>Events</Link>
+            <Link to={'/events'}>Browse Games</Link>
             <Link to={'/login'}>Login</Link>
             <Link to={'/register'}>Register</Link>
           </div>
