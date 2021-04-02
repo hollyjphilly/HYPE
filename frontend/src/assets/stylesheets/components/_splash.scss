@@ -75,8 +75,13 @@
 }
 
 @keyframes slide {
-    0% { left: -25px; opacity: 0;}
-    100% { left: 0; }
+    0% { 
+      top: -300px; 
+      background-color: transparent;
+      transform: scale(3);
+      opacity: 0;
+    }
+    100% { top: 0; }
 }
 
 .splash-body-container {
