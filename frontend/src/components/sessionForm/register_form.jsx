@@ -15,6 +15,7 @@ class RegisterForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.demo = this.demo.bind(this);
   }
 
   componentWillUnmount() {
@@ -30,6 +31,10 @@ class RegisterForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.register(this.state); 
+  }
+
+  demo() {
+    this.props.demo({email: "demo@hype.com", password: "password"});
   }
 
   renderErrors() {
@@ -131,11 +136,13 @@ class RegisterForm extends React.Component {
             <br/>
 
             <button className="session-button" >Register</button>
-
             
 
           </div>
         </form>
+        <div className="demo-container">
+          <button className="demo-button" onClick={this.demo}>Demo</button>
+        </div>
       </div></div></div>
     );
   }

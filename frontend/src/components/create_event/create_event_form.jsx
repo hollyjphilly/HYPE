@@ -30,11 +30,17 @@ class CreateEventForm extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   renderErrors() {
-    return (
+    return(
       <ul>
-        {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.props.errors[error]}</li>
+        {this.props.errors.map((error) => (
+          <li className="errors" key={error.id}><svg className="errors-icon" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+          </path></svg>{error}</li>
         ))}
       </ul>
     );
@@ -106,6 +112,8 @@ class CreateEventForm extends React.Component {
               onChange={this.update("description")}
             />
           </div>
+
+          <div className="errors-container">{this.renderErrors()}</div>
               
           <div className="create-event-location-map-div"></div>
 
@@ -113,7 +121,7 @@ class CreateEventForm extends React.Component {
             <button className="create-event-button" onClick={this.handleSubmit}>Create Event</button>
           </div>
 
-          {this.renderErrors()}
+          {/* {this.renderErrors()} */}
         </form>
       </div>
     );
