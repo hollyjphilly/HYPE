@@ -19,14 +19,14 @@ router.get("/", (req, res) => {
 
 router.get("/hosted/:user_id", (req, res) => {
   Event.find({ host: req.params.user_id })
-    .sort({ date: -1 })
+    .sort({ dateTime: 1 })
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
 });
 
 router.get("/attending/:user_id", (req, res) => {
   Event.find({ usersAttending: { $in: [req.params.user_id] } })
-    .sort({ date: -1 })
+    .sort({ dateTime: 1 })
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
 });
@@ -79,6 +79,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
+  console.log(req.body.usersAttending);
   Event.updateOne(
     { _id: req.params.id },
     { $addToSet: { usersAttending: [req.body.usersAttending] } },
@@ -87,11 +88,30 @@ router.put("/:id", (req, res) => {
         return res
           .status(400)
           .json({ error: "Event not updaded/event not found" });
+      } else {
+        const game = Event.findById(req.params.id).populate("host", "username");
+        game.then((gme) => res.json(gme)).catch((err) => console.log(err));
       }
     }
   );
-  const game = Event.findById(req.params.id).populate("host", "username");
-  game.then((gme) => res.json(gme)).catch((err) => console.log(err));
+});
+
+router.put("/remove/:id", (req, res) => {
+  console.log(req.body.usersAttending);
+  Event.updateOne(
+    { _id: req.params.id },
+    { $pullAll: { usersAttending: [req.body.usersAttending] } },
+    (err) => {
+      if (err) {
+        return res
+          .status(400)
+          .json({ error: "Event not updaded/event not found" });
+      } else {
+        const game = Event.findById(req.params.id).populate("host", "username");
+        game.then((gme) => res.json(gme)).catch((err) => console.log(err));
+      }
+    }
+  );
 });
 
 module.exports = router;
