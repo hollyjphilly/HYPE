@@ -1,4 +1,5 @@
 import React from "react";
+import showMapStyles from "../map_styles";
 import {
   GoogleMap,
   withScriptjs,
@@ -23,13 +24,19 @@ class MapIndex extends React.Component {
 
   render() {
     const { events } = this.props;
-    const { selectedEvent } = this.state;
+    let { selectedEvent } = this.state;
+    const options = {
+      styles: showMapStyles,
+      disableDefaultUI: true,
+      zoomControl: true,
+    };
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
           <GoogleMap
             defaultCenter={{ lat: 40.73061, lng: -73.935242 }}
             defaultZoom={11}
+            options={options}
           >
             {events &&
               events.map((game) => (
@@ -42,26 +49,30 @@ class MapIndex extends React.Component {
                   onClick={() => this.setState({ selectedEvent: game })}
                 />
               ))}
-            {this.state.selectedEvent && (
+            {selectedEvent && (
               <InfoWindow
                 position={{
                   lat: selectedEvent.location[0],
                   lng: selectedEvent.location[1],
                 }}
                 onCloseClick={() => {
-                  this.state.selectedEvent = null;
+                  selectedEvent = null;
                 }}
               >
                 <div className="event-map-info-window-container">
-                  <div className="event-map">
-                    {/* <h3>Hosted by {showEvent.host.username}</h3>
-                    <h3>Sport: {showEvent.sport}</h3>
-                    <h3>Description:</h3>
-                    <p>{showEvent.description}</p>
-                    <p>Max: {showEvent.maxCapacity}</p>
-                    <p>{`${date} ${time}`}</p>
-                    <p>Max Capacity: {showEvent.maxCapacity}</p>
-                    <p>Attending: {showEvent.usersAttending.length}</p> */}
+                  <div className="event-map-info">
+                    <a to={`/events/${selectedEvent._id}`}>
+                      <h1>{selectedEvent.title}</h1>
+                    </a>
+                    <h2>{`${new Date(
+                      selectedEvent.dateTime
+                    ).toDateString()} ${new Date(
+                      selectedEvent.dateTime
+                    ).toLocaleDateString("en-Us")}`}</h2>
+                    <br />
+                    <p>{selectedEvent.description}</p>
+                    <br />
+                    <p>{selectedEvent.usersAttending.length} attendees</p>
                   </div>
                 </div>
               </InfoWindow>
