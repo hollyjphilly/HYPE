@@ -1,53 +1,54 @@
 import React from "react";
 import CreateEventForm from "./create_event_form_container";
-// import MakeMap from "../../util/map";
-import { 
+import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
-  Marker 
+  Marker,
 } from "react-google-maps";
 const googleAPI = require("../../config/keys2").googleMapsApi;
 
 class CreateEvent extends React.Component {
   constructor(props) {
     super(props);
-    this.lat = null;
-    this.lng = null;
+    this.state = {
+      lat: null,
+      lng: null,
+      markerShown: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    this.setState({
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+      markerShown: true,
+    });
   }
 
   render() {
-
-    
-    const showLat = 40.673842;
-    const showLng = -73.970083;
+    const showLat = this.state.lat || 40.673842;
+    const showLng = this.state.lng || -73.970083;
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
           <GoogleMap
             defaultCenter={{ lat: showLat, lng: showLng }}
             defaultZoom={12}
-            onClick={(e) => {
-              this.lat = e.latLng.lat();
-              this.lng = e.latLng.lng();
-              console.log(this.lat);
-              console.log(this.lng);
-            }}
+            onClick={(e) => this.handleClick(e)}
           >
-
-            <Marker 
-              position={{ lat: this.lat, lng: this.lng }}
-            />
-
+            {this.state.markerShown && (
+              <Marker position={{ lat: this.state.lat, lng: this.state.lng }} />
+            )}
           </GoogleMap>
         );
       })
     );
-    
     return (
       <div className="event-form-main-div">
         <div className="create-event-form-map-container">
-          <CreateEventForm />
+          <CreateEventForm lat={this.state.lat} lng={this.state.lng} />
           <div className="create-event-map-container">
             <div className="another-div">
               <div className="event-map">
@@ -57,7 +58,7 @@ class CreateEvent extends React.Component {
                   loadingElement={<div style={{ height: "100%" }} />}
                   containerElement={<div style={{ height: "100%" }} />}
                   mapElement={<div style={{ height: "100%" }} />}
-                  />
+                />
               </div>
             </div>
           </div>
