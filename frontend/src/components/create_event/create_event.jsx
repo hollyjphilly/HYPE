@@ -7,7 +7,6 @@ import {
   withGoogleMap,
   Marker,
 } from "react-google-maps";
-const googleMapsApi = require("../../config/keys2").googleMapsApi;
 
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -60,8 +59,9 @@ class CreateEvent extends React.Component {
             <div className="another-div">
               <div className="event-map">
                 <WrappedMap
-                  googleMapURL={`https://maps.googleapis.com/maps/api/js?key=
-                  ${googleMapsApi}`}
+                  googleMapURL={
+                    "https://maps.googleapis.com/maps/api/js?key=AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8"
+                  }
                   loadingElement={<div style={{ height: "100%" }} />}
                   containerElement={<div style={{ height: "100%" }} />}
                   mapElement={<div style={{ height: "100%" }} />}
