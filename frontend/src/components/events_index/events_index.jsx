@@ -23,7 +23,7 @@ class EventsIndex extends React.Component {
       <><div className="events-green-bar"></div>
           <div className="events-wrapper">
             <div className="events-green-bar-text slide">
-              <h1>Events</h1>
+              <h1>Games</h1>
             </div>
           </div>
           

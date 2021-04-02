@@ -1,6 +1,6 @@
 .navbar-container {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     
     height: fit-content;
 
@@ -17,7 +17,6 @@
     box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
 
     .left-side-nav {
-
         svg:hover {
             cursor: pointer;
         }
@@ -37,6 +36,7 @@
         font-size: 18px;
         letter-spacing: 1px;
         transition: all .2s ease-in-out;
+        white-space: nowrap;
     }
 
     a:hover {
