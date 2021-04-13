@@ -1,25 +1,25 @@
 body {
-    font-family: $ssp;
+  font-family: $ssp;
 }
 
 .splash-footer {
-    background-color: $background-blue;
-    display: flex;
-    width: 100%;
-    min-height: 100px;
-    margin-top: 100px;
-    justify-content: center;
+  background-color: $background-blue;
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  margin-top: 100px;
+  justify-content: center;
 }
 
 .footer {
-    background-color: $background-blue;
-    display: flex;
-    width: 100%;
-    min-height: 100px;
-    margin-top: 100px;
-    justify-content: center;
-    position: relative;
-    bottom: 0;
+  background-color: $background-blue;
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  margin-top: 100px;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
 }
 
 .footer-content {
@@ -30,30 +30,30 @@ body {
 }
 
 .footer-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    span {
-        margin-top: 15px;
-        margin-bottom: 30px;
-        color: white;
-    }
+  #footer-logo {
+    width: 140px;
+  }
+
+  span {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    color: white;
+  }
 }
 
 h1 {
-    font-size: 36px;
-    font-weight: 600;
-    color: $text;
-    margin-bottom: 10px;
-    white-space: nowrap;
+  font-size: 36px;
+  font-weight: 600;
+  color: $text;
+  margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 h2 {
   font-size: 18px;
   color: $sub-text;
 }
-
-
-
-

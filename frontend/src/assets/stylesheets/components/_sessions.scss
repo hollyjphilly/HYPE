@@ -1,192 +1,198 @@
 .content-outer {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 75vh;
-    position: relative;
-    bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 75vh;
+  position: relative;
+  bottom: 0;
 }
 
-.content-outer, .content-outer::before, .content-outer::after  {
-    box-sizing: border-box;
+.content-outer,
+.content-outer::before,
+.content-outer::after {
+  box-sizing: border-box;
 }
 
-.content-outer::before, .content-outer::after {
-    content: "";
-    display: block;
-    flex-grow: 1;
-    height: 24px;
+.content-outer::before,
+.content-outer::after {
+  content: "";
+  display: block;
+  flex-grow: 1;
+  height: 24px;
 }
 
 @media (min-width: 601px) {
-    .content-inner {
-        display:flex;
-        justify-content: center;
-        border-radius: 8px;
-        border: 3px solid $border-gray;
-        background-color: $hover-gray;
-        display: block;
-        flex-shrink: 0;
-        margin: 0 auto;
-        min-height: 0;
-        transition: .2s;
-        width: 450px;
-        max-width: 100%;
-        position: relative;
-        z-index: 2;
-    }
+  .content-inner {
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    border: 3px solid $border-gray;
+    background-color: $hover-gray;
+    display: block;
+    flex-shrink: 0;
+    margin: 0 auto;
+    min-height: 0;
+    transition: 0.2s;
+    width: 450px;
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+  }
 }
 
 @media (max-width: 600px) {
-
-    .content-inner {
-        background-color: #fff;
-    }
-
+  .content-inner {
+    background-color: #fff;
+  }
 }
 
 .content-padding {
-    box-sizing: inherit;
-    height: auto;
-    overflow-y: auto;
-    transition: .2s;
-    padding: 48px 40px 36px;
-    overflow: hidden;
+  box-sizing: inherit;
+  height: auto;
+  overflow-y: auto;
+  transition: 0.2s;
+  padding: 48px 40px 36px;
+  overflow: hidden;
 }
 
 .content-outer input {
-    box-shadow: none;
-    border: 3px solid #dadce0;
-    box-sizing: border-box;
+  box-shadow: none;
+  border: 3px solid #dadce0;
+  box-sizing: border-box;
 
-    font-size: 16px;
-    margin: 10px 0;
-    
-    height: 100%;
-    width: 100%;
-    padding: 12px 14px;
+  font-size: 16px;
+  margin: 10px 0;
 
-    flex-grow: 1;
-    flex-shrink: 1;
+  height: 100%;
+  width: 100%;
+  padding: 12px 14px;
 
-    transition: border 150ms, box-shadow 150ms;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  transition: border 150ms, box-shadow 150ms;
 }
 
 .content-outer input:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 0.5pt $green;
-    border: 3px solid $green;
-    background-color: $lightest-green;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border: 3px solid $green;
+  background-color: $lightest-green;
 }
 
 .session-input {
-    position: relative;
-    display: block;
-    height: 56px;
-    width: 100%;
-    z-index: 5;
+  position: relative;
+  display: block;
+  height: 56px;
+  width: 100%;
+  z-index: 5;
 }
 
 #session-text {
-    padding: 15px;
-    border: 3px solid #dadce0;
-    outline: none;
-    box-shadow: none;
-    color: #000;
+  padding: 15px;
+  border: 3px solid #dadce0;
+  outline: none;
+  box-shadow: none;
+  color: #000;
 }
 
 #session-text:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 0.5pt $green;
-    border-color: $green;
+  outline: none;
+  box-shadow: inset 0 0 0 0.5pt $green;
+  border-color: $green;
 }
 
 #session-text:focus + #session-label {
-    top: 2px;
-    left: 4px;
-    color: white;
-    background-color: $green;
-    border-radius: 15px;
-    transform: scale(.75);
-    padding-bottom: 5px;
-    padding-top: 3px;
-    padding-right: 12px;
-    padding-left: 12px;
+  top: 2px;
+  left: 4px;
+  color: white;
+  background-color: $green;
+  border-radius: 15px;
+  transform: scale(0.75);
+  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 input:not([value=""]) + #session-label {
-    top: 2px;
-    left: 4px;
-    color: white;
-    background-color: $border-gray;
-    border-radius: 15px;
-    transform: scale(.75);
-    padding-bottom: 5px;
-    padding-top: 3px;
-    padding-right: 12px;
-    padding-left: 12px;
+  top: 2px;
+  left: 4px;
+  color: white;
+  background-color: $border-gray;
+  border-radius: 15px;
+  transform: scale(0.75);
+  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 input:not(:focus) + #session-label {
-    color: $text;
+  color: $text;
 }
 
 #session-label {
-    padding: 0 10px;
-    position: absolute;
-    top: 30px;
-    left: 5px;
-    letter-spacing: .25px;
-    transition: .2s;
-    user-select: none;
-    pointer-events: none;
+  padding: 0 10px;
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  letter-spacing: 0.25px;
+  transition: 0.2s;
+  user-select: none;
+  pointer-events: none;
 }
 
 button.session-button {
-    border: 2px solid $light-green;
-    background-color: $light-green;
-    width: 250px;
-    margin: 10px 0px;
+  border: 2px solid $light-green;
+  background-color: $light-green;
+  width: 250px;
+  margin: 10px 0px;
 }
 button.session-button:hover {
-    background-color: $light-green;
-    border-color: $light-green;
-    transform: scale(1.15);
+  background-color: $light-green;
+  border-color: $light-green;
+  transform: scale(1.15);
 }
 
 .session-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 div#name > .session-input:first-child {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 div#name {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .session-input {
-    margin-bottom: 25px;
-}                 
+  margin-bottom: 25px;
+}
 
 .errors {
-    color: $red;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
+  color: $red;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .errors-container {
-    width: 100%;
+  width: 100%;
 }
 
 .errors-icon {
-    width:16px;
-    height:16px;
-    fill: $red;
-    margin-right: 5px;
+  width: 16px;
+  height: 16px;
+  fill: $red;
+  margin-right: 5px;
+}
+
+.demo-container {
+  display: flex;
+  justify-content: center;
 }
