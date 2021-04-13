@@ -110,7 +110,7 @@ class EventShow extends React.Component {
                 isHost ? <button disabled>YOU'RE HOST</button>
                  : alreadyAttending ? <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
                  : isLoggedIn ? <button onClick={this.handleEventJoin}>JOIN EVENT</button>
-                 : <button onClick={this.handleRedirect}>NOT LOGGED IN</button>
+                 : <button onClick={this.handleRedirect}>JOIN EVENT</button>
                  }
                  
               </div>
