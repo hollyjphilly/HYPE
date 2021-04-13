@@ -22,8 +22,8 @@ class EventShow extends React.Component {
   }
 
   handleEventJoin() {
-    const {currentUser} = this.props;
-      this.props.addUserToEvent(this.props.eventId, {
+    const {currentUser, addUserToEvent, eventId} = this.props;
+      addUserToEvent(eventId, {
         usersAttending: currentUser.id,
       });
   }
