@@ -8,7 +8,6 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 export const receiveCurrentUser = (currentUser) => {
-  debugger;
   return {
     type: RECEIVE_CURRENT_USER,
     currentUser,
@@ -51,7 +50,6 @@ export const register = (user) => (dispatch) => {
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
       const decoded = jwt_decode(token);
-      debugger;
       dispatch(receiveCurrentUser(decoded));
     },
     (err) => dispatch(receiveErrors(err.response.data))
@@ -65,7 +63,6 @@ export const login = (user) => (dispatch) => {
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
       const decoded = jwt_decode(token);
-      debugger;
       dispatch(receiveCurrentUser(decoded));
     },
     (err) => dispatch(receiveErrors(err.response.data))
