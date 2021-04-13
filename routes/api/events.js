@@ -53,7 +53,6 @@ router.post(
     const newEvent = new Event({
       title: req.body.title,
       description: req.body.description,
-      sport: req.body.sport,
       host: req.user.id,
       maxCapacity: req.body.maxCapacity,
       usersAttending: req.body.usersAttending,

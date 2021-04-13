@@ -10,10 +10,6 @@ const EventSchema = new Schema({
     type: String,
     required: true,
   },
-  sport: {
-    type: String,
-    required: true,
-  },
   host: {
     type: Schema.Types.ObjectId,
     ref: "User",

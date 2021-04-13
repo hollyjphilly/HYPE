@@ -1,6 +1,7 @@
 import React from "react";
 import EventItem from "./event_item";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import Footer from '../footer'
 
 class EventsIndex extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class EventsIndex extends React.Component {
             )}
           </div>
         </div>
+        <Footer />
       </>
     );
   }
