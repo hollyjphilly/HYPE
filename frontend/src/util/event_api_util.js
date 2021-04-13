@@ -21,6 +21,5 @@ export const addUserToEvent = (eventId, data) => {
 };
 
 export const removeUserFromEvent = (eventId, data) => {
-  debugger
   return axios.put(`/api/events/remove/${eventId}`, data);
 };
