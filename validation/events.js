@@ -19,10 +19,6 @@ module.exports = function validateEventInput(data) {
     errors.description = "Description is required";
   }
 
-  if (Validator.isEmpty(data.sport)) {
-    errors.sport = "Sport is required";
-  }
-
   if (Validator.isEmpty(data.host)) {
     errors.host = "Host is required";
   }

@@ -46,29 +46,27 @@ export const fetchAllEvents = () => (dispatch) => {
 
   return EventAPIUtil.getAllEvents().then(
     (events) => dispatch(receiveAllEvents(events)),
-    (errors) => {
-      console.log(errors.responseText);
-    }
+    (errors) => dispatch(receiveErrors(errors.response.data))
   );
 };
 
 export const createEvent = (formData) => (dispatch) => {
   return EventAPIUtil.postEvent(formData).then(
     (event) => dispatch(receiveOneEvent(event)),
-    (errors) => dispatch(receiveErrors(errors.responseJSON))
+    (errors) => dispatch(receiveErrors(errors.response.data))
   );
 };
 
 export const addUserToEvent = (eventId, data) => (dispatch) => {
   return EventAPIUtil.addUserToEvent(eventId, data).then(
     (event) => dispatch(receiveOneEvent(event)),
-    (errors) => dispatch(receiveErrors(errors.responseJSON))
+    (errors) => dispatch(receiveErrors(errors.response.data))
   );
 };
 
 export const removeUserFromEvent = (eventId, data) => (dispatch) => {
   return EventAPIUtil.removeUserFromEvent(eventId, data).then(
     (event) => dispatch(receiveOneEvent(event)),
-    (errors) => dispatch(receiveErrors(errors.responseJSON))
+    (errors) => dispatch(receiveErrors(errors.response.data))
   );
 };
