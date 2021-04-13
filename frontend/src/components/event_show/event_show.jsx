@@ -6,13 +6,15 @@ import {
   withGoogleMap,
   Marker,
 } from "react-google-maps";
+import {Redirect} from "react-router-dom";
 
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {redirect: false}
     this.handleEventJoin = this.handleEventJoin.bind(this);
     this.handleEventUnjoin = this.handleEventUnjoin.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -20,11 +22,10 @@ class EventShow extends React.Component {
   }
 
   handleEventJoin() {
-    const currentUser = this.props.currentUser;
-
-    this.props.addUserToEvent(this.props.eventId, {
-      usersAttending: currentUser.id,
-    });
+    const {currentUser} = this.props;
+      this.props.addUserToEvent(this.props.eventId, {
+        usersAttending: currentUser.id,
+      });
   }
 
   handleEventUnjoin() {
@@ -35,20 +36,31 @@ class EventShow extends React.Component {
     });
   }
 
+  handleRedirect() {
+    this.setState({redirect: true})
+  }
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/login"/>
+    }
     //Checking for an event, Loading...
-    const { eventId, events, currentUser } = this.props;
+    const { eventId, events, currentUser, loggedIn } = this.props;
     if (!events.length) {
       return <div>LOADING...</div>;
     }
     const showEvent = events.find((event) => event._id === eventId);
 
-    const cantJoin =
-      showEvent.usersAttending.includes(currentUser.id) ||
-      showEvent.host._id === currentUser.id ||
-      showEvent.usersAttending.length >= showEvent.maxCapacity;
+    const currentId = loggedIn ? currentUser.id : undefined;
+    const isHost = showEvent.host === currentId;
+    const isLoggedIn = loggedIn;
+    const alreadyAttending = loggedIn ? showEvent.usersAttending.includes(currentUser.id) : null;
+    // const cantJoin =
+    //   showEvent.usersAttending.includes(currentUser.id) ||
+    //   showEvent.host._id === currentUser.id ||
+    //   showEvent.usersAttending.length >= showEvent.maxCapacity;
     
-    const canLeave = showEvent.usersAttending.includes(currentUser.id)
+    // const canLeave = showEvent.usersAttending.includes(currentUser.id)
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
@@ -79,7 +91,7 @@ class EventShow extends React.Component {
         );
       })
     );
-
+      
     return (
       <div className="event-show-main-div">
         <div className="event-container">
@@ -88,12 +100,19 @@ class EventShow extends React.Component {
             <div className="event-info-container">
               <div className="event-header">
                 <h2>{showEvent.title}</h2>
-                {!cantJoin ? (
-                  <button onClick={this.handleEventJoin}> MAKE JOIN </button>
+                {/* {!cantJoin ? (
+                  <button onClick={this.handleEventJoin}>JOIN EVENT</button>
                 ) : ( "" )}
                 {canLeave ? (
-                  <button onClick={this.handleEventUnjoin}> UNJOIN </button>
-                ) : ( "" )}
+                  <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
+                ) : ( "" )} */}
+                {
+                isHost ? <button disabled>YOU'RE HOST</button>
+                 : alreadyAttending ? <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
+                 : isLoggedIn ? <button onClick={this.handleEventJoin}>JOIN EVENT</button>
+                 : <button onClick={this.handleRedirect}>NOT LOGGED IN</button>
+                 }
+                 
               </div>
               <div className="single-event-description">
                 <h3>Hosted by: {showEvent.host.username}</h3>
