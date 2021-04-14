@@ -27,6 +27,21 @@ export class MapContainer extends Component {
     }
   };
 
+  createAllMarkers(events) {
+    if (events) {
+      events.map((event) => (
+        <Marker
+          key={event._id}
+          position={{
+            lat: event.location[0],
+            lng: event.location[1],
+          }}
+          onClick={() => this.setState({ selectedEvent: event })}
+        />
+      ))
+    }
+  }
+
   render() {
     return (
       <Map
