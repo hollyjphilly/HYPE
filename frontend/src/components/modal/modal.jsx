@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateEventContainer from '../create_event/create_event';
+import CreateEventContainer from '../create_event/create_event_form_container';
 
 class Modal extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class Modal extends React.Component {
                 <div className="modal-content">
                     <div className="title-row">
                         <span className="x-close" onClick={this.toggle} >&times;</span>
-                        <h1 className="create-event-form-header-h1">Schedule a Game</h1>
+                        <h1 className="modal-title">Schedule a Game</h1>
                     </div>
                     <div className="modal-body">
                         <CreateEventContainer />
