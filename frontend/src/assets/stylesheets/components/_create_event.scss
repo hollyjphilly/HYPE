@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 20px;
+  padding: 15px 30px;
 }
 
 .create-event-form-map-container {
@@ -47,10 +47,11 @@
 
 .create-event-form-header-h1 {
   margin:0;
+  font-size: 28px;
 }
 
 .create-event-form-inputs-container {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .create-event-location-map-div {
@@ -63,17 +64,9 @@
 .create-event-two-input-div {
   display: flex;
   margin-bottom: 5px;
-
-  .create-event-sport-div {
-    margin-left: 20px;
-  }
 }
 
 .create-event-capacity-text {
-  margin-bottom: 10px;
-}
-
-.create-event-sport-text {
   margin-bottom: 10px;
 }
 
@@ -101,21 +94,6 @@
 
 .create-event-date-input:focus {
   background-color: $lightest-green;
-}
-
-.create-event-sport-dropdown {
-  padding: 5px;
-  outline: none;
-  box-shadow: inset 0 0 0 0.5pt $green;
-  border: 3px solid $green;
-}
-
-.create-event-sport-dropdown:focus {
-  background-color: $lightest-green;
-}
-
-textarea {
-  font-family: $ssp;
 }
 
 .create-event-description-textarea {
@@ -182,9 +160,8 @@ textarea {
     box-shadow: none;
     color: #000;
     outline: none;
-    font-size: 18px;
+    font-size: 16px;
     font-family: $ssp;
-    width: 100%;
 }
 
 
@@ -199,24 +176,35 @@ textarea {
 
 #create-label {white-space: nowrap;
   margin-right: 10px;
-  font-size: 24px;
+  font-size: 20px;
   font-family: $ssp;
   color: $green;
   font-weight: 600;
 }
 
-.textarea {
+#description-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 200px;
+  height: 125px;
+  font-family: $ssp;
+  width: 100%;
 
   label {
     margin-bottom: 10px;
   }
-
 }
 
-textarea#create-text {
-  height: 100%;
+// #max-cap-wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+
+//   #create-label {
+
+//   }
+// }
+
+.create-event-form input {
+  width: 100%;
 }

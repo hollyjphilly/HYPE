@@ -6,21 +6,36 @@ class CreateEventForm extends React.Component {
     this.state = {
       title: "",
       description: "",
-      sport: "",
       host: this.props.user.id,
       maxCapacity: 4,
       location: [this.props.lat, this.props.lng],
+      locationTest: "",
       dateTime: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
-
+  
   handleSubmit(e) {
     e.preventDefault();
-    this.state.location = [this.props.lat, this.props.lng];
-    this.props.createEvent(this.state);
+    // this.state.location = [this.props.lat, this.props.lng];
+
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode({ 'address': this.state.locationTest.split(" ").join("%20")}, (results, status) => {
+      if (status == 'OK') {
+        this.props.createEvent(
+          Object.assign(
+            this.state, {
+              location: [results[0].geometry.location.lat(), 
+                        results[0].geometry.location.lng()]
+            }
+          )
+        );
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
   }
 
   update(field) {
@@ -63,7 +78,7 @@ class CreateEventForm extends React.Component {
           </div>
 
           <div className="create-input">
-            <label id="create-label">Date</label>
+            <label id="create-label">When</label>
             <input
               id="create-text"
               type="datetime-local"
@@ -73,36 +88,28 @@ class CreateEventForm extends React.Component {
           </div>
 
           <div className="create-input">
-            <label id="create-label">Maximum Number of Players</label>
+            <label id="create-label">Where</label>
+            <input
+              id="create-text"
+              type="text"
+              value={this.state.locationTest}
+              placeholder="Type an address"
+              onChange={this.update("locationTest")}/>
+          </div>
+
+          <div className="create-input" id="max-cap-wrapper">
+            <label id="create-label">How many people can play?</label>
             <input
               id="create-text"
               type="number"
               min="4"
               max="100"
-              placeHolder="Enter a number between 4 and 100"
+              placeholder="Enter a number between 4 and 100"
               onChange={this.update("maxCapacity")}
             />
           </div>
-                  {/* <span className="create-event-input-span">Sport</span>
-                  <select
-                    className="create-event-sport-dropdown"
-                    value={this.state.sport}
-                    onChange={this.update("sport")}
-                  >
-                    <option defaultValue="selected">
-                      Please select a sport
-                    </option>
-                    <option value="soccer">Soccer</option>
-                    <option value="basketball">Basketball</option>
-                    <option value="dodgeball">Dodgeball</option>
-                    <option value="waterballoonfight">
-                      Water Balloon Fight
-                    </option>
-                    <option value="hidenseek">Hide-n-Seek</option>
-                    <option value="freezetag">Freeze Tag</option>
-                  </select> */}
 
-          <div className="create-input textarea">
+          <div className="create-input" id="description-wrapper">
             <label id="create-label">Description</label>
             <textarea
               className="create-event-description-textarea"
@@ -110,7 +117,7 @@ class CreateEventForm extends React.Component {
               type="text"
               value={this.state.description}
               onChange={this.update("description")}
-            />
+              />
           </div>
 
           <div className="errors-container">{this.renderErrors()}</div>
@@ -121,7 +128,6 @@ class CreateEventForm extends React.Component {
             <button className="create-event-button" onClick={this.handleSubmit}>Create Event</button>
           </div>
 
-          {/* {this.renderErrors()} */}
         </form>
       </div>
     );
@@ -129,3 +135,22 @@ class CreateEventForm extends React.Component {
 }
 
 export default CreateEventForm;
+
+{/* <span className="create-event-input-span">Sport</span>
+<select
+  className="create-event-sport-dropdown"
+  value={this.state.sport}
+  onChange={this.update("sport")}
+>
+  <option defaultValue="selected">
+    Please select a sport
+  </option>
+  <option value="soccer">Soccer</option>
+  <option value="basketball">Basketball</option>
+  <option value="dodgeball">Dodgeball</option>
+  <option value="waterballoonfight">
+    Water Balloon Fight
+  </option>
+  <option value="hidenseek">Hide-n-Seek</option>
+  <option value="freezetag">Freeze Tag</option>
+</select> */}
