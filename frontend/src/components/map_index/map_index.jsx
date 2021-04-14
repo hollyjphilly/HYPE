@@ -7,6 +7,7 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
+import TestMap from "../test_map";
 
 class MapIndex extends React.Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class MapIndex extends React.Component {
       disableDefaultUI: true,
       zoomControl: true,
     };
+
+    
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
@@ -80,17 +83,41 @@ class MapIndex extends React.Component {
         );
       })
     );
+
+
     return (
       <div className="map-index-container">
         <div className="map-index">
-          <WrappedMap
+          {/* <WrappedMap
             googleMapURL={
               "https://maps.googleapis.com/maps/api/js?key=AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8"
             }
             loadingElement={<div style={{ height: "100%" }} />}
             containerElement={<div style={{ height: "100%" }} />}
             mapElement={<div style={{ height: "100%" }} />}
+          /> */}
+          <TestMap>
+
+          <Marker
+            onClick={this.onMarkerClick}
+            name={'Kenyatta International Convention Centre'}
+            position={{ lat: 40.672410, lng: -73.969861 }}
           />
+
+          {/* <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+          >
+
+            <div>
+              <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+          
+          </InfoWindow> */}
+
+          </TestMap>
+          
         </div>
       </div>
     );
