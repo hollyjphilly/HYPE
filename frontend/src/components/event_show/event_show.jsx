@@ -6,12 +6,12 @@ import {
   withGoogleMap,
   Marker,
 } from "react-google-maps";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {redirect: false}
+    this.state = { redirect: false };
     this.handleEventJoin = this.handleEventJoin.bind(this);
     this.handleEventUnjoin = this.handleEventUnjoin.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
@@ -22,10 +22,10 @@ class EventShow extends React.Component {
   }
 
   handleEventJoin() {
-    const {currentUser, addUserToEvent, eventId} = this.props;
-      addUserToEvent(eventId, {
-        usersAttending: currentUser.id,
-      });
+    const { currentUser, addUserToEvent, eventId } = this.props;
+    addUserToEvent(eventId, {
+      usersAttending: currentUser.id,
+    });
   }
 
   handleEventUnjoin() {
@@ -37,12 +37,12 @@ class EventShow extends React.Component {
   }
 
   handleRedirect() {
-    this.setState({redirect: true})
+    this.setState({ redirect: true });
   }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/login"/>
+      return <Redirect to="/login" />;
     }
     //Checking for an event, Loading...
     const { eventId, events, currentUser, loggedIn } = this.props;
@@ -54,18 +54,23 @@ class EventShow extends React.Component {
     const currentId = loggedIn ? currentUser.id : undefined;
     const isHost = showEvent.host === currentId;
     const isLoggedIn = loggedIn;
-    const alreadyAttending = loggedIn ? showEvent.usersAttending.includes(currentUser.id) : null;
+    const alreadyAttending = loggedIn
+      ? showEvent.usersAttending.includes(currentUser.id)
+      : null;
     // const cantJoin =
     //   showEvent.usersAttending.includes(currentUser.id) ||
     //   showEvent.host._id === currentUser.id ||
     //   showEvent.usersAttending.length >= showEvent.maxCapacity;
-    
+
     // const canLeave = showEvent.usersAttending.includes(currentUser.id)
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
     const date = dateObj.toDateString();
-    const time = dateObj.toLocaleTimeString("en-Us");
+    const time = dateObj.toLocaleTimeString("en-Us", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
     //map logic
     const showLat = showEvent.location[0];
@@ -91,7 +96,7 @@ class EventShow extends React.Component {
         );
       })
     );
-      
+
     return (
       <div className="event-show-main-div">
         <div className="event-container">
@@ -99,30 +104,71 @@ class EventShow extends React.Component {
             {/* <div className="event-images">IMAGES GO HERE</div> */}
             <div className="event-info-container">
               <div className="event-header">
-                <h2>{showEvent.title}</h2>
+                <div className="event-header-text">
+                  <h2>{showEvent.title}</h2>
+                  <p>{`${date} ${time}`}</p>
+                </div>
                 {/* {!cantJoin ? (
                   <button onClick={this.handleEventJoin}>JOIN EVENT</button>
-                ) : ( "" )}
-                {canLeave ? (
-                  <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
-                ) : ( "" )} */}
-                {
-                isHost ? <button disabled>YOU'RE HOST</button>
-                 : alreadyAttending ? <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
-                 : isLoggedIn ? <button onClick={this.handleEventJoin}>JOIN EVENT</button>
-                 : <button onClick={this.handleRedirect}>JOIN EVENT</button>
-                 }
-                 
+                  ) : ( "" )}
+                  {canLeave ? (
+                    <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
+                  ) : ( "" )} */}
+                {isHost ? (
+                  <button className="single-event-join-button" disabled>
+                    YOU'RE HOST
+                  </button>
+                ) : alreadyAttending ? (
+                  <button
+                    className="single-event-join-button"
+                    onClick={this.handleEventUnjoin}
+                  >
+                    LEAVE EVENT
+                  </button>
+                ) : isLoggedIn ? (
+                  <button
+                    className="single-event-join-button"
+                    onClick={this.handleEventJoin}
+                  >
+                    JOIN EVENT
+                  </button>
+                ) : (
+                  <button
+                    className="single-event-join-button"
+                    onClick={this.handleRedirect}
+                  >
+                    JOIN EVENT
+                  </button>
+                )}
               </div>
               <div className="single-event-description">
-                <h3>Hosted by: {showEvent.host.username}</h3>
-                <h3>Sport: {showEvent.sport}</h3>
-                <h3>Description:</h3>
-                <p>{showEvent.description}</p>
-                <p>Max: {showEvent.maxCapacity}</p>
-                <p>{`${date} ${time}`}</p>
-                <p>Max Capacity: {showEvent.maxCapacity}</p>
-                <p>Attending: {showEvent.usersAttending.length}</p>
+                <h3 className="single-event-description-h3">
+                  Hosted by {showEvent.host.username}
+                  {/* <p className="single-event-details-p">
+                    
+                  </p> */}
+                </h3>
+                <h3 className="single-event-description-h3">
+                  There are{" "}
+                  {showEvent.maxCapacity - showEvent.usersAttending.length}{" "}
+                  spots left.
+                  {/* <p className="single-event-details-p">
+                    {showEvent.usersAttending.length} / {showEvent.maxCapacity}
+                  </p> */}
+                </h3>
+                {/* <h3>Sport: {showEvent.sport}</h3> */}
+                {/* <h3 className="single-event-description-h3"> */}
+                {/* Description:{" "} */}
+                <p className="single-event-details-p">
+                  {showEvent.description}
+                </p>
+                {/* </h3> */}
+                {/* <p>Max: {showEvent.maxCapacity}</p> */}
+                {/* <p>
+                  Spots Taken: {showEvent.usersAttending.length} /{" "}
+                  {showEvent.maxCapacity}
+                </p> */}
+                {/* <p>Attending: {showEvent.usersAttending.length}</p> */}
               </div>
             </div>
           </div>
