@@ -8,8 +8,7 @@ class CreateEventForm extends React.Component {
       description: "",
       host: this.props.user.id,
       maxCapacity: 4,
-      location: [this.props.lat, this.props.lng],
-      locationTest: "",
+      location: "",
       dateTime: "",
     };
 
@@ -19,10 +18,8 @@ class CreateEventForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    // this.state.location = [this.props.lat, this.props.lng];
-
     const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ 'address': this.state.locationTest.split(" ").join("%20")}, (results, status) => {
+    geocoder.geocode({ 'address': this.state.location.split(" ").join("%20")}, (results, status) => {
       if (status == 'OK') {
         this.props.createEvent(
           Object.assign(
@@ -63,44 +60,45 @@ class CreateEventForm extends React.Component {
 
   render() {
     return (
-      <div className="create-event-form-container">
-        <form className="create-event-form" onSubmit={this.handleSubmit}>
+      <div className="event-form-main-div">
+      <div className="event-form-container">
+        <form className="event-form" onSubmit={this.handleSubmit}>
 
-          <div className="create-input">
-            <label id="create-label">Title</label>
+          <div className="event-input-wrapper">
+            <label className="create-label">Title</label>
             <input
               autoFocus
-              id="create-text"
+              className="event-input"
               type="text"
               value={this.state.title}
               placeholder="What are you playing?"
               onChange={this.update('title')}/>
           </div>
 
-          <div className="create-input">
-            <label id="create-label">When</label>
+          <div className="event-input-wrapper">
+            <label className="create-label">When</label>
             <input
-              id="create-text"
+              className="event-input"
               type="datetime-local"
               value={this.state.dateTime}
               onChange={this.update("dateTime")}
               />
           </div>
 
-          <div className="create-input">
-            <label id="create-label">Where</label>
+          <div className="event-input-wrapper">
+            <label className="create-label">Where</label>
             <input
-              id="create-text"
+              className="event-input"
               type="text"
-              value={this.state.locationTest}
+              value={this.state.location}
               placeholder="Type an address"
-              onChange={this.update("locationTest")}/>
+              onChange={this.update("location")}/>
           </div>
 
-          <div className="create-input" id="max-cap-wrapper">
-            <label id="create-label">How many people can play?</label>
+          <div className="event-input-wrapper" id="max-cap-wrapper">
+            <label className="create-label">How many people can play?</label>
             <input
-              id="create-text"
+              className="event-input"
               type="number"
               min="4"
               max="100"
@@ -109,11 +107,10 @@ class CreateEventForm extends React.Component {
             />
           </div>
 
-          <div className="create-input" id="description-wrapper">
-            <label id="create-label">Description</label>
+          <div className="event-input-wrapper" id="description-wrapper">
+            <label className="create-label">Description</label>
             <textarea
-              className="create-event-description-textarea"
-              id="create-text"
+              className="event-input"
               type="text"
               value={this.state.description}
               onChange={this.update("description")}
@@ -121,14 +118,13 @@ class CreateEventForm extends React.Component {
           </div>
 
           <div className="errors-container">{this.renderErrors()}</div>
-              
-          <div className="create-event-location-map-div"></div>
 
-          <div className="create-event-form-button-container">
-            <button className="create-event-button" onClick={this.handleSubmit}>Create Event</button>
+          <div id="submit-event-btn-wrapper">
+            <button id="submit-event-btn" onClick={this.handleSubmit}>Create Event</button>
           </div>
 
         </form>
+      </div>
       </div>
     );
   }
@@ -136,9 +132,9 @@ class CreateEventForm extends React.Component {
 
 export default CreateEventForm;
 
-{/* <span className="create-event-input-span">Sport</span>
+{/* <span className="event-input-wrapper-span">Sport</span>
 <select
-  className="create-event-sport-dropdown"
+  className="event-sport-dropdown"
   value={this.state.sport}
   onChange={this.update("sport")}
 >
