@@ -19,15 +19,15 @@ class Modal extends React.Component {
         }) }
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        // this.props.createEvent(this.state);
-        this.setState({ hidden: true });
-    }
+    // handleSubmit(e) {
+    //     e.preventDefault();
+    //     // this.props.createEvent(this.state);
+    //     this.setState({ hidden: true });
+    // }
 
     display() {
         return <>
-            <form onSubmit={this.handleSubmit.bind(this)}>
+            {/* <form onSubmit={this.handleSubmit.bind(this)}> */}
             <div className="modal">
                 <div className="modal-content">
                     <div className="title-row">
@@ -39,7 +39,7 @@ class Modal extends React.Component {
                     </div>
                 </div>
             </div>
-            </form>
+            {/* </form> */}
         </>
     }
 

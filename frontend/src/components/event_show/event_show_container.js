@@ -8,10 +8,12 @@ import EventShow from './event_show'
 
 const mapStateToProps = (state, ownProps) => {
   
+  
   return {
     eventId: ownProps.match.params.event_id,
     events: state.entities.events,
-    currentUser: state.session.user
+    currentUser: state.session.user,
+    loggedIn: state.session.isAuthenticated
   }
 }
 

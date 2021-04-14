@@ -1,7 +1,6 @@
-import { createEvent } from "../../actions/event_actions";
 import { connect } from "react-redux";
 import CreateEventForm from "./create_event_form";
-import {clearErrors} from '../../actions/event_actions';
+import { createEvent, clearErrors } from '../../actions/event_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createEvent: (newEvent) => dispatch(createEvent(newEvent)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
   };
 };
 
