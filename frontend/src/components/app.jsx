@@ -13,11 +13,14 @@ import CreateEvent from "./create_event/create_event";
 import DashboardContainer from "./dashboard/dashboard_container";
 import MapIndexContainer from "./map_index/map_index_container";
 
+import TestMap from './test_map'
+
 const App = () => (
   <div className="app">
     <NavBarContainer />
 
     <Switch>
+      <Route exact path="/testmap" component={TestMap} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/register" component={RegisterFormContainer} />
       <Route exact path="/events" component={EventsIndexContainer} />
