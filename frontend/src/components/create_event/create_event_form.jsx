@@ -18,9 +18,11 @@ class CreateEventForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
+    debugger
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ 'address': this.state.location.split(" ").join("%20")}, (results, status) => {
-      if (status == 'OK') {
+      if (status === 'OK') {
+        debugger
         this.props.createEvent(
           Object.assign(
             this.state, {
@@ -131,22 +133,3 @@ class CreateEventForm extends React.Component {
 }
 
 export default CreateEventForm;
-
-{/* <span className="event-input-wrapper-span">Sport</span>
-<select
-  className="event-sport-dropdown"
-  value={this.state.sport}
-  onChange={this.update("sport")}
->
-  <option defaultValue="selected">
-    Please select a sport
-  </option>
-  <option value="soccer">Soccer</option>
-  <option value="basketball">Basketball</option>
-  <option value="dodgeball">Dodgeball</option>
-  <option value="waterballoonfight">
-    Water Balloon Fight
-  </option>
-  <option value="hidenseek">Hide-n-Seek</option>
-  <option value="freezetag">Freeze Tag</option>
-</select> */}
