@@ -18,11 +18,9 @@ class CreateEventForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    debugger
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ 'address': this.state.location.split(" ").join("%20")}, (results, status) => {
       if (status === 'OK') {
-        debugger
         this.props.createEvent(
           Object.assign(
             this.state, {
