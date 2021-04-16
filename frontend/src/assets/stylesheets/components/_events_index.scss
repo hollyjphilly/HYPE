@@ -1,12 +1,28 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 18%;
+  padding: 10px 10px 10px 30px;
+  font-size: 120%;
+}
+
+.search-bar > svg {
+  top: 50;
+  position: absolute;
+}
+
 .event-index-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 35px;
   width: 100%;
 }
 
 .event-index-content {
-  width: 80%;
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(4, 25%);
   grid-gap: 25px;
@@ -164,4 +180,9 @@
     font-weight: 500;
     color: $text;
   }
+}
+
+.browse-game-content {
+  width: 80%;
+  margin: 0 auto;
 }
