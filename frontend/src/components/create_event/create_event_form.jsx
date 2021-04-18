@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleApiWrapper } from 'google-maps-react';
+import { GoogleApiWrapper } from "google-maps-react";
 
 class CreateEventForm extends React.Component {
   constructor(props) {
@@ -9,7 +9,8 @@ class CreateEventForm extends React.Component {
       description: "",
       host: this.props.user.id,
       maxCapacity: 4,
-      location: "",
+      location: [],
+      address: "",
       dateTime: "",
     };
 
@@ -19,23 +20,38 @@ class CreateEventForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.location.split(", ").length < 3) {
-      this.props.errors.push('Please choose a location from the dropdown list')
+    if (this.state.address.split(", ").length < 3) {
+      this.props.errors.push("Please choose a location from the dropdown list");
       this.forceUpdate();
+    } else {
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode(
+        { address: this.state.address.split(", ").join("%20") },
+        (results, status) => {
+          if (status === "OK") {
+            const newLocation = [
+              results[0].geometry.location.lat(),
+              results[0].geometry.location.lng(),
+            ];
+            this.props
+              .createEvent(
+                Object.assign({}, this.state, { location: newLocation })
+              )
+              .then((res) => {
+                if (res.type != "RECEIVE_EVENT_ERRORS") {
+                  this.props.hidden(true);
+                  this.props.history.push(`/events/${res.event.data._id}`);
+                }
+              });
+          } else {
+            this.props.errors.push(
+              "Please choose a location from the dropdown list"
+            );
+            this.forceUpdate();
+          }
+        }
+      );
     }
-    else {
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ 'address': this.state.location.split(", ").join("%20")}, (results, status) => {
-      if (status === 'OK') {
-        const newLocation = [results[0].geometry.location.lat(), results[0].geometry.location.lng()]
-        this.props.createEvent(Object.assign({}, this.state, {location: [newLocation]})).then((data) => {
-      if (data.type != "RECEIVE_EVENT_ERRORS") {
-        this.props.hidden(true);
-      } else {
-        this.props.errors.push('Please choose a location from the dropdown list')
-        this.forceUpdate();
-      }
-    });}
   }
 
   update(field) {
@@ -85,18 +101,18 @@ class CreateEventForm extends React.Component {
                 placeholder="What are you playing?"
                 onChange={this.update("title")}
               />
-    
-          </div>
+            </div>
 
-          <div className="event-input-wrapper">
-            <label className="create-label">Where</label>
-            <input
-              id="autocomplete"
-              className="event-input"
-              type="text"
-              placeholder="Enter an address"
-              onChange={this.update("location")}/>
-          </div>
+            <div className="event-input-wrapper">
+              <label className="create-label">Where</label>
+              <input
+                id="autocomplete"
+                className="event-input"
+                type="text"
+                placeholder="Enter an address"
+                onChange={this.update("address")}
+              />
+            </div>
 
             <div className="event-input-wrapper">
               <label className="create-label">When</label>
@@ -108,7 +124,7 @@ class CreateEventForm extends React.Component {
               />
             </div>
 
-            <div className="event-input-wrapper">
+            {/* <div className="event-input-wrapper">
               <label className="create-label">Where</label>
               <input
                 className="event-input"
@@ -117,7 +133,7 @@ class CreateEventForm extends React.Component {
                 placeholder="Type an address"
                 onChange={this.update("location")}
               />
-            </div>
+            </div> */}
 
             <div className="event-input-wrapper" id="max-cap-wrapper">
               <label className="create-label">How many people can play?</label>
@@ -154,5 +170,5 @@ class CreateEventForm extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8'
+  apiKey: "AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8",
 })(CreateEventForm);

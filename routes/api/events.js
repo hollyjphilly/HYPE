@@ -56,6 +56,7 @@ router.post(
       maxCapacity: req.body.maxCapacity,
       usersAttending: req.body.usersAttending,
       location: req.body.location,
+      address: req.body.address,
       dateTime: formattedDate,
     });
     newEvent
