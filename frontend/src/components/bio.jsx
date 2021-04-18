@@ -39,7 +39,7 @@ const BioComponent = props => {
 							xmlns="http://www.w3.org/2000/svg" 
 							width="40px" 
 							viewBox="0 0 34 34" 
-							class="linkedin-logo-bio"
+							className="linkedin-logo-bio"
 							>
 					    	<path 
 									d="M34,2.5v29A2.5,2.5,0,0,1,31.5,34H2.5A2.5,2.5,0,0,1,0,31.5V2.5A2.5,2.5,0,0,1,2.5,0h29A2.5,2.5,0,0,1,34,2.5ZM10,13H5V29h5Zm.45-5.5A2.88,

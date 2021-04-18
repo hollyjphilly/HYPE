@@ -1,4 +1,5 @@
 import React from "react";
+import { GoogleApiWrapper } from 'google-maps-react';
 
 class CreateEventForm extends React.Component {
   constructor(props) {
@@ -18,21 +19,21 @@ class CreateEventForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.location.split(", ").length < 3) {
+      this.props.errors.push('Please choose a location from the dropdown list')
+      this.forceUpdate();
+    }
+    else {
     const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ 'address': this.state.location.split(" ").join("%20")}, (results, status) => {
+    geocoder.geocode({ 'address': this.state.location.split(", ").join("%20")}, (results, status) => {
       if (status === 'OK') {
-        this.props.createEvent(
-          Object.assign(
-            this.state, {
-              location: [results[0].geometry.location.lat(), 
-                        results[0].geometry.location.lng()]
-            }
-          )
-        );
+        const newLocation = [results[0].geometry.location.lat(), results[0].geometry.location.lng()]
+        this.props.createEvent(Object.assign({}, this.state, {location: [newLocation]}));
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        this.props.errors.push('Please choose a location from the dropdown list')
+        this.forceUpdate();
       }
-    });
+    });}
   }
 
   update(field) {
@@ -55,6 +56,12 @@ class CreateEventForm extends React.Component {
           </path></svg>{error}</li>
         ))}
       </ul>
+    );
+  }
+
+  componentDidMount() {
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("autocomplete")
     );
   }
 
@@ -88,10 +95,10 @@ class CreateEventForm extends React.Component {
           <div className="event-input-wrapper">
             <label className="create-label">Where</label>
             <input
+              id="autocomplete"
               className="event-input"
               type="text"
-              value={this.state.location}
-              placeholder="Type an address"
+              placeholder="Enter an address"
               onChange={this.update("location")}/>
           </div>
 
@@ -130,4 +137,6 @@ class CreateEventForm extends React.Component {
   }
 }
 
-export default CreateEventForm;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8'
+})(CreateEventForm);
