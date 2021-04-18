@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import CreateEventForm from "./create_event_form";
-import { createEvent, clearErrors } from '../../actions/event_actions';
+import { createEvent, clearErrors } from "../../actions/event_actions";
 
 const mapStateToProps = (state) => {
   return {
