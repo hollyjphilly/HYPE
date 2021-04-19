@@ -32,7 +32,8 @@ class EventsIndex extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="index-footer-container">
+        <div>
         <div className="events-green-bar"></div>
         <div className="events-wrapper">
           <div className="events-green-bar-text slide">
@@ -77,8 +78,12 @@ class EventsIndex extends React.Component {
           </div>
           {/* </div> */}
         </div>
+        </div>
+        <div className="footer-container">
         <Footer />
-      </>
+        </div>
+
+      </div>
     );
   }
 }

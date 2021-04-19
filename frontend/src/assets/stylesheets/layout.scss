@@ -2,6 +2,9 @@ body {
   font-family: $ssp;
 }
 
+.app {
+  height: 100vh;
+}
 .splash-footer {
   background-color: $background-blue;
   display: flex;
@@ -21,6 +24,7 @@ body {
   position: relative;
   bottom: 0;
 }
+
 
 .footer-content {
   width: 75%;
