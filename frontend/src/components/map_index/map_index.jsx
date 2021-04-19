@@ -51,9 +51,6 @@ class MapIndex extends React.Component {
     const { events } = this.props;
     let { showingInfoWindow, activeMarker, selectedEvent } = this.state;
     
-    // console.log(selectedEvent);
-    // console.log(activeMarker);
-    debugger
     return (
       <div className="map-index-container">
         <div className="map-index">
@@ -83,42 +80,30 @@ class MapIndex extends React.Component {
               })
             }
 
-            {
-              <InfoWindow
+            {<InfoWindow
                 marker={activeMarker}
                 visible={showingInfoWindow}
                 onClose={this.onClose}
               >
+
                 <div className="event-map-info-window-container" >
-                  <h1>
-                    {selectedEvent.title}
-                  </h1>
+
+                  <a href={`#/events/${selectedEvent._id}`}>
+                    <h1>
+                      {selectedEvent.title}
+                    </h1>
+                  </a>
+
                   <h2>{`${new Date(
                       selectedEvent.dateTime
                     ).toDateString()} ${new Date(
                       selectedEvent.dateTime
                     ).toLocaleDateString("en-Us")}`}
                   </h2>
+
                 </div>
 
-                {/* <div className="event-map-info-window-container">
-                  <div className="event-map-info">
-                    <a to={`/events/${selectedEvent._id}`}>
-                      <h1>{selectedEvent.title}</h1>
-                    </a>
-                    <h2>{`${new Date(
-                      selectedEvent.dateTime
-                    ).toDateString()} ${new Date(
-                      selectedEvent.dateTime
-                    ).toLocaleDateString("en-Us")}`}</h2>
-                    <br />
-                    <p>{selectedEvent.description}</p>
-                    <br />
-                    <p>{selectedEvent.usersAttending.length} attendees</p>
-                  </div>
-                </div> */}
-              </InfoWindow>
-            }
+              </InfoWindow>}
 
           </Map>
 
