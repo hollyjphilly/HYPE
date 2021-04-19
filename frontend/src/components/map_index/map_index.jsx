@@ -27,7 +27,7 @@ class MapIndex extends React.Component {
   onMarkerClick = (props, marker, e) => {
     debugger;
     this.setState({
-      selectedEvent: props,
+      selectedEvent: props.item,
       activeMarker: marker,
       showingInfoWindow: true
     });
@@ -43,10 +43,14 @@ class MapIndex extends React.Component {
     }
   };
 
+  goToEvent(eventId) {
+    this.props.history.push(`/events/${eventId}`); 
+  }
+
   render() {
     const { events } = this.props;
     let { showingInfoWindow, activeMarker, selectedEvent } = this.state;
-
+    
     // console.log(selectedEvent);
     // console.log(activeMarker);
     debugger
@@ -86,13 +90,13 @@ class MapIndex extends React.Component {
                 onClose={this.onClose}
               >
                 <div className="event-map-info-window-container" >
-                  <a to={`/events/${selectedEvent.item._id}`}>
-                      <h1>{selectedEvent.item.title}</h1>
-                  </a>
+                  <h1>
+                    {selectedEvent.title}
+                  </h1>
                   <h2>{`${new Date(
-                      selectedEvent.item.dateTime
+                      selectedEvent.dateTime
                     ).toDateString()} ${new Date(
-                      selectedEvent.item.dateTime
+                      selectedEvent.dateTime
                     ).toLocaleDateString("en-Us")}`}
                   </h2>
                 </div>
