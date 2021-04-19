@@ -9,7 +9,7 @@ import LoginFormContainer from "./sessionForm/login_form_container";
 import RegisterFormContainer from "./sessionForm/register_form_container";
 import EventsIndexContainer from "./events_index/events_index_container";
 import EventShowContainer from "./event_show/event_show_container";
-import CreateEvent from "./create_event/create_event";
+import CreateEvent from "./create_event/create_event_form_container";
 import DashboardContainer from "./dashboard/dashboard_container";
 import MapIndexContainer from "./map_index/map_index_container";
 

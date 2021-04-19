@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.11.1",
     "@reach/combobox": "^0.14.0",
     "@react-google-maps/api": "^2.1.1",
     "avataaars": "^1.2.2",

@@ -26,6 +26,10 @@ const EventSchema = new Schema({
     type: Array,
     required: true,
   },
+  address: {
+    type: String,
+    required: true,
+  },
   dateTime: {
     type: Date,
     required: true,
@@ -33,7 +37,7 @@ const EventSchema = new Schema({
   date: {
     type: Date,
     default: () => Date.now() - 4 * 60 * 60 * 1000,
-  }
+  },
 });
 
 const Event = mongoose.model("Event", EventSchema);

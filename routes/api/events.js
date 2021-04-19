@@ -49,7 +49,6 @@ router.post(
     }
 
     const formattedDate = moment.utc(req.body.dateTime).local().format();
-    console.log(req.body);
     const newEvent = new Event({
       title: req.body.title,
       description: req.body.description,
@@ -57,9 +56,9 @@ router.post(
       maxCapacity: req.body.maxCapacity,
       usersAttending: req.body.usersAttending,
       location: req.body.location,
+      address: req.body.address,
       dateTime: formattedDate,
     });
-    console.log(newEvent);
     newEvent
       .save()
       .then((newEvent) => res.json(newEvent))
@@ -68,7 +67,6 @@ router.post(
 );
 
 router.delete("/:id", (req, res) => {
-  console.log(req);
   Event.findOneAndRemove({ _id: req.params.id }, (err) => {
     if (err) {
       return res.status(400).json({ error: "Event not found" });
@@ -78,7 +76,6 @@ router.delete("/:id", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  console.log(req.body.usersAttending);
   Event.updateOne(
     { _id: req.params.id },
     { $addToSet: { usersAttending: [req.body.usersAttending] } },
@@ -96,7 +93,6 @@ router.put("/:id", (req, res) => {
 });
 
 router.put("/remove/:id", (req, res) => {
-  console.log(req.body.usersAttending);
   Event.updateOne(
     { _id: req.params.id },
     { $pullAll: { usersAttending: [req.body.usersAttending] } },

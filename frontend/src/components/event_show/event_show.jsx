@@ -107,6 +107,7 @@ class EventShow extends React.Component {
                 <div className="event-header-text">
                   <h2>{showEvent.title}</h2>
                   <p>{`${date} ${time}`}</p>
+                  <p>{showEvent.address}</p>
                 </div>
                 {/* {!cantJoin ? (
                   <button onClick={this.handleEventJoin}>JOIN EVENT</button>

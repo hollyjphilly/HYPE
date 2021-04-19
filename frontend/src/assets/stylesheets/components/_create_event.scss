@@ -5,124 +5,24 @@
   padding: 15px 30px;
 }
 
-.create-event-form-map-container {
-  height: 970px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  width: 600px;
-}
-// .create-event-form-container {
-//   display: flex;
-//   justify-content: center;
-//   // align-items: center;
-//   background-color: white;
-// }
-
-.create-event-map-container {
-  height: 400px;
-  width: 500px;
-  margin-top: -495px;
-  margin-left: 3px;
-}
-
-.event-map {
-  height: 400px;
-}
-
-// .create-event-form {
-//   display: flex;
-//   flex-direction: column;
-//   width: 600px;
-//   border-radius: 8px;
-
-//   .create-event-input-div {
-//     margin-bottom: 5px;
-
-//     .create-event-input-text {
-//       margin-bottom: 10px;
-//     }
-//   }
-// }
-
-.create-event-form-header-h1 {
-  margin:0;
-  font-size: 28px;
-}
-
-.create-event-form-inputs-container {
-  font-size: 16px;
-}
-
-.create-event-location-map-div {
-  height: 400px;
-  width: 500px;
-  box-shadow: inset 0 0 0 0.5pt $border-gray;
-  border: 3px solid $border-gray;
-}
-
-.create-event-two-input-div {
-  display: flex;
-  margin-bottom: 5px;
-}
-
-.create-event-capacity-text {
-  margin-bottom: 10px;
-}
-
-.create-event-button:focus {
+#submit-event-btn:focus {
   outline: none !important;
 }
 
-.create-event-title-input {
-  padding: 5px;
-  outline: none;
-  box-shadow: inset 0 0 0 0.5pt $green;
-  border: 3px solid $green;
-}
-
-.create-event-title-input:focus {
-  background-color: $lightest-green;
-}
-
-.create-event-input {
-  padding: 5px;
-  outline: none;
-  box-shadow: inset 0 0 0 0.5pt $green;
-  border: 3px solid $green;
-}
-
-.create-event-date-input:focus {
-  background-color: $lightest-green;
-}
-
-.create-event-description-textarea {
+#description-wrapper textarea {
   resize: none;
   width: -webkit-fill-available;
   height: 60px;
   padding: 8px;
   outline: none;
-  box-shadow: inset 0 0 0 0.5pt $green;
-  border: 3px solid $green;
 }
 
-.create-event-description-textarea:focus {
-  background-color: $lightest-green;
+#submit-event-btn-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.create-event-capacity-input {
-  padding: 5px;
-  width: 45px;
-  outline: none;
-  box-shadow: inset 0 0 0 0.5pt $green;
-  border: 3px solid $green;
-}
-
-.create-event-capacity-input:focus {
-  background-color: $lightest-green;
-}
-
-.create-event-button {
+#submit-event-btn {
   margin: 25px 0px;
   padding: 10px 31px;
   border-radius: 25px;
@@ -135,13 +35,13 @@
   text-decoration: none;
 }
 
-.create-event-button:hover {
+#submit-event-btn:hover {
   background-color: $light-green;
   border-color: $light-green;
   transform: scale(1.15);
 }
 
-.create-input {
+.event-input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -151,7 +51,7 @@
     
 }
 
-#create-text {
+.event-input {
     padding: 7px;
     padding-left: 10px;
     background-color: $hover-gray;
@@ -165,16 +65,16 @@
 }
 
 
-#create-text:focus {
+.event-input:focus {
     background-color: $lightest-green;
     border: 2px solid $green;
 }
 
-#create-text:hover {
+.event-input:hover {
     background-color: $lightest-green;
 }
 
-#create-label {white-space: nowrap;
+.create-label {white-space: nowrap;
   margin-right: 10px;
   font-size: 20px;
   font-family: $ssp;
@@ -189,22 +89,13 @@
   height: 125px;
   font-family: $ssp;
   width: 100%;
+  margin-top: 18px;
 
   label {
     margin-bottom: 10px;
   }
 }
 
-// #max-cap-wrapper {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-
-//   #create-label {
-
-//   }
-// }
-
-.create-event-form input {
+.event-form input {
   width: 100%;
 }

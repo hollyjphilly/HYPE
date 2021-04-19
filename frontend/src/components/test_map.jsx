@@ -65,43 +65,6 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8'
+  apiKey: 'AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8',
+  libraries: ['places']
 })(MapContainer);
-
-// import React from 'react';
-// import { Map, GoogleApiWrapper } from 'google-maps-react';
-
-// const mapStyles = {
-//   width: '100%',
-//   height: '100%'
-// };
-
-// class TestMap extends React.Component {
-
-//   componentDidMount() {
-
-//     const mapOptions = {
-//       center: { lat: 40.673842, lng: -73.970083 }, 
-//       zoom: 12,
-//     }
-
-//     this.initMap();
-    
-//     // this.map = new google.maps.Map(document.getElementById('test-map'), mapOptions);
-    
-//     // window.googleMap = this.map;
-//   }
-
-
-
-//   render() {
-
-//     return(
-//       <div id="test-map">
-//         TEST MAP
-//       </div>
-//     )
-//   }
-// }
-
-// export default TestMap;
