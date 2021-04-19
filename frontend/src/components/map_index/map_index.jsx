@@ -12,10 +12,11 @@ class MapIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      selectedEvent: null,
-      activeMarker: null,
+      selectedEvent: {},
+      activeMarker: {},
       showingInfoWindow: false,
     };
+    
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
@@ -33,6 +34,7 @@ class MapIndex extends React.Component {
   }
 
   onClose = props => {
+    debugger
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -45,7 +47,7 @@ class MapIndex extends React.Component {
     const { events } = this.props;
     let { showingInfoWindow, activeMarker, selectedEvent } = this.state;
 
-    console.log(selectedEvent);
+    // console.log(selectedEvent);
     // console.log(activeMarker);
     debugger
     return (
@@ -77,13 +79,11 @@ class MapIndex extends React.Component {
               })
             }
 
-            {selectedEvent && (
+            {
               <InfoWindow
                 marker={activeMarker}
                 visible={showingInfoWindow}
-                onCloseClick={() => {
-                  selectedEvent = null;
-                }}
+                onClose={this.onClose}
               >
                 <div className="event-map-info-window-container" >
                   <a to={`/events/${selectedEvent.item._id}`}>
@@ -114,7 +114,7 @@ class MapIndex extends React.Component {
                   </div>
                 </div> */}
               </InfoWindow>
-            )}
+            }
 
           </Map>
 
