@@ -2,6 +2,9 @@ body {
   font-family: $ssp;
 }
 
+.app {
+  height: 100vh;
+}
 .splash-footer {
   background-color: $background-blue;
   display: flex;
@@ -9,6 +12,16 @@ body {
   min-height: 100px;
   margin-top: 100px;
   justify-content: center;
+}
+
+.some-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 95%;
+}
+
+.event-footer-container {
+  margin-top: auto;
 }
 
 .footer {
@@ -21,6 +34,7 @@ body {
   position: relative;
   bottom: 0;
 }
+
 
 .footer-content {
   width: 75%;
