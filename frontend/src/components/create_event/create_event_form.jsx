@@ -11,7 +11,9 @@ class CreateEventForm extends React.Component {
       maxCapacity: 4,
       location: "",
       address: "",
-      dateTime: "",
+      // dateTime: "",
+      date: "",
+      time: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,6 +21,7 @@ class CreateEventForm extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode(
@@ -31,7 +34,11 @@ class CreateEventForm extends React.Component {
           ];
           this.props
             .createEvent(
-              Object.assign({}, this.state, { location: newLocation })
+              Object.assign({},
+                this.state, 
+                { location: newLocation },
+                { dateTime: `${this.state.date}T${this.state.time}`}
+                )
             )
             .then((res) => {
               if (res.type != "RECEIVE_EVENT_ERRORS") {
@@ -45,6 +52,7 @@ class CreateEventForm extends React.Component {
   }
 
   update(field) {
+    debugger
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,
@@ -115,9 +123,17 @@ class CreateEventForm extends React.Component {
               <label className="create-label">When</label>
               <input
                 className="event-input"
-                type="datetime-local"
-                value={this.state.dateTime}
-                onChange={this.update("dateTime")}
+                type="date"
+                value={this.state.date}
+                onChange={this.update("date")}
+              />
+              &nbsp;
+              &nbsp;
+              <input
+                className="event-input"
+                type="time"
+                value={this.state.time}
+                onChange={this.update("time")}
               />
             </div>
 
