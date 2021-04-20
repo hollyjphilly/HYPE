@@ -38,86 +38,89 @@ class Dashboard extends React.Component {
     const dateObj = new Date(currentUser.date);
 
     return (
-      <>
-        <div className="events-green-bar"></div>
-        <div className="events-wrapper">
-          <div className="events-green-bar-text slide">
-            <h1>Dashboard</h1>
-          </div>
-        </div>
-
-        <div className="dashboard-container">
-          <div className="dashboard-content">
-            <div className="dashboard-events-container">
-              <div className="dashboard-buttons">
-                <NavLink to="/dashboard/all" className="dash-btn">
-                  All
-                </NavLink>
-                <NavLink to="/dashboard/hosting" className="dash-btn">
-                  Hosting
-                </NavLink>
-                <NavLink to="/dashboard/attending" className="dash-btn">
-                  Attending
-                </NavLink>
-              </div>
-
-              <Switch>
-                <Route
-                  exact
-                  path="/dashboard/all"
-                  component={() => <DashboardEvents dashEvents={allEvents} />}
-                />
-
-                <Route
-                  exact
-                  path="/dashboard/hosting"
-                  component={() => (
-                    <DashboardEvents dashEvents={hostedEvents} />
-                  )}
-                />
-
-                <Route
-                  exact
-                  path="/dashboard/attending"
-                  component={() => (
-                    <DashboardEvents dashEvents={attendingEvents} />
-                  )}
-                />
-
-                <Route
-                  path="/dashboard"
-                  component={() => <DashboardEvents dashEvents={allEvents} />}
-                />
-              </Switch>
-            </div>
-
-            <div className="dashboard-profile">
-              <div className="db-profile-top-row">
-                <EditAvatarDropdown />
-              </div>
-              <Avatar
-                avatarStyle="Circle"
-                topType={this.state.topType}
-                accessoriesType={this.state.accessoriesType}
-                hairColor={this.state.hairColor}
-                facialHairType={this.state.facialHairType}
-                clotheType={this.state.clotheType}
-                clotheColor={this.state.clotheColor}
-                eyeType={this.state.eyeType}
-                eyebrowType={this.state.eyebrowType}
-                mouthType={this.state.mouthType}
-                skinColor={this.state.skinColor}
-              />
-              <div className="user-details">
-                <p>{`${currentUser.firstName} ${currentUser.lastName}`}</p>
-                <p>{`Member since ${dateObj.getFullYear()}`}</p>
-              </div>
+      <div className="component-container">
+        <div>
+          <div className="events-green-bar"></div>
+          <div className="events-wrapper">
+            <div className="events-green-bar-text slide">
+              <h1>Dashboard</h1>
             </div>
           </div>
-        </div>
 
-        <Footer />
-      </>
+          <div className="dashboard-container">
+            <div className="dashboard-content">
+              <div className="dashboard-events-container">
+                <div className="dashboard-buttons">
+                  <NavLink to="/dashboard/all" className="dash-btn">
+                    All
+                  </NavLink>
+                  <NavLink to="/dashboard/hosting" className="dash-btn">
+                    Hosting
+                  </NavLink>
+                  <NavLink to="/dashboard/attending" className="dash-btn">
+                    Attending
+                  </NavLink>
+                </div>
+
+                <Switch>
+                  <Route
+                    exact
+                    path="/dashboard/all"
+                    component={() => <DashboardEvents dashEvents={allEvents} />}
+                  />
+
+                  <Route
+                    exact
+                    path="/dashboard/hosting"
+                    component={() => (
+                      <DashboardEvents dashEvents={hostedEvents} />
+                    )}
+                  />
+
+                  <Route
+                    exact
+                    path="/dashboard/attending"
+                    component={() => (
+                      <DashboardEvents dashEvents={attendingEvents} />
+                    )}
+                  />
+
+                  <Route
+                    path="/dashboard"
+                    component={() => <DashboardEvents dashEvents={allEvents} />}
+                  />
+                </Switch>
+              </div>
+
+              <div className="dashboard-profile">
+                <div className="db-profile-top-row">
+                  <EditAvatarDropdown />
+                </div>
+                <Avatar
+                  avatarStyle="Circle"
+                  topType={this.state.topType}
+                  accessoriesType={this.state.accessoriesType}
+                  hairColor={this.state.hairColor}
+                  facialHairType={this.state.facialHairType}
+                  clotheType={this.state.clotheType}
+                  clotheColor={this.state.clotheColor}
+                  eyeType={this.state.eyeType}
+                  eyebrowType={this.state.eyebrowType}
+                  mouthType={this.state.mouthType}
+                  skinColor={this.state.skinColor}
+                />
+                <div className="user-details">
+                  <p>{`${currentUser.firstName} ${currentUser.lastName}`}</p>
+                  <p>{`Member since ${dateObj.getFullYear()}`}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="footer-container">
+          <Footer />
+        </div>
+      </div>
     );
   }
 }
