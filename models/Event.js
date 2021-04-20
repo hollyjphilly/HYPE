@@ -34,7 +34,7 @@ const EventSchema = new Schema({
     type: Date,
     required: true,
   },
-  date: {
+  created: {
     type: Date,
     default: () => Date.now() - 4 * 60 * 60 * 1000,
   },

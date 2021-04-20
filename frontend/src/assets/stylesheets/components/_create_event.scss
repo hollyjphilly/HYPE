@@ -12,6 +12,7 @@
 #description-wrapper textarea {
   resize: none;
   width: -webkit-fill-available;
+  width: -moz-available;
   height: 60px;
   padding: 8px;
   outline: none;
