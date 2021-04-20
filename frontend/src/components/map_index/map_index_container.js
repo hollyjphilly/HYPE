@@ -1,5 +1,6 @@
 import { fetchAllEvents } from "../../actions/event_actions";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import MapIndex from "./map_index";
 
 const mapStateToProps = (state) => {
@@ -14,4 +15,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapIndex);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MapIndex));

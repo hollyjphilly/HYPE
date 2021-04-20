@@ -27,27 +27,12 @@ export class MapContainer extends Component {
     }
   };
 
-  createAllMarkers(events) {
-    if (events) {
-      events.map((event) => (
-        <Marker
-          key={event._id}
-          position={{
-            lat: event.location[0],
-            lng: event.location[1],
-          }}
-          onClick={() => this.setState({ selectedEvent: event })}
-        />
-      ))
-    }
-  }
-
   render() {
+
     return (
       <Map
         google={this.props.google}
         zoom={14}
-        // style={mapStyles}
         styles={showMapStyles}
         mapTypeControl={false}
         fullscreenControl={false}
@@ -55,6 +40,7 @@ export class MapContainer extends Component {
         zoom={11}
         initialCenter={{ lat: 40.672410, lng: -73.969861 }}
       >
+
 
         {/* <Marker
           onClick={this.onMarkerClick}
