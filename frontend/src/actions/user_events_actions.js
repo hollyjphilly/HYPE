@@ -44,7 +44,7 @@ export const updateAvatar = (userData) => (dispatch) => {
 };
 
 // export const fetchUser = (userId) => (dispatch) => {
-//   debugger
+//   
 //   return EventAPIUtil.fetchUser(userId).then(
 //     (res) => dispatch(receiveCurrentUser(res.data)),
 //     (err) => console.log(err)

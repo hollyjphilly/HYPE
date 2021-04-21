@@ -21,7 +21,7 @@ class CreateEventForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+    
     e.preventDefault();
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode(
@@ -37,7 +37,8 @@ class CreateEventForm extends React.Component {
               Object.assign({},
                 this.state, 
                 { location: newLocation },
-                { dateTime: `${this.state.date}T${this.state.time}`}
+                { dateTime: `${this.state.date}T${this.state.time}`},
+                { imgUrl: this.randomImage()}
                 )
             )
             .then((res) => {
@@ -51,8 +52,18 @@ class CreateEventForm extends React.Component {
     );
   }
 
+  randomImage() {
+    const images = [
+      "https://drive.google.com/thumbnail?id=1X0mrB_2k2oD8h95jJo2duW-a4ykfzAbc",
+      "https://drive.google.com/thumbnail?id=1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH"
+    ];
+
+    const idx = Math.floor(Math.random() * images.length);
+    return images[idx];
+  }
+
   update(field) {
-    debugger
+    
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,
@@ -96,6 +107,7 @@ class CreateEventForm extends React.Component {
         <div className="event-form-container">
           <form className="event-form" onSubmit={this.handleSubmit}>
             <div className="event-input-wrapper">
+              {/* </div> */}
               <label className="create-label">Title</label>
               <input
                 autoFocus
@@ -127,8 +139,7 @@ class CreateEventForm extends React.Component {
                 value={this.state.date}
                 onChange={this.update("date")}
               />
-              &nbsp;
-              &nbsp;
+              &nbsp; &nbsp;
               <input
                 className="event-input"
                 type="time"
