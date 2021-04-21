@@ -11,57 +11,93 @@ class CreateEventForm extends React.Component {
       maxCapacity: 4,
       location: "",
       address: "",
-      // dateTime: "",
       date: "",
-      time: ""
+      time: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  handleSubmit(e) {
-    debugger
-    e.preventDefault();
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode(
-      { address: this.state.address.split(", ").join("%20") },
-      (results, status) => {
-        if (status === "OK") {
-          const newLocation = [
-            results[0].geometry.location.lat(),
-            results[0].geometry.location.lng(),
-          ];
-          this.props
-            .createEvent(
-              Object.assign({},
-                this.state, 
-                { location: newLocation },
-                { dateTime: `${this.state.date}T${this.state.time}`}
-                )
-            )
-            .then((res) => {
-              if (res.type != "RECEIVE_EVENT_ERRORS") {
-                this.props.hidden(true);
-                this.props.history.push(`/events/${res.event.data._id}`);
-              }
-            });
-        }
-      }
+  componentDidMount() {
+    const autocomplete = new window.google.maps.places.Autocomplete(
+      document.getElementById("autocomplete")
     );
-  }
-
-  update(field) {
-    debugger
-    return (e) =>
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
       this.setState({
-        [field]: e.currentTarget.value,
+        address: `${place.name}, ${place.formatted_address}`,
       });
+    });
   }
 
   componentWillUnmount() {
     this.props.clearErrors();
   }
+
+  handleSubmit(e) {
+
+    e.preventDefault();
+
+    // handle wihtout address
+    if (this.state.address === "") {
+      this.props.createEvent(
+        Object.assign({}, this.state, {
+          dateTime: `${this.state.date}T${this.state.time}`,
+        })
+      );
+
+      // handle with address
+    } else {
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode(
+        { address: this.state.address.split(", ").join("%20") },
+        (results, status) => {
+          if (status === "OK") {
+            const newLocation = [
+              results[0].geometry.location.lat(),
+              results[0].geometry.location.lng(),
+            ];
+            this.props
+              .createEvent(
+                Object.assign(
+                  {},
+                  this.state,
+                  { location: newLocation },
+                  { dateTime: `${this.state.date}T${this.state.time}` },
+                  { imgUrl: this.randomImage()}
+                )
+              )
+              .then((res) => {
+                if (res.type != "RECEIVE_EVENT_ERRORS") {
+                  this.props.hidden(true);
+                  this.props.history.push(`/events/${res.event.data._id}`);
+                }
+              });
+          }
+        }
+      );
+    }
+  }
+
+  randomImage() {
+    const images = [
+      "https://drive.google.com/thumbnail?id=1X0mrB_2k2oD8h95jJo2duW-a4ykfzAbc",
+      "https://drive.google.com/thumbnail?id=1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH"
+    ];
+
+    const idx = Math.floor(Math.random() * images.length);
+    return images[idx];
+  }
+
+  update(field) {
+    return (e) =>
+
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
+    };
+  
 
   renderErrors() {
     return (
@@ -78,24 +114,13 @@ class CreateEventForm extends React.Component {
     );
   }
 
-  componentDidMount() {
-    const autocomplete = new window.google.maps.places.Autocomplete(
-      document.getElementById("autocomplete")
-    );
-    window.google.maps.event.addListener(autocomplete, "place_changed", () => {
-      const place = autocomplete.getPlace();
-      this.setState({
-        address: `${place.name}, ${place.formatted_address}`,
-      });
-    });
-  }
-
   render() {
     return (
-      <div className="event-form-main-div">
+      <div className="modal-body">
         <div className="event-form-container">
           <form className="event-form" onSubmit={this.handleSubmit}>
             <div className="event-input-wrapper">
+              {/* </div> */}
               <label className="create-label">Title</label>
               <input
                 autoFocus
@@ -111,6 +136,7 @@ class CreateEventForm extends React.Component {
               <label className="create-label">Where</label>
               <input
                 id="autocomplete"
+                autoComplete="on"
                 className="event-input"
                 type="text"
                 placeholder="Enter an address"
@@ -127,8 +153,7 @@ class CreateEventForm extends React.Component {
                 value={this.state.date}
                 onChange={this.update("date")}
               />
-              &nbsp;
-              &nbsp;
+              &nbsp; &nbsp;
               <input
                 className="event-input"
                 type="time"

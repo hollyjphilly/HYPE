@@ -1,12 +1,22 @@
+.searchbar-map-container {
+  display: flex;
+  width: 85%;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
+  width: -webkit-fill-available;
+  width: -moz-available;
 }
+
+
 
 .search-input {
   width: 18%;
   padding: 10px 10px 10px 30px;
   font-size: 120%;
+  border: 1px solid black !important;
 }
 
 .search-bar > svg {
@@ -19,6 +29,7 @@
   flex-direction: column;
   margin-top: 35px;
   width: 100%;
+  // min-height: 1000px;
 }
 
 .event-index-content {
@@ -31,7 +42,7 @@
 }
 
 
-.index-footer-container {
+.component-container {
   display: flex;
   flex-direction: column;
   min-height: 95%;

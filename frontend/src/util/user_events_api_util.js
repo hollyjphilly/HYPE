@@ -7,3 +7,5 @@ export const getHostEvents = (userId) => {
 export const getAttendingEvents = (userId) => {
   return axios.get(`/api/events/attending/${userId}`);
 };
+
+
