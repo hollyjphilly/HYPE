@@ -21,7 +21,7 @@ class CreateEventForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+    
     e.preventDefault();
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode(
@@ -52,7 +52,7 @@ class CreateEventForm extends React.Component {
   }
 
   update(field) {
-    debugger
+    
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,

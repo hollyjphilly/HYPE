@@ -1,27 +1,26 @@
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import Dashboard from './dashboard'
-import {
-  fetchHostedEvents,
-  fetchAttendingEvents,
-  updateAvatar,
-  // fetchUser
-} from '../../actions/user_events_actions';
+import { fetchHostedEvents, fetchAttendingEvents } from '../../actions/user_events_actions';
+import { updateAvatar, fetchAvatar } from '../../actions/avatar_actions';
 
 const mapStateToProps = state => {
+  
   return {
     hostedEvents: state.entities.userEvents.hostedEvents.data,
     attendingEvents: state.entities.userEvents.attendingEvents.data,
-    currentUser: state.session.user
+    currentUser: state.session.user,
+    avatar: state.entities.avatar.avatar
   }
 }
 
 const mapDispatchToProps = dispatch => {
+  
   return {
     fetchHostedEvents: userId => dispatch(fetchHostedEvents(userId)),
     fetchAttendingEvents: userId => dispatch(fetchAttendingEvents(userId)),
     updateAvatar: userData => dispatch(updateAvatar(userData)),
-    // fetchUser: userId => dispatch(fetchUser(userId))
+    fetchAvatar: () => dispatch(fetchAvatar())
   }
 }
 
