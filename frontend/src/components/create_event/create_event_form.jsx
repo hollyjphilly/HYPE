@@ -14,8 +14,25 @@ class CreateEventForm extends React.Component {
       date: "",
       time: "",
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+  }
+
+  componentDidMount() {
+    const autocomplete = new window.google.maps.places.Autocomplete(
+      document.getElementById("autocomplete")
+    );
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      this.setState({
+        address: `${place.name}, ${place.formatted_address}`,
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   handleSubmit(e) {
@@ -82,10 +99,6 @@ class CreateEventForm extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    this.props.clearErrors();
-  }
-
   renderErrors() {
     return (
       <ul>
@@ -99,18 +112,6 @@ class CreateEventForm extends React.Component {
         ))}
       </ul>
     );
-  }
-
-  componentDidMount() {
-    const autocomplete = new window.google.maps.places.Autocomplete(
-      document.getElementById("autocomplete")
-    );
-    autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
-      this.setState({
-        address: `${place.name}, ${place.formatted_address}`,
-      });
-    });
   }
 
   render() {

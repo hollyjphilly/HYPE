@@ -11,6 +11,8 @@ module.exports = function validateEventInput(data) {
   data.dateTime = data.dateTime === "T" ? "" : data.dateTime;
   data.address = validText(data.address) ? data.address : "";
 
+  // errors displayed to user
+
   if (Validator.isEmpty(data.title)) {
     errors.title = "Title is required";
   }
@@ -30,6 +32,8 @@ module.exports = function validateEventInput(data) {
   if (Validator.isEmpty(data.description)) {
     errors.description = "Description is required";
   }
+
+  // internal errors
 
   if (Validator.isEmpty(data.host)) {
     errors.host = "Host is required";

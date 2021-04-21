@@ -46,6 +46,7 @@ router.post(
     if (!isValid) {
       return res.status(400).json(errors);
     }
+
     const newEvent = new Event({
       title: req.body.title,
       description: req.body.description,
@@ -55,6 +56,7 @@ router.post(
       location: req.body.location,
       address: req.body.address,
       dateTime: req.body.dateTime,
+      imgUrl: req.body.imgUrl,
     });
     newEvent
       .save()

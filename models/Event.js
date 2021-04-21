@@ -34,6 +34,11 @@ const EventSchema = new Schema({
     type: Date,
     required: true,
   },
+  imgUrl: {
+    type: String,
+    default:
+      "https://lh3.googleusercontent.com/d/1OkWp6IUDqmPDnFTRNqLbPBJloE8nAczb=s220?authuser=0",
+  },
   created: {
     type: Date,
     default: () => Date.now() - 4 * 60 * 60 * 1000,
