@@ -27,7 +27,7 @@ class EventsIndex extends React.Component {
       }
     );
     return filteredEvents.map((event) => (
-      <EventItem event={event} key={event._id} />
+      <EventItem event={event} history={this.props.history} key={event._id} />
     ));
   }
 
