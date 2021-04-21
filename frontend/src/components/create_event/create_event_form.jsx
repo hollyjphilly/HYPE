@@ -48,7 +48,7 @@ class CreateEventForm extends React.Component {
                   this.state,
                   { location: newLocation },
                   { dateTime: `${this.state.date}T${this.state.time}` },
-                { imgUrl: this.randomImage()}
+                  { imgUrl: this.randomImage()}
                 )
               )
               .then((res) => {
@@ -80,7 +80,7 @@ class CreateEventForm extends React.Component {
         [field]: e.currentTarget.value,
       });
     };
-  }
+  
 
   componentWillUnmount() {
     this.props.clearErrors();
