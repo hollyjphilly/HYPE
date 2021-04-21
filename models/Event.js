@@ -34,15 +34,10 @@ const EventSchema = new Schema({
     type: Date,
     required: true,
   },
-  imgUrl1: {
+  imgUrl: {
     type: String,
     default:
-      "https://lh3.googleusercontent.com/d/1X0mrB_2k2oD8h95jJo2duW-a4ykfzAbc=s220?authuser=0",
-  },
-  imgUrl2: {
-    type: String,
-    default:
-      "https://lh3.googleusercontent.com/d/1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH=s220?authuser=0",
+      "https://lh3.googleusercontent.com/d/1OkWp6IUDqmPDnFTRNqLbPBJloE8nAczb=s220?authuser=0",
   },
   created: {
     type: Date,
