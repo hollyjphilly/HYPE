@@ -25,7 +25,7 @@ class MapIndex extends React.Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    debugger;
+    ;
     this.setState({
       selectedEvent: props.item,
       activeMarker: marker,
@@ -34,7 +34,7 @@ class MapIndex extends React.Component {
   }
 
   onClose = props => {
-    debugger
+    
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,

@@ -7,17 +7,16 @@ import Avatar from "avataaars";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    const { avatar } = this.props.currentUser;
     this.state = {
       editing: false,
-      topType: avatar ? avatar.topType : "NoHair",
-      accessoriesType: avatar ? avatar.accessoriesType : "Blank",
-      hairColor: avatar ? avatar.hairColor : "Black",
-      facialHairType: avatar ? avatar.facialHairType : "Blank",
-      clotheType: avatar ? avatar.clotheType : "Hoodie",
-      eyeType: avatar ? avatar.eyeType : "Default",            
-      mouthType: avatar ? avatar.mouthType : "Default",
-      skinColor: avatar ? avatar.skinColor : ((Math.random() < 0.5) ? "Light" : "DarkBrown"),
+      topType: "",
+      accessoriesType: "",
+      hairColor: "",
+      facialHairType: "",
+      clotheType: "",
+      eyeType: "",
+      mouthType: "",
+      skinColor: "",
     };
   }
 
@@ -25,7 +24,20 @@ class Dashboard extends React.Component {
     const { id } = this.props.currentUser;
     this.props.fetchAttendingEvents(id);
     this.props.fetchHostedEvents(id);
-    // this.props.fetchUser(id)
+    this.props.fetchAvatar().then((res) => {
+      this.setState({
+        topType: res.currentUser.avatar.topType,
+        accessoriesType: res.currentUser.avatar.accessoriesType,
+        hairColor: res.currentUser.avatar.hairColor,
+        facialHairType: res.currentUser.avatar.facialHairType,
+        clotheType: res.currentUser.avatar.clotheType,
+        eyeType: res.currentUser.avatar.eyeType,
+        mouthType: res.currentUser.avatar.mouthType,
+        skinColor: res.currentUser.avatar.skinColor,
+      }
+      )
+    }
+    )
   }
 
   toggleEditor = () => {
@@ -42,6 +54,7 @@ class Dashboard extends React.Component {
   }
 
   updateAvatar = () => {
+    
     this.props.updateAvatar({
       email: this.props.currentUser.email,
       avatar: this.state
@@ -50,6 +63,7 @@ class Dashboard extends React.Component {
 }
 
   renderEditor = () => {
+    
     return <div id="editing-links">
       <div><label>Skin Color</label>
         <select
@@ -199,9 +213,10 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { currentUser, hostedEvents, attendingEvents} = this.props;
+    
+    const { currentUser, hostedEvents, attendingEvents, avatar} = this.props;
 
-    if (!hostedEvents || !attendingEvents) {
+    if (!hostedEvents || !attendingEvents || !avatar) {
       return null;
     }
 
@@ -236,19 +251,21 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div id="db-profile-content">
-                  <div id="avatar-background"><Avatar
-                    avatarStyle="Transparent"
-                    topType={this.state.topType}
-                    accessoriesType={this.state.accessoriesType}
-                    hairColor={this.state.hairColor}
-                    facialHairType={this.state.facialHairType}
-                    clotheType={this.state.clotheType}
-                    clotheColor="Heather"
-                    eyeType={this.state.eyeType}
-                    eyebrowType="Default"
-                    mouthType={this.state.mouthType}
-                    skinColor={this.state.skinColor}
-                  /></div>
+                  <div id="avatar-background">
+                    <Avatar
+                      avatarStyle="Transparent"
+                      topType={this.state.topType}
+                      accessoriesType={this.state.accessoriesType}
+                      hairColor={this.state.hairColor}
+                      facialHairType={this.state.facialHairType}
+                      clotheType={this.state.clotheType}
+                      clotheColor="Heather"
+                      eyeType={this.state.eyeType}
+                      eyebrowType="Default"
+                      mouthType={this.state.mouthType}
+                      skinColor={this.state.skinColor}
+                    />
+                  </div>
                   <div className="user-details">
                     <p id="fullname">{`${currentUser.firstName} ${currentUser.lastName}`}</p>
                     <p id="username">{`${currentUser.username}`}</p>

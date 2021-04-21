@@ -14,6 +14,7 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    
     res.json({
       id: req.user.id,
       firstName: req.user.firstName,
@@ -21,7 +22,7 @@ router.get(
       username: req.user.username,
       email: req.user.email,
       date: req.user.date,
-      avatar: user.avatar
+      avatar: req.user.avatar
     });
   }
 );
@@ -33,8 +34,10 @@ router.get("/:id", (req, res) => {
 });
 
 router.patch("/avatar", (req, res) => {
+  
   User.findOne({ email: req.body.email }, (err, user) => {
     if (err) {
+      
       return res.status(400).json(err);
     } else {
       user.update({ avatar: req.body.avatar }, (err, docs) => {
