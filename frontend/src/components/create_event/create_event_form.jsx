@@ -14,6 +14,7 @@ class CreateEventForm extends React.Component {
       date: "",
       time: "",
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
