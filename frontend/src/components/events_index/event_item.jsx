@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const EventItem = ({ event, history }) => {
-  // debugger
+  // 
   const dateObj = new Date(event.dateTime);
   const date = dateObj.toDateString();
   const time = dateObj.toLocaleTimeString("en-Us");

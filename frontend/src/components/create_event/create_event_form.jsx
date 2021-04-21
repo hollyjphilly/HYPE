@@ -19,6 +19,7 @@ class CreateEventForm extends React.Component {
   }
 
   handleSubmit(e) {
+
     e.preventDefault();
 
     // handle wihtout address
@@ -46,7 +47,8 @@ class CreateEventForm extends React.Component {
                   {},
                   this.state,
                   { location: newLocation },
-                  { dateTime: `${this.state.date}T${this.state.time}` }
+                  { dateTime: `${this.state.date}T${this.state.time}` },
+                { imgUrl: this.randomImage()}
                 )
               )
               .then((res) => {
@@ -61,8 +63,19 @@ class CreateEventForm extends React.Component {
     }
   }
 
+  randomImage() {
+    const images = [
+      "https://drive.google.com/thumbnail?id=1X0mrB_2k2oD8h95jJo2duW-a4ykfzAbc",
+      "https://drive.google.com/thumbnail?id=1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH"
+    ];
+
+    const idx = Math.floor(Math.random() * images.length);
+    return images[idx];
+  }
+
   update(field) {
-    return (e) => {
+    return (e) =>
+
       this.setState({
         [field]: e.currentTarget.value,
       });
@@ -106,6 +119,7 @@ class CreateEventForm extends React.Component {
         <div className="event-form-container">
           <form className="event-form" onSubmit={this.handleSubmit}>
             <div className="event-input-wrapper">
+              {/* </div> */}
               <label className="create-label">Title</label>
               <input
                 autoFocus
