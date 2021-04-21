@@ -10,8 +10,6 @@ module.exports = function validateEventInput(data) {
   data.maxCapacity = validText(data.maxCapacity) ? data.maxCapacity : "";
   data.dateTime = data.dateTime === "T" ? "" : data.dateTime;
   data.address = validText(data.address) ? data.address : "";
-  data.imgUrl1 = validText(data.imgUrl1) ? data.imgUrl1 : "";
-  data.imgUrl2 = validText(data.imgUrl2) ? data.imgUrl2 : "";
 
   // errors displayed to user
 
@@ -39,14 +37,6 @@ module.exports = function validateEventInput(data) {
 
   if (Validator.isEmpty(data.host)) {
     errors.host = "Host is required";
-  }
-
-  if (Validator.isEmpty(data.imgUrl1)) {
-    errors.imgUrl1 = "Image URL 1 is required";
-  }
-
-  if (Validator.isEmpty(data.imgUrl2)) {
-    errors.imgUrl2 = "Image URL 2 is required";
   }
 
   return {

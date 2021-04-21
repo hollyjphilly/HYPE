@@ -13,8 +13,6 @@ class CreateEventForm extends React.Component {
       address: "",
       date: "",
       time: "",
-      imgUrl1: "insertDefaultUrlHere",
-      imgUrl2: "insertDefaultUrlHere",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
