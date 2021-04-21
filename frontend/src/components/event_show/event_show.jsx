@@ -49,20 +49,14 @@ class EventShow extends React.Component {
     if (!events.length) {
       return <div>LOADING...</div>;
     }
-    const showEvent = events.find((event) => event._id === eventId);
-
+    // const showEvent = events.find((event) => event._id === eventId);
+    const showEvent = events.find((event) => event._id === events[0]._id);
     const currentId = loggedIn ? currentUser.id : undefined;
-    const isHost = showEvent.host === currentId;
+    const isHost = showEvent.host._id === currentId;
     const isLoggedIn = loggedIn;
     const alreadyAttending = loggedIn
       ? showEvent.usersAttending.includes(currentUser.id)
       : null;
-    // const cantJoin =
-    //   showEvent.usersAttending.includes(currentUser.id) ||
-    //   showEvent.host._id === currentUser.id ||
-    //   showEvent.usersAttending.length >= showEvent.maxCapacity;
-
-    // const canLeave = showEvent.usersAttending.includes(currentUser.id)
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
@@ -97,6 +91,43 @@ class EventShow extends React.Component {
       })
     );
 
+    const joinButton = () => {
+      if (isHost) {
+        return (
+          <button className="single-event-join-button" disabled>
+            YOU'RE HOST
+          </button>
+        );
+      } else if (alreadyAttending) {
+        return (
+          <button
+            className="single-event-join-button"
+            onClick={this.handleEventUnjoin}
+          >
+            LEAVE EVENT
+          </button>
+        );
+      } else if (isLoggedIn && !isHost) {
+        return (
+          <button
+            className="single-event-join-button"
+            onClick={this.handleEventJoin}
+          >
+            JOIN EVENT
+          </button>
+        );
+      } else {
+        return (
+          <button
+            className="single-event-join-button"
+            onClick={this.handleRedirect}
+          >
+            JOIN EVENT
+          </button>
+        );
+      }
+    };
+
     return (
       <div className="event-show-main-div">
         <div className="event-container">
@@ -109,67 +140,20 @@ class EventShow extends React.Component {
                   <p>{`${date} ${time}`}</p>
                   <p>{showEvent.address}</p>
                 </div>
-                {/* {!cantJoin ? (
-                  <button onClick={this.handleEventJoin}>JOIN EVENT</button>
-                  ) : ( "" )}
-                  {canLeave ? (
-                    <button onClick={this.handleEventUnjoin}>LEAVE EVENT</button>
-                  ) : ( "" )} */}
-                {isHost ? (
-                  <button className="single-event-join-button" disabled>
-                    YOU'RE HOST
-                  </button>
-                ) : alreadyAttending ? (
-                  <button
-                    className="single-event-join-button"
-                    onClick={this.handleEventUnjoin}
-                  >
-                    LEAVE EVENT
-                  </button>
-                ) : isLoggedIn ? (
-                  <button
-                    className="single-event-join-button"
-                    onClick={this.handleEventJoin}
-                  >
-                    JOIN EVENT
-                  </button>
-                ) : (
-                  <button
-                    className="single-event-join-button"
-                    onClick={this.handleRedirect}
-                  >
-                    JOIN EVENT
-                  </button>
-                )}
+                {joinButton()}
               </div>
               <div className="single-event-description">
                 <h3 className="single-event-description-h3">
                   Hosted by {showEvent.host.username}
-                  {/* <p className="single-event-details-p">
-                    
-                  </p> */}
                 </h3>
                 <h3 className="single-event-description-h3">
                   There are{" "}
                   {showEvent.maxCapacity - showEvent.usersAttending.length}{" "}
                   spots left.
-                  {/* <p className="single-event-details-p">
-                    {showEvent.usersAttending.length} / {showEvent.maxCapacity}
-                  </p> */}
                 </h3>
-                {/* <h3>Sport: {showEvent.sport}</h3> */}
-                {/* <h3 className="single-event-description-h3"> */}
-                {/* Description:{" "} */}
                 <p className="single-event-details-p">
                   {showEvent.description}
                 </p>
-                {/* </h3> */}
-                {/* <p>Max: {showEvent.maxCapacity}</p> */}
-                {/* <p>
-                  Spots Taken: {showEvent.usersAttending.length} /{" "}
-                  {showEvent.maxCapacity}
-                </p> */}
-                {/* <p>Attending: {showEvent.usersAttending.length}</p> */}
               </div>
             </div>
           </div>
