@@ -45,7 +45,7 @@
 
 <h3>MongoDB, Mongoose, & NoSQL</h3>
 
-<p>This project was a first venture into MERN and NoSQL databases for the entire team. As such NoSQL took us several days to wrap our heads around. The breakthrough came when we wanted to display additional user information on each "Event Show Page". Our instinct was to take the user's ID and search the database for a corrisponding user. That's when we remembered reading about embedding. After a couple hours of watching videos, tinkering with code, and combing through documentation, we figured it out. The Mongoose populate method did exactly what we wanted...</p>
+<p>This project was a first venture into MERN and NoSQL databases for the entire team. As such NoSQL took us several days to wrap our heads around. The breakthrough came when we wanted to display additional user information on each "Event Show Page". Our instinct was to take the user's ID and search the database for a corresponding user. That's when we remembered reading about embedding. After a couple hours of watching videos, tinkering with code, and combing through documentation, we figured it out. The Mongoose populate method did exactly what we wanted...</p>
 
 <pre>
   <code>
@@ -62,7 +62,7 @@
 
 <h3>Google Maps API, and its Many React Libraries</h3>
 
-<!-- <p>While the Google Maps API is well documented, it was by no means easy to learn or implement. The first big hurdle was in trying to hide our API Key. Alec had previously hidden an API key in Rails, and undertook figuring out how to hide it in MERN. Afer much fiddling, we learned that keys in MERN needed to be hidden in the source folder. The plot thickened when we learned this technique was incompatible with our Heroku hosting. After so much struggle, it turned out the best way to protect our key was not to hide it at all. Instead we white-listed all sites that would use the key for development and production.</p> -->
+<!-- <p>While the Google Maps API is well documented, it was by no means easy to learn or implement. The first big hurdle was in trying to hide our API Key. Alec had previously hidden an API key in Rails, and undertook figuring out how to hide it in MERN. After much fiddling, we learned that keys in MERN needed to be hidden in the source folder. The plot thickened when we learned this technique was incompatible with our Heroku hosting. After so much struggle, it turned out the best way to protect our key was not to hide it at all. Instead we white-listed all sites that would use the key for development and production.</p> -->
 
 <p>As this project uses React, we felt that it was appropriate to utilize a relevent library. We started out using the 'react-google-maps' library, and got fairly deep into it's implementaion before realizing that it worked best with hooks. This was a problem because no one on our team was familiar with using hooks in React, and the project deadline was the next day. This lead to sloppy re-renders in our event map, which not only looked bad, but also ran up a bill on Stewart's google cloud account. We revisited the projet after the deadline, and found out that the 'google-maps-react' library was better maintained and less hook reliant, allowing us to refactor and clear up this issue. The maps don't re-render on every click, and Stuart's bank account is safe once more.</p>
 
