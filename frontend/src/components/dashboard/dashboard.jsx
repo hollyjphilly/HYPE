@@ -302,9 +302,9 @@ class Dashboard extends React.Component {
                 </div>
           </div>
         </div>
+        </div>
         <div className="footer-container">
           <Footer />
-        </div>
         </div>
       </div>
     );
