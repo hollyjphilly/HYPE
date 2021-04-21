@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require("passport");
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
-const moment = require("moment-timezone");
 
 router.get("/test", (req, res) =>
   res.json({ msg: "This is the events route" })
@@ -47,8 +46,6 @@ router.post(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
-    const formattedDate = moment.utc(req.body.dateTime).local().format();
     const newEvent = new Event({
       title: req.body.title,
       description: req.body.description,
@@ -57,7 +54,7 @@ router.post(
       usersAttending: req.body.usersAttending,
       location: req.body.location,
       address: req.body.address,
-      dateTime: formattedDate,
+      dateTime: req.body.dateTime,
     });
     newEvent
       .save()

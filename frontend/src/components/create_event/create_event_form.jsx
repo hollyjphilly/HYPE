@@ -9,9 +9,11 @@ class CreateEventForm extends React.Component {
       description: "",
       host: this.props.user.id,
       maxCapacity: 4,
-      location: [],
+      location: "",
       address: "",
-      dateTime: "",
+      // dateTime: "",
+      date: "",
+      time: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,42 +21,38 @@ class CreateEventForm extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
-    if (this.state.address.split(", ").length < 3) {
-      this.props.errors.push("Please choose a location from the dropdown list");
-      this.forceUpdate();
-    } else {
-      const geocoder = new window.google.maps.Geocoder();
-      geocoder.geocode(
-        { address: this.state.address.split(", ").join("%20") },
-        (results, status) => {
-          if (status === "OK") {
-            const newLocation = [
-              results[0].geometry.location.lat(),
-              results[0].geometry.location.lng(),
-            ];
-            this.props
-              .createEvent(
-                Object.assign({}, this.state, { location: newLocation })
-              )
-              .then((res) => {
-                if (res.type !== "RECEIVE_EVENT_ERRORS") {
-                  this.props.hidden(true);
-                  this.props.history.push(`/events/${res.event.data._id}`);
-                }
-              });
-          } else {
-            this.props.errors.push(
-              "Please choose a location from the dropdown list"
-            );
-            this.forceUpdate();
-          }
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode(
+      { address: this.state.address.split(", ").join("%20") },
+      (results, status) => {
+        if (status === "OK") {
+          const newLocation = [
+            results[0].geometry.location.lat(),
+            results[0].geometry.location.lng(),
+          ];
+          this.props
+            .createEvent(
+              Object.assign({},
+                this.state, 
+                { location: newLocation },
+                { dateTime: `${this.state.date}T${this.state.time}`}
+                )
+            )
+            .then((res) => {
+              if (res.type != "RECEIVE_EVENT_ERRORS") {
+                this.props.hidden(true);
+                this.props.history.push(`/events/${res.event.data._id}`);
+              }
+            });
         }
-      );
-    }
+      }
+    );
   }
 
   update(field) {
+    debugger
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,
@@ -81,9 +79,15 @@ class CreateEventForm extends React.Component {
   }
 
   componentDidMount() {
-    new window.google.maps.places.Autocomplete(
+    const autocomplete = new window.google.maps.places.Autocomplete(
       document.getElementById("autocomplete")
     );
+    window.google.maps.event.addListener(autocomplete, "place_changed", () => {
+      const place = autocomplete.getPlace();
+      this.setState({
+        address: `${place.name}, ${place.formatted_address}`,
+      });
+    });
   }
 
   render() {
@@ -110,6 +114,7 @@ class CreateEventForm extends React.Component {
                 className="event-input"
                 type="text"
                 placeholder="Enter an address"
+                value={this.state.address}
                 onChange={this.update("address")}
               />
             </div>
@@ -118,22 +123,19 @@ class CreateEventForm extends React.Component {
               <label className="create-label">When</label>
               <input
                 className="event-input"
-                type="datetime-local"
-                value={this.state.dateTime}
-                onChange={this.update("dateTime")}
+                type="date"
+                value={this.state.date}
+                onChange={this.update("date")}
               />
-            </div>
-
-            {/* <div className="event-input-wrapper">
-              <label className="create-label">Where</label>
+              &nbsp;
+              &nbsp;
               <input
                 className="event-input"
-                type="text"
-                value={this.state.location}
-                placeholder="Type an address"
-                onChange={this.update("location")}
+                type="time"
+                value={this.state.time}
+                onChange={this.update("time")}
               />
-            </div> */}
+            </div>
 
             <div className="event-input-wrapper" id="max-cap-wrapper">
               <label className="create-label">How many people can play?</label>

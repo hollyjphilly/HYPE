@@ -67,7 +67,7 @@ class RegisterForm extends React.Component {
                   <div className="session-input">
                     <input
                       autoFocus
-                      id="session-text"
+                      className="session-text"
                       type="text"
                       value={this.state.firstName}
                       placeholder=" "
@@ -78,7 +78,7 @@ class RegisterForm extends React.Component {
 
                   <div className="session-input">
                     <input
-                      id="session-text"
+                      className="session-text"
                       type="text"
                       value={this.state.lastName}
                       placeholder=" "

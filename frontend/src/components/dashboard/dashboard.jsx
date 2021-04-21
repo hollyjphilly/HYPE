@@ -209,14 +209,14 @@ class Dashboard extends React.Component {
     const dateObj = new Date(currentUser.date);
 
     return (
-      <>
-        <div className="events-green-bar"></div>
-        <div className="events-wrapper">
-          <div className="events-green-bar-text slide">
-            <h1>Dashboard</h1>
+      <div className="component-container">
+        <div>
+          <div className="events-green-bar"></div>
+          <div className="events-wrapper">
+            <div className="events-green-bar-text slide">
+              <h1>Dashboard</h1>
+            </div>
           </div>
-        </div>
-
         <div className="dashboard-container">
           <div className="dashboard-content">
 
@@ -302,9 +302,10 @@ class Dashboard extends React.Component {
                 </div>
           </div>
         </div>
-
-        <Footer />
-      </>
+        <div className="footer-container">
+          <Footer />
+        </div>
+      </div>
     );
   }
 }
