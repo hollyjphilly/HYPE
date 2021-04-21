@@ -40,9 +40,7 @@ class Modal extends React.Component {
               </span>
               <h1 className="modal-title">Schedule a Game</h1>
             </div>
-            <div className="modal-body">
               <CreateEventContainer hidden={this.handleHidden} />
-            </div>
           </div>
         </div>
       </>

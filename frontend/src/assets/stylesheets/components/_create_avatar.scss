@@ -1,0 +1,21 @@
+.editing-links {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+}
+
+#username {
+    color: $sub-text;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#fullname {
+    color: $text;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+#member-since {
+    color: $sub-text;
+}

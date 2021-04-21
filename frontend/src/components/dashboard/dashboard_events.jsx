@@ -3,7 +3,6 @@ import EventItem from '../events_index/event_item';
 
 export default class DashboardEvents extends Component {
     render() {
-        
         // let sortedEvents = dashEvents.sort()
         return (
             <div className="dashboard-events">

@@ -92,7 +92,7 @@ class CreateEventForm extends React.Component {
 
   render() {
     return (
-      <div className="event-form-main-div">
+      <div className="modal-body">
         <div className="event-form-container">
           <form className="event-form" onSubmit={this.handleSubmit}>
             <div className="event-input-wrapper">
