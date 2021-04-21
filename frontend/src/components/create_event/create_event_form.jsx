@@ -36,7 +36,6 @@ class CreateEventForm extends React.Component {
   }
 
   handleSubmit(e) {
-
     e.preventDefault();
 
     // handle wihtout address
@@ -65,7 +64,7 @@ class CreateEventForm extends React.Component {
                   this.state,
                   { location: newLocation },
                   { dateTime: `${this.state.date}T${this.state.time}` },
-                  { imgUrl: this.randomImage()}
+                  { imgUrl: this.randomImage() }
                 )
               )
               .then((res) => {
@@ -83,7 +82,7 @@ class CreateEventForm extends React.Component {
   randomImage() {
     const images = [
       "https://drive.google.com/thumbnail?id=1X0mrB_2k2oD8h95jJo2duW-a4ykfzAbc",
-      "https://drive.google.com/thumbnail?id=1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH"
+      "https://drive.google.com/thumbnail?id=1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH",
     ];
 
     const idx = Math.floor(Math.random() * images.length);
@@ -92,12 +91,10 @@ class CreateEventForm extends React.Component {
 
   update(field) {
     return (e) =>
-
       this.setState({
         [field]: e.currentTarget.value,
       });
-    };
-  
+  }
 
   renderErrors() {
     return (
