@@ -1,5 +1,4 @@
 import * as EventAPIUtil from "../util/user_events_api_util";
-import {receiveCurrentUser} from "./session_actions"
 
 export const RECEIVE_HOSTED_EVENTS = "RECEIVE_HOSTED_EVENTS";
 export const RECEIVE_ATTENDING_EVENTS = "RECEIVE_ATTENDING_EVENTS";
@@ -36,17 +35,4 @@ export const fetchAttendingEvents = (userId) => (dispatch) => {
   );
 };
 
-export const updateAvatar = (userData) => (dispatch) => {
-  return EventAPIUtil.updateAvatar(userData).then(
-    (res) => dispatch(receiveCurrentUser(res.data)),
-    (err) => console.log(err)
-  );
-};
 
-// export const fetchUser = (userId) => (dispatch) => {
-//   
-//   return EventAPIUtil.fetchUser(userId).then(
-//     (res) => dispatch(receiveCurrentUser(res.data)),
-//     (err) => console.log(err)
-//   );
-// };
