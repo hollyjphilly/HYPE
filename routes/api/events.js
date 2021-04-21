@@ -55,6 +55,8 @@ router.post(
       location: req.body.location,
       address: req.body.address,
       dateTime: req.body.dateTime,
+      imgUrl1: req.body.imgUrl1,
+      imgUrl2: req.body.imgUrl2,
     });
     newEvent
       .save()
