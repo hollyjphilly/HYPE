@@ -1,12 +1,12 @@
 import React from "react";
 import EventItem from "./event_item";
 import { Redirect } from "react-router-dom";
-import Footer from '../footer'
+import Footer from "../footer";
 
 class EventsIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {search: ""};
+    this.state = { search: "" };
     this.renderEvents = this.renderEvents.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
     this.handleButton = this.handleButton.bind(this);
@@ -21,18 +21,19 @@ class EventsIndex extends React.Component {
   }
 
   renderEvents() {
-    let filteredEvents = this.props.events.filter(
-      (event) => {
-        return event.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      }
-    );
+    let filteredEvents = this.props.events.filter((event) => {
+      return (
+        event.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+        -1
+      );
+    });
     return filteredEvents.map((event) => (
       <EventItem event={event} history={this.props.history} key={event._id} />
     ));
   }
 
   updateSearch(event) {
-    this.setState({search: event.target.value})
+    this.setState({ search: event.target.value });
   }
 
   render() {
@@ -72,9 +73,9 @@ class EventsIndex extends React.Component {
                   />
                 </svg>
               </div>
-                {/* <div className="big-map-container"> */}
-                  <button onClick={this.handleButton}>Event Map</button>
-                {/* </div> */}
+              {/* <div className="big-map-container"> */}
+              <button onClick={this.handleButton}>Event Map</button>
+              {/* </div> */}
             </div>
             <div className="event-index-container">
               <div className="event-index-content">
