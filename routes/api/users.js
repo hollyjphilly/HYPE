@@ -21,6 +21,7 @@ router.get(
       username: req.user.username,
       email: req.user.email,
       date: req.user.date,
+      avatar: user.avatar
     });
   }
 );
@@ -30,6 +31,30 @@ router.get("/:id", (req, res) => {
     .then((user) => res.json(user))
     .catch((err) => res.status(400).json(err));
 });
+
+router.patch("/avatar", (req, res) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (err) {
+      return res.status(400).json(err);
+    } else {
+      user.update({ avatar: req.body.avatar }, (err, docs) => {
+        if (err) {
+          return res.status(400).json(err)
+        } else {
+          return res.json({
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            username: user.username,
+            email: user.email,
+            date: user.date,
+            avatar: req.body.avatar
+          })
+        }
+      })
+    }
+  })
+})
 
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -80,6 +105,7 @@ router.post("/register", (req, res) => {
                 username: user.username,
                 email: user.email,
                 date: user.date,
+                avatar: user.avatar
               };
 
               jwt.sign(
@@ -124,6 +150,7 @@ router.post("/login", (req, res) => {
             username: user.username,
             email: user.email,
             date: user.date,
+            avatar: user.avatar
           };
           jwt.sign(
             payload,

@@ -38,7 +38,7 @@ class CreateEventForm extends React.Component {
                 Object.assign({}, this.state, { location: newLocation })
               )
               .then((res) => {
-                if (res.type != "RECEIVE_EVENT_ERRORS") {
+                if (res.type !== "RECEIVE_EVENT_ERRORS") {
                   this.props.hidden(true);
                   this.props.history.push(`/events/${res.event.data._id}`);
                 }
@@ -88,7 +88,7 @@ class CreateEventForm extends React.Component {
 
   render() {
     return (
-      <div className="event-form-main-div">
+      <div className="modal-body">
         <div className="event-form-container">
           <form className="event-form" onSubmit={this.handleSubmit}>
             <div className="event-input-wrapper">

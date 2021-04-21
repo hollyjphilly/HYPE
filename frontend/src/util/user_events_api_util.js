@@ -7,3 +7,12 @@ export const getHostEvents = (userId) => {
 export const getAttendingEvents = (userId) => {
   return axios.get(`/api/events/attending/${userId}`);
 };
+
+export const updateAvatar = (userData) => {
+  return axios.patch('/api/users/avatar', userData);
+};
+
+// export const fetchUser = (userId) => {
+//   debugger
+//   return axios.get(`/api/users/${userId}`);
+// };

@@ -47,13 +47,6 @@
   animation: pop 500ms;
   transform: scale(1);}
 
-.modal-body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
 .x-close {
   color: #737373;
   float: right;
@@ -83,4 +76,11 @@
 .modal-title {
   margin:0;
   font-size: 28px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 15px 30px;
 }

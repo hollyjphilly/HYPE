@@ -3,7 +3,9 @@ import { withRouter } from 'react-router-dom'
 import Dashboard from './dashboard'
 import {
   fetchHostedEvents,
-  fetchAttendingEvents
+  fetchAttendingEvents,
+  updateAvatar,
+  // fetchUser
 } from '../../actions/user_events_actions';
 
 const mapStateToProps = state => {
@@ -17,7 +19,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchHostedEvents: userId => dispatch(fetchHostedEvents(userId)),
-    fetchAttendingEvents: userId => dispatch(fetchAttendingEvents(userId))
+    fetchAttendingEvents: userId => dispatch(fetchAttendingEvents(userId)),
+    updateAvatar: userData => dispatch(updateAvatar(userData)),
+    // fetchUser: userId => dispatch(fetchUser(userId))
   }
 }
 
