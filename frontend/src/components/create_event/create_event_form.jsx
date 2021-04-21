@@ -11,52 +11,62 @@ class CreateEventForm extends React.Component {
       maxCapacity: 4,
       location: "",
       address: "",
-      // dateTime: "",
       date: "",
-      time: ""
+      time: "",
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
   handleSubmit(e) {
-    debugger
     e.preventDefault();
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode(
-      { address: this.state.address.split(", ").join("%20") },
-      (results, status) => {
-        if (status === "OK") {
-          const newLocation = [
-            results[0].geometry.location.lat(),
-            results[0].geometry.location.lng(),
-          ];
-          this.props
-            .createEvent(
-              Object.assign({},
-                this.state, 
-                { location: newLocation },
-                { dateTime: `${this.state.date}T${this.state.time}`}
+
+    // handle wihtout address
+    if (this.state.address === "") {
+      this.props.createEvent(
+        Object.assign({}, this.state, {
+          dateTime: `${this.state.date}T${this.state.time}`,
+        })
+      );
+
+      // handle with address
+    } else {
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode(
+        { address: this.state.address.split(", ").join("%20") },
+        (results, status) => {
+          if (status === "OK") {
+            const newLocation = [
+              results[0].geometry.location.lat(),
+              results[0].geometry.location.lng(),
+            ];
+            this.props
+              .createEvent(
+                Object.assign(
+                  {},
+                  this.state,
+                  { location: newLocation },
+                  { dateTime: `${this.state.date}T${this.state.time}` }
                 )
-            )
-            .then((res) => {
-              if (res.type != "RECEIVE_EVENT_ERRORS") {
-                this.props.hidden(true);
-                this.props.history.push(`/events/${res.event.data._id}`);
-              }
-            });
+              )
+              .then((res) => {
+                if (res.type != "RECEIVE_EVENT_ERRORS") {
+                  this.props.hidden(true);
+                  this.props.history.push(`/events/${res.event.data._id}`);
+                }
+              });
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   update(field) {
-    debugger
-    return (e) =>
+    return (e) => {
       this.setState({
         [field]: e.currentTarget.value,
       });
+    };
   }
 
   componentWillUnmount() {
@@ -82,7 +92,7 @@ class CreateEventForm extends React.Component {
     const autocomplete = new window.google.maps.places.Autocomplete(
       document.getElementById("autocomplete")
     );
-    window.google.maps.event.addListener(autocomplete, "place_changed", () => {
+    autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
       this.setState({
         address: `${place.name}, ${place.formatted_address}`,
@@ -111,6 +121,7 @@ class CreateEventForm extends React.Component {
               <label className="create-label">Where</label>
               <input
                 id="autocomplete"
+                autoComplete="on"
                 className="event-input"
                 type="text"
                 placeholder="Enter an address"
@@ -127,8 +138,7 @@ class CreateEventForm extends React.Component {
                 value={this.state.date}
                 onChange={this.update("date")}
               />
-              &nbsp;
-              &nbsp;
+              &nbsp; &nbsp;
               <input
                 className="event-input"
                 type="time"
