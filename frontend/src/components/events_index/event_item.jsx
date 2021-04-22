@@ -8,7 +8,6 @@ const EventItem = ({ event, history }) => {
   const fullTime = dateObj.toLocaleTimeString("en-Us").split(" ");
   const time = fullTime[0].slice(0, fullTime[0].length-3) + " " + fullTime[1];
   const description = event.description.length > 60 ? event.description.slice(0, 100) + "..." : event.description;
-  debugger
   return (
     <div
       className="event-image-container"
