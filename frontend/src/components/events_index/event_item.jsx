@@ -5,23 +5,29 @@ const EventItem = ({ event, history }) => {
   //
   const dateObj = new Date(event.dateTime);
   const date = dateObj.toDateString();
-  const time = dateObj.toLocaleTimeString("en-Us");
+  const fullTime = dateObj.toLocaleTimeString("en-Us").split(" ");
+  const time = fullTime[0].slice(0, fullTime[0].length-3) + " " + fullTime[1];
+  const description = event.description.length > 60 ? event.description.slice(0, 100) + "..." : event.description;
+  debugger
   return (
     <div
-      className="event-item"
+      className="event-image-container"
       onClick={() => {
         history.push(`/events/${event._id}`);
       }}
     >
-      <img src="" alt="" className="event-thumbnail" />
-      <div className="event-info">
-        <NavLink to={`/events/${event._id}`}>
-          <h1>{event.title}</h1>
-        </NavLink>
-        <h2>{`${date} ${time}`}</h2>
-        <div className="event-description">{event.description}</div>
-        <div className="event-attendees">
-          <p>{event.usersAttending.length} attendees</p>
+      <img className="event-image" src={event.imgUrl} alt="Event Image" />
+      <div className="event-item">
+        <img src="" alt="" className="event-thumbnail" />
+        <div className="event-info">
+          <NavLink to={`/events/${event._id}`}>
+            <h1>{event.title}</h1>
+          </NavLink>
+          <h2>{`${date}  ${time}`}</h2>
+          <div className="event-description">{description}</div>
+          <div className="event-attendees">
+            <p>{event.usersAttending.length} attendees</p>
+          </div>
         </div>
       </div>
     </div>
