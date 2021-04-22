@@ -47,12 +47,18 @@ class EventShow extends React.Component {
     //Checking for an event, Loading...
     const { eventId, events, currentUser, loggedIn } = this.props;
     if (!events.length) {
-      return <div class="lds-ripple"><div></div><div></div></div>;
+      return (
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      );
     }
     // const showEvent = events.find((event) => event._id === eventId);
     const showEvent = events.find((event) => event._id === events[0]._id);
     const currentId = loggedIn ? currentUser.id : undefined;
-    const isHost = showEvent.host._id === currentId;
+    // debugger;
+    const isHost = (showEvent.host._id || showEvent.host) === currentId;
     const isLoggedIn = loggedIn;
     const alreadyAttending = loggedIn
       ? showEvent.usersAttending.includes(currentUser.id)
