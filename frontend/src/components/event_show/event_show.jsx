@@ -11,10 +11,14 @@ import { Redirect } from "react-router-dom";
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { redirect: false };
+    this.state = {
+      redirectLogin: false,
+      redirectEvents: false,
+    };
     this.handleEventJoin = this.handleEventJoin.bind(this);
     this.handleEventUnjoin = this.handleEventUnjoin.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
+    this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
   }
 
   componentDidMount() {
@@ -36,12 +40,17 @@ class EventShow extends React.Component {
     });
   }
 
+  handleDeleteEvent() {
+    this.props.deleteEvent(this.props.eventId);
+    this.props.history.push("/events");
+  }
+
   handleRedirect() {
-    this.setState({ redirect: true });
+    this.setState({ redirectLogin: true });
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.redirectLogin) {
       return <Redirect to="/login" />;
     }
     //Checking for an event, Loading...
@@ -52,7 +61,8 @@ class EventShow extends React.Component {
     // const showEvent = events.find((event) => event._id === eventId);
     const showEvent = events.find((event) => event._id === events[0]._id);
     const currentId = loggedIn ? currentUser.id : undefined;
-    const isHost = showEvent.host._id === currentId;
+    // debugger;
+    const isHost = (showEvent.host._id || showEvent.host) === currentId;
     const isLoggedIn = loggedIn;
     const alreadyAttending = loggedIn
       ? showEvent.usersAttending.includes(currentUser.id)
@@ -78,7 +88,7 @@ class EventShow extends React.Component {
       styles: showMapStyles,
       disableDefaultUI: true,
       zoomControl: false,
-      gestureHandling: "none"
+      gestureHandling: "none",
     };
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
@@ -100,8 +110,11 @@ class EventShow extends React.Component {
     const joinButton = () => {
       if (isHost) {
         return (
-          <button className="single-event-join-button" disabled>
-            YOU'RE HOST
+          <button
+            className="single-event-join-button"
+            onClick={this.handleDeleteEvent}
+          >
+            DELETE EVENT
           </button>
         );
       } else if (alreadyAttending) {

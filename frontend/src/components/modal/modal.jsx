@@ -13,10 +13,21 @@ class Modal extends React.Component {
     this.handleHidden = this.handleHidden.bind(this);
   }
 
+  // componentDidMount() {
+  //   if (this.state.hidden) {
+  //     document.body.style.overflow = "hidden";
+  //   }
+  // }
+
+  // componentWillUnmount() {
+  //   document.body.style.overflow = "unset";
+  // }
+
   toggle() {
     if (!this.props.loggedIn) {
       this.props.history.push("/login");
     } else {
+    document.body.style.overflow = "unset";
       this.setState({
         hidden: !this.state.hidden,
       });
@@ -30,6 +41,7 @@ class Modal extends React.Component {
   };
 
   display() {
+    document.body.style.overflow = "hidden";
     return (
       <>
         <div className="modal">
@@ -40,7 +52,7 @@ class Modal extends React.Component {
               </span>
               <h1 className="modal-title">Schedule a Game</h1>
             </div>
-              <CreateEventContainer hidden={this.handleHidden} />
+            <CreateEventContainer hidden={this.handleHidden} />
           </div>
         </div>
       </>
