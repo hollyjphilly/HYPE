@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const EventItem = ({ event, history, formType }) => {
-  debugger
   const dateObj = new Date(event.dateTime);
   const date = dateObj.toDateString();
   const fullTime = dateObj.toLocaleTimeString("en-Us").split(" ");
@@ -13,7 +12,7 @@ const EventItem = ({ event, history, formType }) => {
     ) : (
       <img className="event-image" src={event.imgUrl} alt="Event Image" />
     );
-    
+
   return (
     <div
       className="event-image-container"
