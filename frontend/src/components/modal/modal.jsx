@@ -41,7 +41,6 @@ class Modal extends React.Component {
   };
 
   display() {
-    document.body.style.overflow = "unset";
     document.body.style.overflow = "hidden";
     return (
       <>
