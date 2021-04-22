@@ -11,6 +11,16 @@ class RegisterForm extends React.Component {
       email: "",
       password: "",
       password2: "",
+      avatar: {
+        topType: "NoHair",
+        accessoriesType: "Blank",
+        hairColor: "Black",
+        facialHairType: "Blank",
+        clotheType: "Hoodie",
+        eyeType: "Default",            
+        mouthType: "Default",
+        skinColor: ((Math.random() < 0.5) ? "Light" : "DarkBrown")
+      }
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -73,7 +83,7 @@ class RegisterForm extends React.Component {
                       placeholder=" "
                       onChange={this.update("firstName")}
                     />
-                    <label id="session-label">First name</label>
+                    <label className="session-label">First name</label>
                   </div>
 
                   <div className="session-input">
@@ -84,66 +94,69 @@ class RegisterForm extends React.Component {
                       placeholder=" "
                       onChange={this.update("lastName")}
                     />
-                    <label id="session-label">Last name</label>
+                    <label className="session-label">Last name</label>
                   </div>
                 </div>
 
                 <div className="session-input">
                   <input
-                    id="session-text"
+                    className="session-text"
                     type="text"
                     value={this.state.email}
                     placeholder=" "
                     onChange={this.update("email")}
                   />
-                  <label id="session-label">Your email address</label>
+                  <label className="session-label">Your email address</label>
                 </div>
 
                 <div className="session-input">
                   <input
-                    id="session-text"
+                    className="session-text"
                     type="text"
                     value={this.state.username}
                     placeholder=" "
                     onChange={this.update("username")}
                   />
-                  <label id="session-label">Username</label>
+                  <label className="session-label">Username</label>
                 </div>
 
                 <div className="session-input">
                   <input
-                    id="session-text"
+                    className="session-text"
                     type="password"
                     value={this.state.password}
                     placeholder=" "
                     onChange={this.update("password")}
                   />
-                  <label id="session-label">Password</label>
+                  <label className="session-label">Password</label>
                 </div>
 
                 <div className="session-input">
                   <input
-                    id="session-text"
+                    className="session-text"
                     type="password"
                     value={this.state.password2}
                     placeholder=" "
                     onChange={this.update("password2")}
                   />
-                  <label id="session-label">Confirm Password</label>
+                  <label className="session-label">Confirm Password</label>
                 </div>
 
-                <br />
                 <div className="errors-container">{this.renderErrors()}</div>
-                <br />
-
-                <button className="session-button">Register</button>
+                
+                
+            <div className="alt-session-links">
+              <br />
+              <button className="session-button">Register</button>
+              <p>Already have an account? <span onClick={
+                () => this.props.history.push("/login")
+                }>Sign in</span></p>
+            </div>
               </div>
             </form>
-            <div className="demo-container">
-              <button className="demo-button" onClick={this.demo}>
-                Demo
-              </button>
-            </div>
+          </div>
+          <div id="demo-button">
+            <button onClick={this.demo}>Or use a<br></br>demo account.</button>
           </div>
         </div>
       </div>
