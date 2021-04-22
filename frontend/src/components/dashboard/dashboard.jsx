@@ -18,10 +18,13 @@ class Dashboard extends React.Component {
       mouthType: "",
       skinColor: "",
     };
+    
   }
 
   componentDidMount() {
+    
     this.props.fetchAvatar().then((res) => {
+      
       const {avatar} = res.currentUser;
         this.setState({
           topType: avatar.topType,
