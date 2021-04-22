@@ -81,8 +81,8 @@ class CreateEventForm extends React.Component {
 
   randomImage() {
     const images = [
-      "https://drive.google.com/thumbnail?id=1X0mrB_2k2oD8h95jJo2duW-a4ykfzAbc",
-      "https://drive.google.com/thumbnail?id=1pfsY_EhDkKQyK5eWXtkpBVbValwIFHLH",
+      "https://i.ibb.co/NyTHygN/funppl1.jpg",
+      "https://i.ibb.co/2Wr61fp/funppl2.webp",
     ];
 
     const idx = Math.floor(Math.random() * images.length);
