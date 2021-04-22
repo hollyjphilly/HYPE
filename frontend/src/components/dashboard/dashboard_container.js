@@ -10,7 +10,8 @@ const mapStateToProps = state => {
     hostedEvents: state.entities.userEvents.hostedEvents.data,
     attendingEvents: state.entities.userEvents.attendingEvents.data,
     currentUser: state.session.user,
-    avatar: state.entities.avatar.avatar
+    avatar: state.entities.avatar.avatar,
+    formType: "dashboardForm"
   }
 }
 

@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const EventItem = ({ event, history }) => {
-  //
+const EventItem = ({ event, history, formType }) => {
   const dateObj = new Date(event.dateTime);
   const date = dateObj.toDateString();
   const fullTime = dateObj.toLocaleTimeString("en-Us").split(" ");
   const time = fullTime[0].slice(0, fullTime[0].length-3) + " " + fullTime[1];
   const description = event.description.length > 60 ? event.description.slice(0, 100) + "..." : event.description;
+  const displayImages = formType ? (
+      ""
+    ) : (
+      <img className="event-image" src={event.imgUrl} alt="Event Image" />
+    );
+
   return (
     <div
       className="event-image-container"
@@ -15,7 +20,7 @@ const EventItem = ({ event, history }) => {
         history.push(`/events/${event._id}`);
       }}
     >
-      <img className="event-image" src={event.imgUrl} alt="Event Image" />
+      {displayImages}
       <div className="event-item">
         <img src="" alt="" className="event-thumbnail" />
         <div className="event-info">

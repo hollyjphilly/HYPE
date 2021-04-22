@@ -12,6 +12,7 @@ export default class DashboardEvents extends Component {
               event={event}
               key={event._id}
               history={this.props.history}
+              formType={this.props.formType}
             />
           </div>
         ))}
