@@ -72,14 +72,15 @@ class EventShow extends React.Component {
     const options = {
       styles: showMapStyles,
       disableDefaultUI: true,
-      zoomControl: true,
+      zoomControl: false,
+      gestureHandling: "none"
     };
     const WrappedMap = withScriptjs(
       withGoogleMap(() => {
         return (
           <GoogleMap
             defaultCenter={{ lat: showLat, lng: showLng }}
-            defaultZoom={12}
+            defaultZoom={14}
             options={options}
           >
             <Marker

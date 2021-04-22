@@ -22,16 +22,17 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.fetchAvatar().then((res) => {
-      this.setState({
-        topType: res.currentUser.avatar.topType,
-        accessoriesType: res.currentUser.avatar.accessoriesType,
-        hairColor: res.currentUser.avatar.hairColor,
-        facialHairType: res.currentUser.avatar.facialHairType,
-        clotheType: res.currentUser.avatar.clotheType,
-        eyeType: res.currentUser.avatar.eyeType,
-        mouthType: res.currentUser.avatar.mouthType,
-        skinColor: res.currentUser.avatar.skinColor,
-      });
+      const {avatar} = res.currentUser;
+        this.setState({
+          topType: avatar.topType,
+          accessoriesType: avatar.accessoriesType,
+          hairColor: avatar.hairColor,
+          facialHairType: avatar.facialHairType,
+          clotheType: avatar.clotheType,
+          eyeType: avatar.eyeType,
+          mouthType: avatar.mouthType,
+          skinColor: avatar.skinColor,
+        });
     });
     const { id } = this.props.currentUser;
     this.props.fetchAttendingEvents(id);
