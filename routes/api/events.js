@@ -70,7 +70,9 @@ router.delete("/:id", (req, res) => {
     if (err) {
       return res.status(400).json({ error: "Event not found" });
     }
-    return res.status(200).json({ msg: "Event has been deleted" });
+    return res
+      .status(200)
+      .json({ id: req.params.id, msg: "Event has been deleted" });
   });
 });
 
