@@ -228,7 +228,7 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    const { currentUser, hostedEvents, attendingEvents, avatar } = this.props;
+    const { currentUser, hostedEvents, attendingEvents, avatar, formType } = this.props;
 
     if (!hostedEvents || !attendingEvents || !avatar) {
       return null;
@@ -236,7 +236,7 @@ class Dashboard extends React.Component {
 
     const allEvents = hostedEvents.concat(attendingEvents);
     const dateObj = new Date(currentUser.date);
-
+    
     return (
       <div className="component-container">
         <div>
@@ -333,6 +333,7 @@ class Dashboard extends React.Component {
                       <DashboardEvents
                         dashEvents={allEvents}
                         history={this.props.history}
+                        formType={formType}
                       />
                     )}
                   />
@@ -344,6 +345,7 @@ class Dashboard extends React.Component {
                       <DashboardEvents
                         dashEvents={hostedEvents}
                         history={this.props.history}
+                        formType={formType}
                       />
                     )}
                   />
@@ -355,6 +357,7 @@ class Dashboard extends React.Component {
                       <DashboardEvents
                         dashEvents={attendingEvents}
                         history={this.props.history}
+                        formType={formType}
                       />
                     )}
                   />
@@ -365,6 +368,7 @@ class Dashboard extends React.Component {
                       <DashboardEvents
                         dashEvents={allEvents}
                         history={this.props.history}
+                        formType={formType}
                       />
                     )}
                   />
