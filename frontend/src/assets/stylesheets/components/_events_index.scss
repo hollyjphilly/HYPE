@@ -17,7 +17,7 @@
   width: 90%;
   padding: 10px 40px 10px 17px;
   font-size: 20px;
-  border: 4px solid rgb(213, 212, 212);
+  border: 3px solid rgb(152, 152, 152);
   border-radius: 25px;
   outline: none;
   box-shadow: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
 .search-bar > svg {
   z-index: 1;
   margin-left: -42px;
-  fill: rgb(198, 198, 198);
+  fill: hsl(0,0%,47%);
   background-color: white;
   padding: 0 4px;
 }
@@ -42,7 +42,7 @@
   }
 
   img:hover {
-    transform: scale(1.25);
+    transform: scale(1.15);
   }
 }
 

@@ -66,39 +66,44 @@ class LoginForm extends React.Component {
                 <div className="session-input">
                   <input
                       autoFocus
-                      id="session-text"
+                      className="session-text"
                       type="text"
                       value={this.state.email}
                       placeholder=" "
                       onChange={this.update('email')}/>
                   <label
-                      id="session-label">Email</label>
+                      className="session-label">Email</label>
                 </div>
 
                 <div className="session-input">
                   <input
-                      id="session-text"
+                      className="session-text"
                       type="password"
                       value={this.state.password}
                       placeholder=" "
                       onChange={this.update('password')}/>
                   <label
-                      id="session-label">Password</label>
+                      className="session-label">Password</label>
                 </div>
 
-              <br/>
               <div className="errors-container">{this.renderErrors()}</div>
-              <br/>
 
-              <button className="session-button" >Log In</button>
+              <div className="alt-session-links">
+                <br />
+                <button className="session-button">Log In</button>
+                <p>Don't have an account? <span onClick={
+                  () => this.props.history.push("/register")
+                  }>Register</span></p>
+              </div>
 
             </div>
           </form>
-          <div className="demo-container">
-            <button className="demo-button" onClick={this.demo}>Demo</button>
-          </div>
           
-        </div></div></div>
+        </div>
+        <div id="demo-button">
+            <button onClick={this.demo}>Or use a<br></br>demo account.</button>
+          </div>
+        </div></div>
       </div>
     );
   }
