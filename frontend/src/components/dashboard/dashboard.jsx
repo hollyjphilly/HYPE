@@ -18,13 +18,13 @@ class Dashboard extends React.Component {
       mouthType: "",
       skinColor: "",
     };
-    debugger
+    
   }
 
   componentDidMount() {
-    debugger
+    
     this.props.fetchAvatar().then((res) => {
-      debugger
+      
       const {avatar} = res.currentUser;
         this.setState({
           topType: avatar.topType,
@@ -240,7 +240,7 @@ class Dashboard extends React.Component {
 
     const allEvents = hostedEvents.concat(attendingEvents);
     const dateObj = new Date(currentUser.date);
-    debugger
+    
     return (
       <div className="component-container">
         <div>

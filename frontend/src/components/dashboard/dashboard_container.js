@@ -5,7 +5,7 @@ import { fetchHostedEvents, fetchAttendingEvents } from '../../actions/user_even
 import { updateAvatar, fetchAvatar } from '../../actions/avatar_actions';
 
 const mapStateToProps = state => {
-  debugger
+  
   return {
     hostedEvents: state.entities.userEvents.hostedEvents.data,
     attendingEvents: state.entities.userEvents.attendingEvents.data,
@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  debugger
+  
   return {
     fetchHostedEvents: userId => dispatch(fetchHostedEvents(userId)),
     fetchAttendingEvents: userId => dispatch(fetchAttendingEvents(userId)),
