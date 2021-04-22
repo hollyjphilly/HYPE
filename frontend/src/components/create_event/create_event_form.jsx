@@ -37,7 +37,7 @@ class CreateEventForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
+    document.body.style.overflow = "unset";
     // handle wihtout address
     if (this.state.address === "") {
       this.props.createEvent(
