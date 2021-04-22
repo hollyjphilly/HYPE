@@ -81,7 +81,7 @@ class EventsIndex extends React.Component {
                 {this.props.events.length ? (
                   this.renderEvents()
                 ) : (
-                  <div class="lds-ripple"><div></div><div></div></div>
+                  <div className="lds-ripple"><div></div><div></div></div>
                 )}
               </div>
             </div>
