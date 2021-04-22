@@ -90,6 +90,9 @@
 
 <img src="https://i.ibb.co/VYTWZF9/Screen-Shot-2021-04-21-at-6-03-21-PM.png" alt="autocomplete in action"/>
 
+<img src="https://i.ibb.co/3Snzcvd/eventindex.png" alt="event index"/>
+
+
 <br/>
 <h2>Thanks for stopping by!</h2>
 <img src="https://i.ibb.co/mTYrnMW/fistbump.png" alt="pic of founders fistbumping">
