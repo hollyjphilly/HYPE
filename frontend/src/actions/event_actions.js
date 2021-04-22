@@ -4,7 +4,7 @@ export const RECEIVE_ONE_EVENT = "RECEIVE_ONE_EVENT";
 export const RECEIVE_ALL_EVENTS = "RECEIVE_ALL_EVENTS";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
 export const CLEAR_EVENT_ERRORS = "CLEAR_EVENT_ERRORS";
-// export const REMOVE_EVENT = "REMOVE_EVENT";
+export const REMOVE_EVENT = "REMOVE_EVENT";
 
 const receiveOneEvent = (event) => {
   return {
@@ -17,6 +17,13 @@ const receiveAllEvents = (events) => {
   return {
     type: RECEIVE_ALL_EVENTS,
     events,
+  };
+};
+
+const removeEvent = (data) => {
+  return {
+    type: REMOVE_EVENT,
+    data,
   };
 };
 
@@ -52,6 +59,13 @@ export const fetchAllEvents = () => (dispatch) => {
 export const createEvent = (formData) => (dispatch) => {
   return EventAPIUtil.postEvent(formData).then(
     (event) => dispatch(receiveOneEvent(event)),
+    (errors) => dispatch(receiveErrors(errors.response.data))
+  );
+};
+
+export const deleteEvent = (eventId) => (dispatch) => {
+  return EventAPIUtil.deleteEvent(eventId).then(
+    (res) => dispatch(removeEvent(res.data)),
     (errors) => dispatch(receiveErrors(errors.response.data))
   );
 };
