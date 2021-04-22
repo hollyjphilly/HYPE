@@ -19,6 +19,8 @@
     box-shadow: 0 2px 4px 0 rgb(184 184 184 / 50%);
     transition: all 150ms;
     flex-grow: 1;
+    object-fit: cover;
+    object-position: left top;
 }
 
 .event-image-container {

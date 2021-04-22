@@ -10,7 +10,7 @@ const EventItem = ({ event, history, formType }) => {
   const displayImages = formType ? (
       ""
     ) : (
-      <img className="event-image" src={event.imgUrl} alt="Event Image" />
+      <img className="event-image" src={event.imgUrl} alt="Event Image" align="middle"/>
     );
 
   return (
