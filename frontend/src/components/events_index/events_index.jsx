@@ -47,7 +47,7 @@ class EventsIndex extends React.Component {
             </div>
           </div>
           <div className="browse-game-content">
-            {/* <div className="events-bar-container"> */}
+            <div className="event-index-container">
             <div className="searchbar-map-container">
               <div className="search-bar">
                 <input
@@ -55,7 +55,7 @@ class EventsIndex extends React.Component {
                   value={this.state.search}
                   onChange={this.updateSearch}
                   className="search-input"
-                  placeholder="Find game..."
+                  placeholder="Search"
                 />
 
                 <svg
@@ -73,20 +73,18 @@ class EventsIndex extends React.Component {
                   />
                 </svg>
               </div>
-              {/* <div className="big-map-container"> */}
-              <button onClick={this.handleButton}>Event Map</button>
-              {/* </div> */}
+              <div id="map-button" onClick={this.handleButton}>
+                <img src="https://i.ibb.co/qDtjKJg/64x64.png"/>
+              </div>
             </div>
-            <div className="event-index-container">
               <div className="event-index-content">
                 {this.props.events.length ? (
                   this.renderEvents()
                 ) : (
-                  <h2>Where did I put those damn events!?</h2>
+                  <div class="lds-ripple"><div></div><div></div></div>
                 )}
               </div>
             </div>
-            {/* </div> */}
           </div>
         </div>
 
