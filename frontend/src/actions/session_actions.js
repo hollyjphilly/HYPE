@@ -34,16 +34,6 @@ export const clearErrors = () => {
   };
 };
 
-// This will be used to redirect the user to the login page upon signup
-// export const receiveUserSignIn = () => ({
-//     type: RECEIVE_USER_LOGIN
-// });
-
-// export const register = (user) => (dispatch) =>
-//   APIUtil.register(user).then(
-//     (user) => dispatch(receiveCurrentUser(user)),
-//     (err) => dispatch(receiveErrors(err.response.data))
-//   );
 export const register = (user) => (dispatch) => {
   return APIUtil.register(user).then(
     (res) => {

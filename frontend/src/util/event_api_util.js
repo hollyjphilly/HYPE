@@ -8,10 +8,6 @@ export const getAllEvents = () => {
   return axios.get("/api/events");
 };
 
-// export const getUserEvents = (userId) => {
-//   return axios.get(`/api/events/user/${userId}`);
-// };
-
 export const postEvent = (data) => {
   return axios.post("/api/events/", data);
 };
