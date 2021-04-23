@@ -5,6 +5,7 @@ const BioComponent = props => {
       <h3 className="creator-name">{name}</h3>
 			<div className="bio-links-container">
 				<div className="creator-links">
+					
 					<a href={`${github}`} rel="noreferrer" target="_blank">
 						<svg 
 						 	width="40px"
