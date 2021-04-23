@@ -27,7 +27,7 @@ body {
 
 
 .footer-content {
-  width: 75%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   padding: 50px;
@@ -38,7 +38,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  width: 30%;
+  
   #footer-logo {
     width: 140px;
   }
@@ -68,6 +69,12 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.bio-footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .creator-links {
@@ -129,5 +136,31 @@ h2 {
     width: 72px;
     height: 72px;
     opacity: 0;
+  }
+}
+
+@media (max-width: 990px) {
+  .bio-footer-content {
+    display: block;
+  }
+
+  .footer-column {
+    margin: 10px;
+  }
+
+  .footer-column > span {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
+  .footer-hype-link {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .creator-name {
+    font-size: 120%;
   }
 }
