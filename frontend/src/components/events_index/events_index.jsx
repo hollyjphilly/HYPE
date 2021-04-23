@@ -1,6 +1,5 @@
 import React from "react";
 import EventItem from "./event_item";
-import { Redirect } from "react-router-dom";
 import Footer from "../footer";
 
 class EventsIndex extends React.Component {

@@ -1,5 +1,4 @@
 import * as AvatarAPIUtil from "../util/avatar_api_util";
-// import {receiveCurrentUser} from "./session_actions"
 
 export const RECEIVE_CURRENT_AVATAR = "RECEIVE_CURRENT_AVATAR";
 

@@ -13,16 +13,6 @@ class Modal extends React.Component {
     this.handleHidden = this.handleHidden.bind(this);
   }
 
-  // componentDidMount() {
-  //   if (this.state.hidden) {
-  //     document.body.style.overflow = "hidden";
-  //   }
-  // }
-
-  // componentWillUnmount() {
-  //   document.body.style.overflow = "unset";
-  // }
-
   toggle() {
     if (!this.props.loggedIn) {
       this.props.history.push("/login");

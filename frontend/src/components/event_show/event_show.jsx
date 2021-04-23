@@ -61,7 +61,6 @@ class EventShow extends React.Component {
     // const showEvent = events.find((event) => event._id === eventId);
     const showEvent = events.find((event) => event._id === events[0]._id);
     const currentId = loggedIn ? currentUser.id : undefined;
-    // debugger;
     const isHost = (showEvent.host._id || showEvent.host) === currentId;
     const isLoggedIn = loggedIn;
     const alreadyAttending = loggedIn

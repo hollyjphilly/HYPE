@@ -6,11 +6,6 @@
     border: 1px solid $border-gray;
     display: flex;
     box-shadow: 0 2px 4px 0 rgb(184 184 184 / 50%);
-    // cursor: pointer;
-    // transition: all 150ms;
-    // flex-grow: 1;
-    // flex-basis: 0;
-    // width: 80%;
 }
 
 .event-image {
@@ -24,7 +19,6 @@
 }
 
 .event-image-container {
-    // height: fit-content;
     height: 50%;
     box-shadow: 0 2px 4px 0 rgb(184 184 184 / 50%);
     transition: all 150ms;
