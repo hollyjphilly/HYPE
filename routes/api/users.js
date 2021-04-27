@@ -8,13 +8,10 @@ const passport = require("passport");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
-
 router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    
     res.json({
       id: req.user.id,
       firstName: req.user.firstName,
@@ -22,7 +19,7 @@ router.get(
       username: req.user.username,
       email: req.user.email,
       date: req.user.date,
-      avatar: req.user.avatar
+      avatar: req.user.avatar,
     });
   }
 );
@@ -34,15 +31,13 @@ router.get("/:id", (req, res) => {
 });
 
 router.patch("/avatar", (req, res) => {
-  
   User.findOne({ email: req.body.email }, (err, user) => {
     if (err) {
-      
       return res.status(400).json(err);
     } else {
       user.update({ avatar: req.body.avatar }, (err, docs) => {
         if (err) {
-          return res.status(400).json(err)
+          return res.status(400).json(err);
         } else {
           return res.json({
             id: user.id,
@@ -51,13 +46,13 @@ router.patch("/avatar", (req, res) => {
             username: user.username,
             email: user.email,
             date: user.date,
-            avatar: req.body.avatar
-          })
+            avatar: req.body.avatar,
+          });
         }
-      })
+      });
     }
-  })
-})
+  });
+});
 
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -107,7 +102,7 @@ router.post("/register", (req, res) => {
                 username: user.username,
                 email: user.email,
                 date: user.date,
-                avatar: user.avatar
+                avatar: user.avatar,
               };
 
               jwt.sign(
@@ -152,7 +147,7 @@ router.post("/login", (req, res) => {
             username: user.username,
             email: user.email,
             date: user.date,
-            avatar: user.avatar
+            avatar: user.avatar,
           };
           jwt.sign(
             payload,

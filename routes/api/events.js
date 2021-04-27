@@ -4,10 +4,6 @@ const passport = require("passport");
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
 
-router.get("/test", (req, res) =>
-  res.json({ msg: "This is the events route" })
-);
-
 router.get("/", (req, res) => {
   Event.find()
     .sort({ dateTime: 1 }) // find all events and send them back in
