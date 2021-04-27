@@ -14,8 +14,8 @@
 <tbody>
 <tr>
 <td><p align="center">Alec Caro<br/>Project Lead</p></td>
-<td><p align="center">Hammad Khalid<br/>Backend Lead</p></td>
-<td><p align="center">Holly Phillips<br/>Frontend Lead</p></td>
+<td><p align="center">Hammad Khalid<br/>Back-End Lead</p></td>
+<td><p align="center">Holly Phillips<br/>Front-End Lead</p></td>
 <td><p align="center">Stewart Morales<br/>Fullstack Dev</p></td>
 </tr>
 </tbody>
@@ -43,11 +43,11 @@
 
 <img src="https://i.ibb.co/NK0WbTt/Screen-Shot-2021-04-27-at-5-46-23-PM.png" alt="avatar" />
 
-<h2>Challanges</h2>
+<h2>Challenges</h2>
 
 <h3>MongoDB, Mongoose, & NoSQL</h3>
 
-<p>This project was a first venture into MERN and NoSQL databases for the entire team. As such NoSQL took us several days to wrap our heads around. The breakthrough came when we wanted to display additional user information on each "Event Show Page". Our instinct was to take the user's ID and search the database for a corresponding user. That's when we remembered reading about embedding. After a couple hours of watching videos, tinkering with code, and combing through documentation, we figured it out. The Mongoose populate method did exactly what we wanted...</p>
+<p>This project was a first venture into MERN and NoSQL databases for the entire team. As such, NoSQL took us several days to wrap our heads around. The breakthrough came when we wanted to display additional user information on each "Event Show Page". Our instinct was to take the user's ID and search the database for a corresponding user. That's when we remembered reading about embedding. After a couple hours of watching videos, tinkering with code, and combing through documentation, we figured it out. The Mongoose populate method did exactly what we wanted...</p>
 
 <pre>
   <code>
@@ -60,7 +60,7 @@
   </code>
 </pre>
 
-<p>When we saw the results in our database we were ecstatic. We started shouting "MONGOOSE!" quite loudly. The document/collection system of the NoSQL MongoDB allowed us to customize routes and pull data how we needed it for each use case. This is a powerful tool that we are all glad to have worked with, under Hammad's steady guidance as backend lead.</p>
+<p>When we saw the results in our database we were ecstatic. We started shouting "MONGOOSE!" quite loudly. The document/collection system of the NoSQL MongoDB allowed us to customize routes and pull data appropriately for each use case. We are all glad to have worked with this powerful tool under Hammad's steady guidance as backend lead.</p>
 
 <h3>Google Maps API, and its Many React Libraries</h3>
 
