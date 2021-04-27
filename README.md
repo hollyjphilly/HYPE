@@ -21,10 +21,10 @@
 </tbody>
 </table>
 
-<a href="http://hype-event.herokuapp.com/#/"><br/><h1>Click Here to View the Live Demo</h1></a>
+<a href="http://hype-event.herokuapp.com/#/"><br/><h2>View the Live Demo</h2></a>
 <img src="https://drive.google.com/uc?export=view&id=1_BFBD1O-MPNJTShizjAVW_AFAj9y40eq" alt="gifgifmov" border="0">
 
-<a href="https://github.com/hollyjphilly/HYPE/wiki"><br/><h2>Click Here to View the Design Docs</h2></a>
+<a href="https://github.com/hollyjphilly/HYPE/wiki"><br/><h2>View the Design Docs</h2></a>
 <br/>
 
 <h2>Background & Overview</h2>
