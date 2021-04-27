@@ -20,11 +20,11 @@
 </tr>
 </tbody>
 </table>
-
-<a href="http://hype-event.herokuapp.com/#/"><br/><h2>View the Live Demo</h2></a>
+<br>
+<h2><a href="http://hype-event.herokuapp.com/#/">View the Live Demo</a> | <a href="https://github.com/hollyjphilly/HYPE/wiki">View the Design Docs</a></h2>
 <img src="https://drive.google.com/uc?export=view&id=1_BFBD1O-MPNJTShizjAVW_AFAj9y40eq" alt="gifgifmov" border="0">
 
-<a href="https://github.com/hollyjphilly/HYPE/wiki"><br/><h2>View the Design Docs</h2></a>
+
 <br/>
 
 <h2>Background & Overview</h2>
@@ -41,7 +41,7 @@
 <li>Avatar builder on the dashboard lets each user customize a little them!</li>
 </ul>
 
-<img src="https://i.ibb.co/KVS1TSy/Screen-Shot-2021-04-22-at-11-08-08-AM.png" alt="avatar" />
+<img src="https://i.ibb.co/NK0WbTt/Screen-Shot-2021-04-27-at-5-46-23-PM.png" alt="avatar" />
 
 <h2>Challanges</h2>
 
