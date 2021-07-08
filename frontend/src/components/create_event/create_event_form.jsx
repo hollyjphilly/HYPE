@@ -194,5 +194,5 @@ class CreateEventForm extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8",
+  apiKey: "AIzaSyAk9t7Tu439wZGCam6htKgKVN1Qa0cbHvk",
 })(CreateEventForm);
