@@ -7,6 +7,7 @@ import {
   Marker,
 } from "react-google-maps";
 import { Redirect } from "react-router-dom";
+import Footer from "../footer";
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -56,7 +57,12 @@ class EventShow extends React.Component {
     //Checking for an event, Loading...
     const { eventId, events, currentUser, loggedIn } = this.props;
     if (!events.length) {
-      return <div className="lds-ripple"><div></div><div></div></div>;
+      return (
+        <div className="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      );
     }
     // const showEvent = events.find((event) => event._id === eventId);
     const showEvent = events.find((event) => event._id === events[0]._id);
@@ -69,15 +75,20 @@ class EventShow extends React.Component {
 
     //Date and time parse
     const dateObj = new Date(showEvent.dateTime);
-    const day = dateObj.toLocaleDateString(undefined, { weekday: 'long' })
-    const month = dateObj.toLocaleDateString(undefined, { month: 'long' })
-    const date = dateObj.toLocaleDateString(undefined, { day: 'numeric' })
-    const year = dateObj.toLocaleDateString(undefined, { year: 'numeric' })
-    const fullDate = dateObj.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    const day = dateObj.toLocaleDateString(undefined, { weekday: "long" });
+    const month = dateObj.toLocaleDateString(undefined, { month: "long" });
+    const date = dateObj.toLocaleDateString(undefined, { day: "numeric" });
+    const year = dateObj.toLocaleDateString(undefined, { year: "numeric" });
+    const fullDate = dateObj.toLocaleDateString(undefined, {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
     const time = dateObj.toLocaleTimeString("en-Us", {
       hour: "numeric",
       minute: "2-digit",
-      timeZoneName: 'short'
+      timeZoneName: "short",
     });
 
     //map logic
@@ -147,9 +158,7 @@ class EventShow extends React.Component {
     };
 
     return (
-    
       <div id="event-show">
-
         <div className="events-green-bar"></div>
         <div className="events-wrapper">
           <div className="events-green-bar-text slide">
@@ -161,8 +170,9 @@ class EventShow extends React.Component {
           <div id="event-container">
             <div id="event-show-header">
               <div className="col">
-              <h1>{showEvent.title}</h1>
-              <h2>{`${day}, ${month} ${date}, ${year}`}</h2></div>
+                <h1>{showEvent.title}</h1>
+                <h2>{`${day}, ${month} ${date}, ${year}`}</h2>
+              </div>
               <div className="col">
                 {joinButton()}
                 <p className="single-event-description-h3">
@@ -175,7 +185,7 @@ class EventShow extends React.Component {
             <div id="event-show-body">
               <div id="row-1">
                 <div>
-                  <img src={showEvent.imgUrl} alt=""/>
+                  <img src={showEvent.imgUrl} alt="" />
                   <h2>{showEvent.host.username} says</h2>
                   <p>"{showEvent.description}"</p>
                 </div>
@@ -183,14 +193,16 @@ class EventShow extends React.Component {
                   <div className="row">
                     <div className="svg">
                       <svg viewBox="0 0 512 512" id="clock-icon">
-                        <path
-                          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
-                        </path>
+                        <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
                       </svg>
                     </div>
-                    <p>{fullDate}<br/>{time}</p>
+                    <p>
+                      {fullDate}
+                      <br />
+                      {time}
+                    </p>
                   </div>
-                  
+
                   <div className="row">
                     <div className="svg">
                       <svg viewBox="0 0 512 512" id="loc-icon">
@@ -199,27 +211,27 @@ class EventShow extends React.Component {
                     </div>
                     <p>{showEvent.address}</p>
                   </div>
-                  
+
                   <div className="row">
                     <div className="event-map">
-                    <WrappedMap
-                      googleMapURL={
-                        "https://maps.googleapis.com/maps/api/js?key=AIzaSyDVt-WmXfXrG4hDwxbM6Ctir_Q8e1VicE8"
-                      }
-                      loadingElement={<div style={{ height: "100%" }} />}
-                      containerElement={<div style={{ height: "100%" }} />}
-                      mapElement={<div style={{ height: "100%" }} />}
-                    />
-                  </div></div>
+                      <WrappedMap
+                        googleMapURL={
+                          "https://maps.googleapis.com/maps/api/js?key=AIzaSyAk9t7Tu439wZGCam6htKgKVN1Qa0cbHvk"
+                        }
+                        loadingElement={<div style={{ height: "100%" }} />}
+                        containerElement={<div style={{ height: "100%" }} />}
+                        mapElement={<div style={{ height: "100%" }} />}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div id="row-2">
-                
-              </div>
+              <div id="row-2"></div>
             </div>
           </div>
         </div>
-    </div>
+        <Footer />
+      </div>
     );
   }
 }
