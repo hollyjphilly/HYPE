@@ -22,7 +22,7 @@
 </table>
 <br>
 <h2><a href="http://hype-event.herokuapp.com/#/">View the Live Demo</a> | <a href="https://github.com/hollyjphilly/HYPE/wiki">View the Design Docs</a></h2>
-<img src="https://drive.google.com/uc?export=view&id=1_BFBD1O-MPNJTShizjAVW_AFAj9y40eq" alt="gifgifmov" border="0">
+<img src="https://drive.google.com/uc?export=view&id=1_BFBD1O-MPNJTShizjAVW_AFAj9y40eq" alt="GIF of Hype Homepage" border="0">
 
 
 <br/>
