@@ -21,7 +21,7 @@
 </tbody>
 </table>
 <br>
-<h2><a href="https://drive.google.com/uc?export=view&id=1_BFBD1O-MPNJTShizjAVW_AFAj9y40eq">View GIF of Homepage</a> | <a href="https://github.com/hollyjphilly/HYPE/wiki">View the Design Docs</a></h2>
+<h2><a href="https://drive.google.com/uc?export=view&id=1_BFBD1O-MPNJTShizjAVW_AFAj9y40eq">View GIF</a> | <a href="https://github.com/hollyjphilly/HYPE/wiki">View the Design Docs</a></h2>
 
 
 <br/>
